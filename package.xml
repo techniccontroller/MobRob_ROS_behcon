@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>MobRob_ROS_behcon</name>
+  <name>mobrob_behcon</name>
   <version>0.0.0</version>
-  <description>The MobRob_ROS_behcon package</description>
+  <description>The mobrob_behcon package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
@@ -19,7 +19,7 @@
   <!-- Url tags are optional, but multiple are allowed, one per tag -->
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
-  <!-- <url type="website">http://wiki.ros.org/MobRob_ROS_behcon</url> -->
+  <!-- <url type="website">http://wiki.ros.org/mobrob_behcon</url> -->
 
 
   <!-- Author tags are optional, multiple are allowed, one per tag -->
@@ -55,6 +55,7 @@
   <build_export_depend>std_msgs</build_export_depend>
   <exec_depend>rospy</exec_depend>
   <exec_depend>std_msgs</exec_depend>
+
 
 
   <!-- The export tag contains other, unspecified, tags -->
