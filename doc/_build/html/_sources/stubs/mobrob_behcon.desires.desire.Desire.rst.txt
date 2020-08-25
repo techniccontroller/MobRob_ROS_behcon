@@ -1,0 +1,30 @@
+Desire
+===================================
+
+.. currentmodule:: mobrob_behcon.desires.desire
+
+.. autoclass:: Desire
+
+    
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~Desire.__init__
+        ~Desire.set_priority
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: set_priority
+
+    
+    
+
+    

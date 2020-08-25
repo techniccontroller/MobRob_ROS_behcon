@@ -1,0 +1,30 @@
+DesCmdGripper
+===========================================
+
+.. currentmodule:: mobrob_behcon.desires.desires
+
+.. autoclass:: DesCmdGripper
+
+    
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~DesCmdGripper.__init__
+        ~DesCmdGripper.set_priority
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: set_priority
+
+    
+    
+
+    

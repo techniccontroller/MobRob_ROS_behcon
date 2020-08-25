@@ -1,0 +1,34 @@
+PerceptualSpace
+===================================================
+
+.. currentmodule:: mobrob_behcon.core.perceptual_space
+
+.. autoclass:: PerceptualSpace
+
+    
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~PerceptualSpace.__init__
+        ~PerceptualSpace.add_camera
+        ~PerceptualSpace.add_egopose
+        ~PerceptualSpace.add_laserscanner
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: add_camera
+    .. automethod:: add_egopose
+    .. automethod:: add_laserscanner
+
+    
+    
+
+    

@@ -1,0 +1,28 @@
+Behaviour
+============================================
+
+.. currentmodule:: mobrob_behcon.behaviours.behaviour
+
+.. autoclass:: Behaviour
+
+    
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~Behaviour.__init__
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+
+    
+    
+
+    

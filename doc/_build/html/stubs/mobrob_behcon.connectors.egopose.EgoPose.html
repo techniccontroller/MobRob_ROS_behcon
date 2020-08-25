@@ -1,0 +1,209 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>EgoPose &#8212; MobRob_ROS_behcon 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="LaserScanner" href="mobrob_behcon.connectors.laserscanner.LaserScanner.html" />
+    <link rel="prev" title="CameraTCP" href="mobrob_behcon.connectors.camera.CameraTCP.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="mobrob_behcon.connectors.laserscanner.LaserScanner.html" title="LaserScanner"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="mobrob_behcon.connectors.camera.CameraTCP.html" title="CameraTCP"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="egopose">
+<h1>EgoPose<a class="headerlink" href="#egopose" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="mobrob_behcon.connectors.egopose.EgoPose">
+<em class="property">class </em><code class="descclassname">mobrob_behcon.connectors.egopose.</code><code class="descname">EgoPose</code><span class="sig-paren">(</span><em>ros_topic</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/egopose.html#EgoPose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.connectors.egopose.EgoPose" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class EgoPose</p>
+<p>Represents a connector to the positioning topics of the robot.
+Provides a function to get the current pose of the robot.</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.connectors.egopose.EgoPose.__init__" title="mobrob_behcon.connectors.egopose.EgoPose.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(ros_topic)</td>
+<td>constructor</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.connectors.egopose.EgoPose.callbackOdometry" title="mobrob_behcon.connectors.egopose.EgoPose.callbackOdometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">callbackOdometry</span></code></a>(msg)</td>
+<td>callback function for topics of type nav_msgs/Odometry</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.connectors.egopose.EgoPose.callbackPose" title="mobrob_behcon.connectors.egopose.EgoPose.callbackPose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">callbackPose</span></code></a>(msg)</td>
+<td>callback function for topics of type myrobot_model/Pose</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.connectors.egopose.EgoPose.get_current_Pose" title="mobrob_behcon.connectors.egopose.EgoPose.get_current_Pose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_current_Pose</span></code></a>()</td>
+<td>Get current pose of robot</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.connectors.egopose.EgoPose.get_current_time" title="mobrob_behcon.connectors.egopose.EgoPose.get_current_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_current_time</span></code></a>()</td>
+<td>Get current time in milliseconds</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Details</p>
+<dl class="method">
+<dt id="mobrob_behcon.connectors.egopose.EgoPose.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>ros_topic</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/egopose.html#EgoPose.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.connectors.egopose.EgoPose.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>constructor</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ros_topic</strong> (<em>string</em>) – possible topics are <strong>‘/pose’</strong> (myrobot_model/Pose) or <strong>‘/odom’</strong> (nav_msgs/Odometry)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mobrob_behcon.connectors.egopose.EgoPose.callbackOdometry">
+<code class="descname">callbackOdometry</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/egopose.html#EgoPose.callbackOdometry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.connectors.egopose.EgoPose.callbackOdometry" title="Permalink to this definition">¶</a></dt>
+<dd><p>callback function for topics of type nav_msgs/Odometry</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>msg</strong> – receiving message</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mobrob_behcon.connectors.egopose.EgoPose.callbackPose">
+<code class="descname">callbackPose</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/egopose.html#EgoPose.callbackPose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.connectors.egopose.EgoPose.callbackPose" title="Permalink to this definition">¶</a></dt>
+<dd><p>callback function for topics of type myrobot_model/Pose</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>msg</strong> – receiving message</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mobrob_behcon.connectors.egopose.EgoPose.get_current_Pose">
+<code class="descname">get_current_Pose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/egopose.html#EgoPose.get_current_Pose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.connectors.egopose.EgoPose.get_current_Pose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get current pose of robot</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">current pose (x, y, yaw), age of data (milliseconds)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a>), <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="mobrob_behcon.connectors.egopose.EgoPose.get_current_time">
+<em class="property">static </em><code class="descname">get_current_time</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/egopose.html#EgoPose.get_current_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.connectors.egopose.EgoPose.get_current_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get current time in milliseconds</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">time in milliseconds</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="mobrob_behcon.connectors.camera.CameraTCP.html"
+                        title="previous chapter">CameraTCP</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="mobrob_behcon.connectors.laserscanner.LaserScanner.html"
+                        title="next chapter">LaserScanner</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/stubs/mobrob_behcon.connectors.egopose.EgoPose.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="mobrob_behcon.connectors.laserscanner.LaserScanner.html" title="LaserScanner"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="mobrob_behcon.connectors.camera.CameraTCP.html" title="CameraTCP"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Techniccontroller.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

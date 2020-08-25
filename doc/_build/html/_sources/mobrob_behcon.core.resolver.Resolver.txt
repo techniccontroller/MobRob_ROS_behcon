@@ -1,0 +1,27 @@
+mobrob_behcon.core.resolver.Resolver
+====================================
+
+.. currentmodule:: mobrob_behcon.core.resolver
+
+.. autoclass:: Resolver
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Resolver.__init__
+      ~Resolver.add_desire
+      ~Resolver.reset
+      ~Resolver.resolveDesire
+      ~Resolver.runOnce
+      ~Resolver.set_behaviour_lst
+   
+   
+
+   
+   
+   

@@ -1,0 +1,36 @@
+EgoPose
+========================================
+
+.. currentmodule:: mobrob_behcon.connectors.egopose
+
+.. autoclass:: EgoPose
+
+    
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~EgoPose.__init__
+        ~EgoPose.callbackOdometry
+        ~EgoPose.callbackPose
+        ~EgoPose.get_current_Pose
+        ~EgoPose.get_current_time
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: callbackOdometry
+    .. automethod:: callbackPose
+    .. automethod:: get_current_Pose
+    .. automethod:: get_current_time
+
+    
+    
+
+    
