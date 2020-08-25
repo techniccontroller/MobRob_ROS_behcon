@@ -33,7 +33,7 @@ class EgoPose(object):
         """
         callback function for topics of type myrobot_model/Pose
 
-        :params msg: receiving message
+        :param msg: receiving message
         """
         self.current_pose = (msg.x, msg.y, msg.theta)
         self.last_pose_time = EgoPose.get_current_time()
@@ -42,7 +42,7 @@ class EgoPose(object):
         """
         callback function for topics of type nav_msgs/Odometry
 
-        :params msg: receiving message
+        :param msg: receiving message
         """
         x = msg.pose.pose.position.x
         y = msg.pose.pose.position.y

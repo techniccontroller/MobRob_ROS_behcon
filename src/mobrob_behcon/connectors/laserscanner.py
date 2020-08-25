@@ -25,13 +25,13 @@ class LaserScanner(object):
         self.dist_list = None
         self.last_scan_time = 0
 
-    def callback(self, data):
+    def callback(self, msg):
         """
         callback function for topics of type sensor_msgs/LaserScan
 
-        :params msg: receiving message
+        :param msg: receiving message
         """
-        self.list = LaserScanner.extract_points(data.ranges)
+        self.list = LaserScanner.extract_points(msg.ranges)
         self.last_scan_time = LaserScanner.get_current_time()
 
     def get_dist_list(self):
