@@ -1,5 +1,6 @@
 *.pyc
 /doc/_build/doctrees/*
+/doc/stubs/*
 
 # Compiled source #
 ###################
