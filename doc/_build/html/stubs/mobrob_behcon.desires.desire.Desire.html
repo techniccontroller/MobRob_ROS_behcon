@@ -46,12 +46,14 @@
 <h1>Desire<a class="headerlink" href="#desire" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="mobrob_behcon.desires.desire.Desire">
-<em class="property">class </em><code class="descclassname">mobrob_behcon.desires.desire.</code><code class="descname">Desire</code><span class="sig-paren">(</span><em>value</em>, <em>strength</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/desires/desire.html#Desire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.desires.desire.Desire" title="Permalink to this definition">¶</a></dt>
-<dd><p>A desire consist of</p>
+<em class="property">class </em><code class="descclassname">mobrob_behcon.desires.desire.</code><code class="descname">Desire</code><span class="sig-paren">(</span><em>value</em>, <em>strength</em>, <em>function=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/desires/desire.html#Desire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.desires.desire.Desire" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class Desire</p>
+<p>A desire consist of</p>
 <ul class="simple">
 <li>a value (any number/array),</li>
 <li>a dynamic strength (0.0 - 1.0) and</li>
 <li>a static priority (0 - 100)</li>
+<li>a function to be executed if desire is accepted (optional)</li>
 </ul>
 <p>The priority will be set when Desire is forwarded to resolver.</p>
 <p class="rubric">Methods</p>
@@ -61,7 +63,7 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.desires.desire.Desire.__init__" title="mobrob_behcon.desires.desire.Desire.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(value,&nbsp;strength)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.desires.desire.Desire.__init__" title="mobrob_behcon.desires.desire.Desire.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(value,&nbsp;strength[,&nbsp;function])</td>
 <td>Construct a new ‘Desire’ object.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.desires.desire.Desire.set_priority" title="mobrob_behcon.desires.desire.Desire.set_priority"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_priority</span></code></a>(priority)</td>
@@ -72,7 +74,7 @@
 <p class="rubric">Details</p>
 <dl class="method">
 <dt id="mobrob_behcon.desires.desire.Desire.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>value</em>, <em>strength</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/desires/desire.html#Desire.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.desires.desire.Desire.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>value</em>, <em>strength</em>, <em>function=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/desires/desire.html#Desire.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.desires.desire.Desire.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct a new ‘Desire’ object.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -81,6 +83,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>value</strong> – the numberic value of the desire, can be also be a array/list</li>
 <li><strong>strength</strong> – the strength of the desire</li>
+<li><strong>function</strong> – the function need to be executed when desire is accepted (optional)</li>
 </ul>
 </td>
 </tr>

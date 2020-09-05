@@ -72,10 +72,6 @@
 </li>
         <li><a href="stubs/mobrob_behcon.desires.desire.Desire.html#mobrob_behcon.desires.desire.Desire.__init__">(mobrob_behcon.desires.desire.Desire method)</a>
 </li>
-        <li><a href="stubs/mobrob_behcon.desires.desires.DesCmdGripper.html#mobrob_behcon.desires.desires.DesCmdGripper.__init__">(mobrob_behcon.desires.desires.DesCmdGripper method)</a>
-</li>
-        <li><a href="stubs/mobrob_behcon.desires.desires.DesCmdLight.html#mobrob_behcon.desires.desires.DesCmdLight.__init__">(mobrob_behcon.desires.desires.DesCmdLight method)</a>
-</li>
         <li><a href="stubs/mobrob_behcon.desires.desires.DesCmdVel.html#mobrob_behcon.desires.desires.DesCmdVel.__init__">(mobrob_behcon.desires.desires.DesCmdVel method)</a>
 </li>
         <li><a href="stubs/mobrob_behcon.strategies.strategy.Strategy.html#mobrob_behcon.strategies.strategy.Strategy.__init__">(mobrob_behcon.strategies.strategy.Strategy method)</a>
@@ -89,8 +85,12 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="stubs/mobrob_behcon.core.perceptual_space.PerceptualSpace.html#mobrob_behcon.core.perceptual_space.PerceptualSpace.add_camera">add_camera() (mobrob_behcon.core.perceptual_space.PerceptualSpace method)</a>
 </li>
-      <li><a href="stubs/mobrob_behcon.core.resolver.Resolver.html#mobrob_behcon.core.resolver.Resolver.add_desire">add_desire() (mobrob_behcon.core.resolver.Resolver method)</a>
+      <li><a href="stubs/mobrob_behcon.behaviours.behaviour.Behaviour.html#mobrob_behcon.behaviours.behaviour.Behaviour.add_desire">add_desire() (mobrob_behcon.behaviours.behaviour.Behaviour method)</a>
+
+      <ul>
+        <li><a href="stubs/mobrob_behcon.core.resolver.Resolver.html#mobrob_behcon.core.resolver.Resolver.add_desire">(mobrob_behcon.core.resolver.Resolver method)</a>
 </li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="stubs/mobrob_behcon.core.perceptual_space.PerceptualSpace.html#mobrob_behcon.core.perceptual_space.PerceptualSpace.add_egopose">add_egopose() (mobrob_behcon.core.perceptual_space.PerceptualSpace method)</a>
@@ -121,20 +121,18 @@
 </li>
       <li><a href="stubs/mobrob_behcon.connectors.camera.CameraTCP.html#mobrob_behcon.connectors.camera.CameraTCP">CameraTCP (class in mobrob_behcon.connectors.camera)</a>
 </li>
+      <li><a href="stubs/mobrob_behcon.connectors.laserscanner.LaserScanner.html#mobrob_behcon.connectors.laserscanner.LaserScanner.check_box">check_box() (mobrob_behcon.connectors.laserscanner.LaserScanner method)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="stubs/mobrob_behcon.desires.desires.DesCmdGripper.html#mobrob_behcon.desires.desires.DesCmdGripper">DesCmdGripper (class in mobrob_behcon.desires.desires)</a>
-</li>
-      <li><a href="stubs/mobrob_behcon.desires.desires.DesCmdLight.html#mobrob_behcon.desires.desires.DesCmdLight">DesCmdLight (class in mobrob_behcon.desires.desires)</a>
+      <li><a href="stubs/mobrob_behcon.desires.desires.DesCmdVel.html#mobrob_behcon.desires.desires.DesCmdVel">DesCmdVel (class in mobrob_behcon.desires.desires)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="stubs/mobrob_behcon.desires.desires.DesCmdVel.html#mobrob_behcon.desires.desires.DesCmdVel">DesCmdVel (class in mobrob_behcon.desires.desires)</a>
-</li>
       <li><a href="stubs/mobrob_behcon.desires.desire.Desire.html#mobrob_behcon.desires.desire.Desire">Desire (class in mobrob_behcon.desires.desire)</a>
 </li>
   </ul></td>
@@ -147,6 +145,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="stubs/mobrob_behcon.behaviours.behaviour.Behaviour.html#mobrob_behcon.behaviours.behaviour.Behaviour.error">error() (mobrob_behcon.behaviours.behaviour.Behaviour method)</a>
+</li>
       <li><a href="stubs/mobrob_behcon.connectors.laserscanner.LaserScanner.html#mobrob_behcon.connectors.laserscanner.LaserScanner.extract_points">extract_points() (mobrob_behcon.connectors.laserscanner.LaserScanner static method)</a>
 </li>
   </ul></td>
@@ -156,6 +156,10 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="stubs/mobrob_behcon.connectors.laserscanner.LaserScanner.html#mobrob_behcon.connectors.laserscanner.LaserScanner.filter_points">filter_points() (mobrob_behcon.connectors.laserscanner.LaserScanner static method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="stubs/mobrob_behcon.behaviours.behaviour.Behaviour.html#mobrob_behcon.behaviours.behaviour.Behaviour.fire">fire() (mobrob_behcon.behaviours.behaviour.Behaviour method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -235,23 +239,29 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="stubs/mobrob_behcon.core.resolver.Resolver.html#mobrob_behcon.core.resolver.Resolver.set_behaviour_lst">set_behaviour_lst() (mobrob_behcon.core.resolver.Resolver method)</a>
 </li>
+      <li><a href="stubs/mobrob_behcon.behaviours.behaviour.Behaviour.html#mobrob_behcon.behaviours.behaviour.Behaviour.set_current_beh_group">set_current_beh_group() (mobrob_behcon.behaviours.behaviour.Behaviour method)</a>
+</li>
       <li><a href="stubs/mobrob_behcon.strategies.strategy.Strategy.html#mobrob_behcon.strategies.strategy.Strategy.set_node">set_node() (mobrob_behcon.strategies.strategy.Strategy method)</a>
 </li>
-      <li><a href="stubs/mobrob_behcon.desires.desire.Desire.html#mobrob_behcon.desires.desire.Desire.set_priority">set_priority() (mobrob_behcon.desires.desire.Desire method)</a>
+      <li><a href="stubs/mobrob_behcon.behaviours.behaviour.Behaviour.html#mobrob_behcon.behaviours.behaviour.Behaviour.set_percept_space">set_percept_space() (mobrob_behcon.behaviours.behaviour.Behaviour method)</a>
+</li>
+      <li><a href="stubs/mobrob_behcon.behaviours.behaviour.Behaviour.html#mobrob_behcon.behaviours.behaviour.Behaviour.set_priority">set_priority() (mobrob_behcon.behaviours.behaviour.Behaviour method)</a>
 
       <ul>
-        <li><a href="stubs/mobrob_behcon.desires.desires.DesCmdGripper.html#mobrob_behcon.desires.desires.DesCmdGripper.set_priority">(mobrob_behcon.desires.desires.DesCmdGripper method)</a>
-</li>
-        <li><a href="stubs/mobrob_behcon.desires.desires.DesCmdLight.html#mobrob_behcon.desires.desires.DesCmdLight.set_priority">(mobrob_behcon.desires.desires.DesCmdLight method)</a>
+        <li><a href="stubs/mobrob_behcon.desires.desire.Desire.html#mobrob_behcon.desires.desire.Desire.set_priority">(mobrob_behcon.desires.desire.Desire method)</a>
 </li>
         <li><a href="stubs/mobrob_behcon.desires.desires.DesCmdVel.html#mobrob_behcon.desires.desires.DesCmdVel.set_priority">(mobrob_behcon.desires.desires.DesCmdVel method)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="stubs/mobrob_behcon.behaviours.behaviour.Behaviour.html#mobrob_behcon.behaviours.behaviour.Behaviour.set_resolver">set_resolver() (mobrob_behcon.behaviours.behaviour.Behaviour method)</a>
+</li>
       <li><a href="stubs/mobrob_behcon.strategies.strategy.Strategy.html#mobrob_behcon.strategies.strategy.Strategy">Strategy (class in mobrob_behcon.strategies.strategy)</a>
 </li>
       <li><a href="stubs/mobrob_behcon.connectors.camera.CameraTCP.html#mobrob_behcon.connectors.camera.CameraTCP.stringToRGB">stringToRGB() (mobrob_behcon.connectors.camera.CameraTCP static method)</a>
+</li>
+      <li><a href="stubs/mobrob_behcon.behaviours.behaviour.Behaviour.html#mobrob_behcon.behaviours.behaviour.Behaviour.success">success() (mobrob_behcon.behaviours.behaviour.Behaviour method)</a>
 </li>
   </ul></td>
 </tr></table>

@@ -42,7 +42,7 @@
 <h1>Behaviour<a class="headerlink" href="#behaviour" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="mobrob_behcon.behaviours.behaviour.Behaviour">
-<em class="property">class </em><code class="descclassname">mobrob_behcon.behaviours.behaviour.</code><code class="descname">Behaviour</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/behaviours/behaviour.html#Behaviour"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.behaviours.behaviour.Behaviour" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">mobrob_behcon.behaviours.behaviour.</code><code class="descname">Behaviour</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/behaviours/behaviour.html#Behaviour"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.behaviours.behaviour.Behaviour" title="Permalink to this definition">¶</a></dt>
 <dd><p>The abstract class Behaviour</p>
 <p class="rubric">Methods</p>
 <table border="1" class="longtable docutils">
@@ -51,16 +51,163 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.behaviours.behaviour.Behaviour.__init__" title="mobrob_behcon.behaviours.behaviour.Behaviour.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(id)</td>
-<td>x.__init__(…) initializes x; see help(type(x)) for signature</td>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.behaviours.behaviour.Behaviour.__init__" title="mobrob_behcon.behaviours.behaviour.Behaviour.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(name)</td>
+<td>Constructor</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.behaviours.behaviour.Behaviour.add_desire" title="mobrob_behcon.behaviours.behaviour.Behaviour.add_desire"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_desire</span></code></a>(desire)</td>
+<td>Send desire to resolver.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.behaviours.behaviour.Behaviour.error" title="mobrob_behcon.behaviours.behaviour.Behaviour.error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">error</span></code></a>([code])</td>
+<td>Raise an error about the behaviour.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.behaviours.behaviour.Behaviour.fire" title="mobrob_behcon.behaviours.behaviour.Behaviour.fire"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fire</span></code></a>()</td>
+<td>Abstract method which will  be called in the cyclic polling loop.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.behaviours.behaviour.Behaviour.set_current_beh_group" title="mobrob_behcon.behaviours.behaviour.Behaviour.set_current_beh_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_current_beh_group</span></code></a>(beh_group)</td>
+<td>Set current active behaviourgroup</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.behaviours.behaviour.Behaviour.set_percept_space" title="mobrob_behcon.behaviours.behaviour.Behaviour.set_percept_space"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_percept_space</span></code></a>(percept_space)</td>
+<td>Set the reference to percept_space</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.behaviours.behaviour.Behaviour.set_priority" title="mobrob_behcon.behaviours.behaviour.Behaviour.set_priority"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_priority</span></code></a>(priority)</td>
+<td>Set current priority of the behaviour,  can be changed during runtime</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.behaviours.behaviour.Behaviour.set_resolver" title="mobrob_behcon.behaviours.behaviour.Behaviour.set_resolver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_resolver</span></code></a>(resolver)</td>
+<td>Set the reference to resolver</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.behaviours.behaviour.Behaviour.success" title="mobrob_behcon.behaviours.behaviour.Behaviour.success"><code class="xref py py-obj docutils literal notranslate"><span class="pre">success</span></code></a>([code])</td>
+<td>Set the behaviour as successful ended.</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Details</p>
 <dl class="method">
 <dt id="mobrob_behcon.behaviours.behaviour.Behaviour.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/behaviours/behaviour.html#Behaviour.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.behaviours.behaviour.Behaviour.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>x.__init__(…) initializes x; see help(type(x)) for signature</p>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/behaviours/behaviour.html#Behaviour.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.behaviours.behaviour.Behaviour.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) – name or behaviour</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mobrob_behcon.behaviours.behaviour.Behaviour.add_desire">
+<code class="descname">add_desire</code><span class="sig-paren">(</span><em>desire</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/behaviours/behaviour.html#Behaviour.add_desire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.behaviours.behaviour.Behaviour.add_desire" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send desire to resolver.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>desire</strong> (<a class="reference internal" href="mobrob_behcon.desires.desire.Desire.html#mobrob_behcon.desires.desire.Desire" title="mobrob_behcon.desires.desire.Desire"><em>Desire</em></a>) – a desire to be added to the resolver</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mobrob_behcon.behaviours.behaviour.Behaviour.error">
+<code class="descname">error</code><span class="sig-paren">(</span><em>code=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/behaviours/behaviour.html#Behaviour.error"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.behaviours.behaviour.Behaviour.error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raise an error about the behaviour.
+With the error code some more information 
+about the error can be given to the behaviourgroup</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>code</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – error code, defaults to 0</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mobrob_behcon.behaviours.behaviour.Behaviour.fire">
+<code class="descname">fire</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/behaviours/behaviour.html#Behaviour.fire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.behaviours.behaviour.Behaviour.fire" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method which will 
+be called in the cyclic polling loop.</p>
+<p>Needs to be defined by inherited classes.</p>
+<p>In this method you can call the function add_desire()
+to send a desire to the resolver. 
+Depending on strength and priority this will be 
+forwarded to actuators</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mobrob_behcon.behaviours.behaviour.Behaviour.set_current_beh_group">
+<code class="descname">set_current_beh_group</code><span class="sig-paren">(</span><em>beh_group</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/behaviours/behaviour.html#Behaviour.set_current_beh_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.behaviours.behaviour.Behaviour.set_current_beh_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set current active behaviourgroup</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>beh_group</strong> (<em>BehaviourGroup</em>) – the currently active behaviour group</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mobrob_behcon.behaviours.behaviour.Behaviour.set_percept_space">
+<code class="descname">set_percept_space</code><span class="sig-paren">(</span><em>percept_space</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/behaviours/behaviour.html#Behaviour.set_percept_space"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.behaviours.behaviour.Behaviour.set_percept_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the reference to percept_space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>percept_space</strong> (<a class="reference internal" href="mobrob_behcon.core.perceptual_space.PerceptualSpace.html#mobrob_behcon.core.perceptual_space.PerceptualSpace" title="mobrob_behcon.core.perceptual_space.PerceptualSpace"><em>PerceptualSpace</em></a>) – relevant percept_space object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mobrob_behcon.behaviours.behaviour.Behaviour.set_priority">
+<code class="descname">set_priority</code><span class="sig-paren">(</span><em>priority</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/behaviours/behaviour.html#Behaviour.set_priority"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.behaviours.behaviour.Behaviour.set_priority" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set current priority of the behaviour, 
+can be changed during runtime</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>priority</strong> (<em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.8)"><em>type</em></a><em>]</em>) – [description]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mobrob_behcon.behaviours.behaviour.Behaviour.set_resolver">
+<code class="descname">set_resolver</code><span class="sig-paren">(</span><em>resolver</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/behaviours/behaviour.html#Behaviour.set_resolver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.behaviours.behaviour.Behaviour.set_resolver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the reference to resolver</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>resolver</strong> (<a class="reference internal" href="mobrob_behcon.core.resolver.Resolver.html#mobrob_behcon.core.resolver.Resolver" title="mobrob_behcon.core.resolver.Resolver"><em>Resolver</em></a>) – relevant resolver object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mobrob_behcon.behaviours.behaviour.Behaviour.success">
+<code class="descname">success</code><span class="sig-paren">(</span><em>code=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/behaviours/behaviour.html#Behaviour.success"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.behaviours.behaviour.Behaviour.success" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the behaviour as successful ended.
+With the success code some more information 
+about he success can be given to the behaviourgroup</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>code</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – success code, defaults to 0</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>

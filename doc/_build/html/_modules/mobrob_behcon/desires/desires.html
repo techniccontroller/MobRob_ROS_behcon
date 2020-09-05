@@ -46,24 +46,37 @@
 
 <span class="sd">    Represents a Desire for controlling the movement of the robot.</span>
 <span class="sd">    Similar to its parent class it hase three attributes: value, strength, priority.</span>
-<span class="sd">    value is a tuple of 6 float values mapped to following values </span>
+<span class="sd">    The value is a tuple of 6 float values mapped to following values </span>
 <span class="sd">    in **/cmd_vel** message: [linear.x, linear.y, linear.z, angular.x, angular.y, angular.z]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="DesCmdVel.__init__"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.desires.desires.DesCmdVel.html#mobrob_behcon.desires.desires.DesCmdVel.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">strength</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">DesCmdVel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">strength</span><span class="p">)</span></div></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DesCmdVel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">strength</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="DesCmdGripper"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.desires.desires.DesCmdGripper.html#mobrob_behcon.desires.desires.DesCmdGripper">[docs]</a><span class="k">class</span> <span class="nc">DesCmdGripper</span><span class="p">(</span><span class="n">Desire</span><span class="p">):</span>
+<span class="c1"># class DesCmdGripper(Desire):</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     The class DesCmdGripper</span>
 
-<div class="viewcode-block" id="DesCmdGripper.__init__"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.desires.desires.DesCmdGripper.html#mobrob_behcon.desires.desires.DesCmdGripper.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">strength</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">DesCmdGripper</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">strength</span><span class="p">)</span></div></div>
+<span class="c1">#     Represents a Desire for controlling the gripper of the robot.</span>
+<span class="c1">#     There are two spcialities about this type of desire.</span>
+
+<span class="c1">#     - all desires of this type will be executed ignoreing **strength** and **priority**.</span>
+    
+<span class="c1">#     - there is a aditional attribute called **function** which holds a reference to a function to be executed by resolver. </span>
+<span class="c1">#     As parameter the attribute **value** will be inserted.</span>
 
 
-<div class="viewcode-block" id="DesCmdLight"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.desires.desires.DesCmdLight.html#mobrob_behcon.desires.desires.DesCmdLight">[docs]</a><span class="k">class</span> <span class="nc">DesCmdLight</span><span class="p">(</span><span class="n">Desire</span><span class="p">):</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="DesCmdLight.__init__"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.desires.desires.DesCmdLight.html#mobrob_behcon.desires.desires.DesCmdLight.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">strength</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">DesCmdLight</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">strength</span><span class="p">)</span></div></div>
+<span class="c1">#     def __init__(self, value=0, strength=1.0, function=None):</span>
+<span class="c1">#         super(DesCmdGripper, self).__init__(value, strength, function)</span>
+
+
+<span class="k">class</span> <span class="nc">DesCmdLight</span><span class="p">(</span><span class="n">Desire</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">strength</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DesCmdLight</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">strength</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 
           </div>

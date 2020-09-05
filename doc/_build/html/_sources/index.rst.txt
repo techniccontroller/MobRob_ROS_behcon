@@ -45,8 +45,6 @@ Class overview:
 
    desire.Desire
    desires.DesCmdVel
-   desires.DesCmdGripper
-   desires.DesCmdLight
 
 
 

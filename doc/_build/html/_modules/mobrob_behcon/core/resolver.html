@@ -45,7 +45,7 @@
 <span class="kn">import</span> <span class="nn">rospy</span>
 <span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="k">import</span> <span class="n">Twist</span>
 <span class="kn">from</span> <span class="nn">mobrob_behcon.desires.desire</span> <span class="k">import</span> <span class="n">Desire</span>
-<span class="kn">from</span> <span class="nn">mobrob_behcon.desires.desires</span> <span class="k">import</span> <span class="n">DesCmdVel</span><span class="p">,</span> <span class="n">DesCmdLight</span><span class="p">,</span> <span class="n">DesCmdGripper</span>
+<span class="kn">from</span> <span class="nn">mobrob_behcon.desires.desires</span> <span class="k">import</span> <span class="n">DesCmdVel</span>
 <span class="kn">from</span> <span class="nn">mobrob_behcon.behaviours.behaviour</span> <span class="k">import</span> <span class="n">Behaviour</span>
 <span class="kn">import</span> <span class="nn">copy</span>
 
@@ -59,9 +59,6 @@
 
 <span class="sd">	- DesCmdVel</span>
 
-<span class="sd">	- DesCmdLight</span>
-
-<span class="sd">	- DesCmdGripper</span>
 <span class="sd">	&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Resolver.__init__"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.resolver.Resolver.html#mobrob_behcon.core.resolver.Resolver.__init__">[docs]</a>	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -72,8 +69,6 @@
 <span class="sd">		&quot;&quot;&quot;</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">lst_behaviours</span> <span class="o">=</span> <span class="p">[]</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">lst_desires_vel</span> <span class="o">=</span>  <span class="p">[]</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">lst_desires_grip</span> <span class="o">=</span>  <span class="p">[]</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">lst_desires_led</span> <span class="o">=</span> <span class="p">[]</span>
 
 		<span class="c1"># ROS publisher</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">pub_cmd_vel</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s1">&#39;cmd_vel&#39;</span><span class="p">,</span> <span class="n">Twist</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span></div>
@@ -89,10 +84,6 @@
 <span class="sd">		&quot;&quot;&quot;</span>
 		<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">desire</span><span class="p">,</span> <span class="n">DesCmdVel</span><span class="p">):</span>
 			<span class="bp">self</span><span class="o">.</span><span class="n">lst_desires_vel</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">desire</span><span class="p">)</span>
-		<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">desire</span><span class="p">,</span> <span class="n">DesCmdGripper</span><span class="p">):</span>
-			<span class="bp">self</span><span class="o">.</span><span class="n">lst_desires_grip</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">desire</span><span class="p">)</span>
-		<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">desire</span><span class="p">,</span> <span class="n">DesCmdLight</span><span class="p">):</span>
-			<span class="bp">self</span><span class="o">.</span><span class="n">lst_desires_led</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">desire</span><span class="p">)</span>
 		<span class="k">else</span><span class="p">:</span>
 			<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of desire not known: &quot;</span> <span class="o">+</span> <span class="nb">type</span><span class="p">(</span><span class="n">desire</span><span class="p">)</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span></div>
 
@@ -103,9 +94,7 @@
 
 <span class="sd">		&quot;&quot;&quot;</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">lst_behaviours</span> <span class="o">=</span> <span class="p">[]</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">lst_desires_vel</span> <span class="o">=</span> <span class="p">[]</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">lst_desires_grip</span> <span class="o">=</span> <span class="p">[]</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">lst_desires_led</span> <span class="o">=</span> <span class="p">[]</span></div>
+		<span class="bp">self</span><span class="o">.</span><span class="n">lst_desires_vel</span> <span class="o">=</span> <span class="p">[]</span></div>
 
 
 <div class="viewcode-block" id="Resolver.set_behaviour_lst"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.resolver.Resolver.html#mobrob_behcon.core.resolver.Resolver.set_behaviour_lst">[docs]</a>	<span class="k">def</span> <span class="nf">set_behaviour_lst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">behaviours</span><span class="p">):</span>
@@ -120,7 +109,7 @@
 
 <div class="viewcode-block" id="Resolver.resolveDesire"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.resolver.Resolver.html#mobrob_behcon.core.resolver.Resolver.resolveDesire">[docs]</a>	<span class="k">def</span> <span class="nf">resolveDesire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lst_desires</span><span class="p">):</span>
 		<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">		function to resolve a value from a list of desires </span>
+<span class="sd">		function to resolve a value from a list of similar desires </span>
 <span class="sd">		</span>
 <span class="sd">		:param lst_desires: a list of desires (all items of the same type)</span>
 <span class="sd">		:type lst_desires: list[Desire]</span>
@@ -135,9 +124,9 @@
 			<span class="n">lst_desires</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">priority</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 			<span class="c1"># print type of desires and whole list</span>
-			<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Desire-Type: &quot;</span> <span class="o">+</span> <span class="nb">type</span><span class="p">(</span><span class="n">lst_desires</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
-			<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">lst_desires</span><span class="p">:</span>
-				<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+			<span class="c1">#print(&quot;Desire-Type: &quot; + type(lst_desires[0]).__name__)</span>
+			<span class="c1">#for d in lst_desires:</span>
+			<span class="c1">#	print(d)</span>
 			
 			<span class="c1"># create resulting desire (mostly used to track the value and strength during next calculations)</span>
 			<span class="n">result_desire</span> <span class="o">=</span> <span class="n">Desire</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -178,10 +167,14 @@
 
 <span class="sd">		&quot;&quot;&quot;</span>
 
+		<span class="c1"># trigger the fire()-function of all active behaviours</span>
+		<span class="k">for</span> <span class="n">beh</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lst_behaviours</span><span class="p">:</span>
+			<span class="n">beh</span><span class="o">.</span><span class="n">fire</span><span class="p">()</span>
 		
 
 		<span class="c1"># resolve desires to get velocity values</span>
 		<span class="n">cmd_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolveDesire</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lst_desires_vel</span><span class="p">)</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reolver: cmd value = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">cmd_value</span><span class="p">))</span>
 		<span class="n">cmd_msg</span> <span class="o">=</span> <span class="n">Twist</span><span class="p">()</span>
 		<span class="n">cmd_msg</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">cmd_value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 		<span class="n">cmd_msg</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">cmd_value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>

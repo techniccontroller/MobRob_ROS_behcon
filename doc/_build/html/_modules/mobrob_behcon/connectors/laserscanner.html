@@ -160,7 +160,20 @@
 
 <span class="sd">        :return: time in milliseconds</span>
 <span class="sd">        &quot;&quot;&quot;</span>     
-        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span></div></div>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span></div>
+    
+<div class="viewcode-block" id="LaserScanner.check_box"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.connectors.laserscanner.LaserScanner.html#mobrob_behcon.connectors.laserscanner.LaserScanner.check_box">[docs]</a>    <span class="k">def</span> <span class="nf">check_box</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">):</span>
+        <span class="n">bound_x_low</span> <span class="o">=</span> <span class="n">x2</span> <span class="k">if</span> <span class="n">x1</span> <span class="o">&gt;</span> <span class="n">x2</span> <span class="k">else</span> <span class="n">x1</span>
+        <span class="n">bound_x_high</span> <span class="o">=</span> <span class="n">x1</span> <span class="k">if</span> <span class="n">x1</span> <span class="o">&gt;</span> <span class="n">x2</span> <span class="k">else</span> <span class="n">x2</span>
+        <span class="n">bound_y_low</span> <span class="o">=</span> <span class="n">y2</span> <span class="k">if</span> <span class="n">y1</span> <span class="o">&gt;</span> <span class="n">y2</span> <span class="k">else</span> <span class="n">y1</span>
+        <span class="n">bound_y_high</span> <span class="o">=</span> <span class="n">y1</span> <span class="k">if</span> <span class="n">y1</span> <span class="o">&gt;</span> <span class="n">y2</span> <span class="k">else</span> <span class="n">y2</span>
+		<span class="c1">#LSScanPoint nearestPoint = getScanpoints().stream().filter(scanpoint -&gt; {</span>
+		<span class="c1">#	return (scanpoint.getX() &gt; boundXLow &amp;&amp; scanpoint.getX() &lt; boundXHigh)</span>
+		<span class="c1">#			&amp;&amp; (scanpoint.getY() &gt; boundYLow &amp;&amp; scanpoint.getY() &lt; boundYHigh);</span>
+		<span class="c1">#}).min(Comparator.comparingDouble(LSScanPoint::getDist)).orElse(new LSScanPoint(0, 0, 0, 0));</span>
+
+        <span class="k">return</span> <span class="mi">99</span></div></div>
+
 </pre></div>
 
           </div>

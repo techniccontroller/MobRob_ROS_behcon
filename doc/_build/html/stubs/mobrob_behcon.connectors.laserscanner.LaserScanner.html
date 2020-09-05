@@ -63,22 +63,25 @@ Provides a function to get the latest laserscan from the laserscanner on the rob
 <tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.callback" title="mobrob_behcon.connectors.laserscanner.LaserScanner.callback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">callback</span></code></a>(msg)</td>
 <td>callback function for topics of type sensor_msgs/LaserScan</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.extract_points" title="mobrob_behcon.connectors.laserscanner.LaserScanner.extract_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">extract_points</span></code></a>(ranges)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.check_box" title="mobrob_behcon.connectors.laserscanner.LaserScanner.check_box"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_box</span></code></a>(x1,&nbsp;y1,&nbsp;x2,&nbsp;y2)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.extract_points" title="mobrob_behcon.connectors.laserscanner.LaserScanner.extract_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">extract_points</span></code></a>(ranges)</td>
 <td>Extract points from a list of distances</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.filter_points" title="mobrob_behcon.connectors.laserscanner.LaserScanner.filter_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter_points</span></code></a>(list,&nbsp;x_min,&nbsp;x_max,&nbsp;y_min,&nbsp;y_max)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.filter_points" title="mobrob_behcon.connectors.laserscanner.LaserScanner.filter_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter_points</span></code></a>(list,&nbsp;x_min,&nbsp;x_max,&nbsp;y_min,&nbsp;y_max)</td>
 <td>Filter given list of points (x, y) with the given bounderies</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.get_current_time" title="mobrob_behcon.connectors.laserscanner.LaserScanner.get_current_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_current_time</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.get_current_time" title="mobrob_behcon.connectors.laserscanner.LaserScanner.get_current_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_current_time</span></code></a>()</td>
 <td>Get current time in milliseconds</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.get_dist_list" title="mobrob_behcon.connectors.laserscanner.LaserScanner.get_dist_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_dist_list</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.get_dist_list" title="mobrob_behcon.connectors.laserscanner.LaserScanner.get_dist_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_dist_list</span></code></a>()</td>
 <td>Get current laserscan as a list of points</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.get_x" title="mobrob_behcon.connectors.laserscanner.LaserScanner.get_x"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_x</span></code></a>(radius,&nbsp;angle)</td>
+<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.get_x" title="mobrob_behcon.connectors.laserscanner.LaserScanner.get_x"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_x</span></code></a>(radius,&nbsp;angle)</td>
 <td>Get x-coordinate of given point in polar coordinates</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.get_y" title="mobrob_behcon.connectors.laserscanner.LaserScanner.get_y"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_y</span></code></a>(radius,&nbsp;angle)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.get_y" title="mobrob_behcon.connectors.laserscanner.LaserScanner.get_y"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_y</span></code></a>(radius,&nbsp;angle)</td>
 <td>Get y-coordinate of given point in polar coordinates</td>
 </tr>
 </tbody>
@@ -111,6 +114,11 @@ Provides a function to get the latest laserscan from the laserscanner on the rob
 </tbody>
 </table>
 </dd></dl>
+
+<dl class="method">
+<dt id="mobrob_behcon.connectors.laserscanner.LaserScanner.check_box">
+<code class="descname">check_box</code><span class="sig-paren">(</span><em>x1</em>, <em>y1</em>, <em>x2</em>, <em>y2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/laserscanner.html#LaserScanner.check_box"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.check_box" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="staticmethod">
 <dt id="mobrob_behcon.connectors.laserscanner.LaserScanner.extract_points">

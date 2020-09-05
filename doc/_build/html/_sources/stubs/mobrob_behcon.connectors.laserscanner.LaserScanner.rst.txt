@@ -17,6 +17,7 @@ LaserScanner
     
         ~LaserScanner.__init__
         ~LaserScanner.callback
+        ~LaserScanner.check_box
         ~LaserScanner.extract_points
         ~LaserScanner.filter_points
         ~LaserScanner.get_current_time
@@ -29,6 +30,7 @@ LaserScanner
     
     .. automethod:: __init__
     .. automethod:: callback
+    .. automethod:: check_box
     .. automethod:: extract_points
     .. automethod:: filter_points
     .. automethod:: get_current_time
