@@ -7,7 +7,7 @@
 import rospy
 from geometry_msgs.msg import Twist
 from mobrob_behcon.desires.desire import Desire
-from mobrob_behcon.desires.desires import DesCmdVel, DesCmdLight, DesCmdGripper
+from mobrob_behcon.desires.desires import DesCmdVel
 from mobrob_behcon.behaviours.behaviour import Behaviour
 import copy
 
@@ -21,9 +21,6 @@ class Resolver:
 
 	- DesCmdVel
 
-	- DesCmdLight
-
-	- DesCmdGripper
 	"""
 
 	def __init__(self):
@@ -34,8 +31,6 @@ class Resolver:
 		"""
 		self.lst_behaviours = []
 		self.lst_desires_vel =  []
-		self.lst_desires_grip =  []
-		self.lst_desires_led = []
 
 		# ROS publisher
 		self.pub_cmd_vel = rospy.Publisher('cmd_vel', Twist, queue_size=10)
@@ -51,10 +46,6 @@ class Resolver:
 		"""
 		if isinstance(desire, DesCmdVel):
 			self.lst_desires_vel.append(desire)
-		elif isinstance(desire, DesCmdGripper):
-			self.lst_desires_grip.append(desire)
-		elif isinstance(desire, DesCmdLight):
-			self.lst_desires_led.append(desire)
 		else:
 			print("Type of desire not known: " + type(desire).__name__)
 
@@ -66,8 +57,6 @@ class Resolver:
 		"""
 		self.lst_behaviours = []
 		self.lst_desires_vel = []
-		self.lst_desires_grip = []
-		self.lst_desires_led = []
 
 
 	def set_behaviour_lst(self, behaviours):
@@ -82,7 +71,7 @@ class Resolver:
 
 	def resolveDesire(self, lst_desires):
 		"""
-		function to resolve a value from a list of desires 
+		function to resolve a value from a list of similar desires 
 		
 		:param lst_desires: a list of desires (all items of the same type)
 		:type lst_desires: list[Desire]
@@ -97,9 +86,9 @@ class Resolver:
 			lst_desires.sort(key=lambda x: x.priority, reverse=True)
 
 			# print type of desires and whole list
-			print("Desire-Type: " + type(lst_desires[0]).__name__)
-			for d in lst_desires:
-				print(d)
+			#print("Desire-Type: " + type(lst_desires[0]).__name__)
+			#for d in lst_desires:
+			#	print(d)
 			
 			# create resulting desire (mostly used to track the value and strength during next calculations)
 			result_desire = Desire(0, 0)
@@ -140,10 +129,14 @@ class Resolver:
 
 		"""
 
+		# trigger the fire()-function of all active behaviours
+		for beh in self.lst_behaviours:
+			beh.fire()
 		
 
 		# resolve desires to get velocity values
 		cmd_value = self.resolveDesire(self.lst_desires_vel)
+		print("Resolver: cmd value = " + str(cmd_value))
 		cmd_msg = Twist()
 		cmd_msg.linear.x = cmd_value[0]
 		cmd_msg.linear.y = cmd_value[1]

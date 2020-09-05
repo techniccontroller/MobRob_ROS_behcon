@@ -4,6 +4,7 @@ import rospy
 import numpy as np
 from sensor_msgs.msg import LaserScan
 import time
+import math
 
 class LaserScanner(object):
     """
@@ -22,7 +23,7 @@ class LaserScanner(object):
         """
         self.ros_topic = ros_topic
         self.sub = rospy.Subscriber(self.ros_topic, LaserScan, self.callback)
-        self.dist_list = None
+        self.lst_scan_points = []
         self.last_scan_time = 0
 
     def callback(self, msg):
@@ -34,7 +35,7 @@ class LaserScanner(object):
         self.list = LaserScanner.extract_points(msg.ranges)
         self.last_scan_time = LaserScanner.get_current_time()
 
-    def get_dist_list(self):
+    def get_lst_scan_points(self):
         """
         Get current laserscan as a list of points
 
@@ -42,7 +43,7 @@ class LaserScanner(object):
         :rtype: list((float, float))
         """
         age = LaserScanner.get_current_time() - self.last_scan_time
-        return self.dist_list, age
+        return self.lst_scan_points, age
 
     @staticmethod
     def get_x(radius, angle):
@@ -81,13 +82,17 @@ class LaserScanner(object):
         :return: list of points (x, y)
         :rtype: list((float, float))
         """
-        dist_list = []
+        lst_scan_points = []
         for i in range(len(ranges)):
             value = np.nan_to_num(ranges[i])
             center_coordinates = (LaserScanner.get_x(value, i), LaserScanner.get_y(value, i))
-            dist_list.append(center_coordinates)            
+            lst_scan_points.append(center_coordinates)            
         
-        return dist_list
+        return lst_scan_points
+
+    @staticmethod
+    def calc_dist(x, y):
+        return math.sqrt(x*x + y*y)
     
     @staticmethod
     def filter_points(list, x_min, x_max, y_min, y_max):
@@ -123,3 +128,32 @@ class LaserScanner(object):
         :return: time in milliseconds
         """     
         return int(round(time.time() * 1000))
+    
+    def check_box(self, x1, y1, x2, y2):
+        """
+        Check if some obstacle in given box
+
+        :param x1: x-coordinate of first corner of box
+        :type x1: float
+        :param y1: y-coordinate of first corner of box
+        :type y1: float
+        :param x2: x-coordinate of second corner of box
+        :type x2: float
+        :param y2: y-coordinate of second corner of box
+        :type y2: float
+        :return: distance to nearest point in this box, if no obstacle in box returns 0
+        :rtype: float
+        """
+        bound_x_low = x2 if x1 > x2 else x1
+        bound_x_high = x1 if x1 > x2 else x2
+        bound_y_low = y2 if y1 > y2 else y1
+        bound_y_high = y1 if y1 > y2 else y2
+
+        lst_scan_points, _ = self.get_lst_scan_points()
+        lst_scan_points_filt = self.filter_points(lst_scan_points, bound_x_low, bound_x_high, bound_y_low, bound_y_high)
+        nearest_point = (0, 0)
+        if len(lst_scan_points_filt) > 0:
+            nearest_point = min(lst_scan_points_filt, key = lambda p: self.calc_dist(p[0], p[1]))
+
+        return self.calc_dist(nearest_point[0], nearest_point[1])
+
