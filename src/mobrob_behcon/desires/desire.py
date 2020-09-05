@@ -14,15 +14,18 @@ class Desire(object):
 
 	- a static priority (0 - 100)
 
+	- a function to be executed if desire is accepted (optional)
+
 	The priority will be set when Desire is forwarded to resolver.
 	"""
 
-	def __init__(self, value, strength):
+	def __init__(self, value, strength, function=None):
 		"""
 		Construct a new 'Desire' object. 
 		
 		:param value: the numberic value of the desire, can be also be a array/list
 		:param strength: the strength of the desire 
+		:param function: the function need to be executed when desire is accepted (optional)
 
 		:return: returns nothing
 		"""
@@ -30,6 +33,7 @@ class Desire(object):
 		self.strength = strength
 		self.priority = 0
 		self.value = np.array(value)
+		self.run_function = function
 
 	def set_priority(self, priority):
 		"""
