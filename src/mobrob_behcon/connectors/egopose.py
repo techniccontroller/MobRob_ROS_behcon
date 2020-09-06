@@ -46,7 +46,12 @@ class EgoPose(object):
         """
         x = msg.pose.pose.position.x
         y = msg.pose.pose.position.y
-        _, _, yaw = tf.transformations.euler_from_quaternion(msg.pose.pose.orientation)
+        explicit_quat = [msg.pose.pose.orientation.x, \
+                            msg.pose.pose.orientation.y, \
+                            msg.pose.pose.orientation.z, \
+                            msg.pose.pose.orientation.w]
+        _, _, yaw = tf.transformations.euler_from_quaternion(explicit_quat)
+        #_, _, yaw = tf.transformations.euler_from_quaternion(msg.pose.pose.orientation)
         self.current_pose = (x, y, yaw)
         self.last_pose_time = EgoPose.get_current_time()
 
