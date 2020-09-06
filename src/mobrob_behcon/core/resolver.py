@@ -128,6 +128,7 @@ class Resolver:
 		and publish corresponding messages
 
 		"""
+		self.lst_desires_vel = []
 
 		# trigger the fire()-function of all active behaviours
 		for beh in self.lst_behaviours:
