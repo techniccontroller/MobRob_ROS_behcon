@@ -32,7 +32,7 @@ class LaserScanner(object):
 
         :param msg: receiving message
         """
-        self.list = LaserScanner.extract_points(msg.ranges)
+        self.lst_scan_points = LaserScanner.extract_points(msg.ranges)
         self.last_scan_time = LaserScanner.get_current_time()
 
     def get_lst_scan_points(self):
