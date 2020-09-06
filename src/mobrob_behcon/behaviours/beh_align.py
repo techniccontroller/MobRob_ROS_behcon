@@ -14,20 +14,21 @@ class BehAlign(Behaviour):
 
     
     def fire(self):
-        left_dist = self.percept_space.laserscanner.check_box(100, 100, 800, 200)
-        right_dist = self.percept_space.laserscanner.check_box(100, -100, 800, -200)
+        left_dist = self.percept_space.laserscanner.check_box(0.100, 0.100, 0.800, 0.200)
+        right_dist = self.percept_space.laserscanner.check_box(0.100, -0.100, 0.800, -0.200)
 
-        print("BehAlign: Hi!" + str(self.counter) )
+        print("BehAlign: Hi!" + str(self.counter) + " diff: " + str(left_dist-right_dist) )
         self.counter = self.counter + 1
 
-        if self.counter > 100:
-            print("BehAlign: Success!")
-            self.success()
+        #if self.counter > 100:
+        #    print("BehAlign: Success!")
+        #    self.add_desire(DesCmdVel([0,0,0,0,0,0], 1.0))
+        #    self.success()
 
         if left_dist != 0 and right_dist != 0:
-            if left_dist-right_dist > self.tolerance:
+            if (left_dist-right_dist) > self.tolerance:
                 self.add_desire(DesCmdVel([0,0,0,0,0, -1 * self.rot_vel], 1.0))
-            elif right_dist-left_dist > self.tolerance:
+            elif (right_dist-left_dist) > self.tolerance:
                 self.add_desire(DesCmdVel([0,0,0,0,0, self.rot_vel], 1.0))
             else:
                 self.add_desire(DesCmdVel([0,0,0,0,0,0], 0.5))
