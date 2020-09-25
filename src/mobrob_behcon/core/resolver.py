@@ -7,9 +7,10 @@
 import rospy
 from geometry_msgs.msg import Twist
 from mobrob_behcon.desires.desire import Desire
-from mobrob_behcon.desires.desires import DesCmdVel
+from mobrob_behcon.desires.desires import DesCmdVel, DesTransVel, DesTransDir, DesRotVel
 from mobrob_behcon.behaviours.behaviour import Behaviour
 import copy
+import math
 
 class Resolver:
 
@@ -31,6 +32,9 @@ class Resolver:
 		"""
 		self.lst_behaviours = []
 		self.lst_desires_vel =  []
+		self.lst_des_transvel =  []
+		self.lst_des_rotvel =  []
+		self.lst_des_transdir =  []
 
 		# ROS publisher
 		self.pub_cmd_vel = rospy.Publisher('cmd_vel', Twist, queue_size=10)
@@ -46,6 +50,12 @@ class Resolver:
 		"""
 		if isinstance(desire, DesCmdVel):
 			self.lst_desires_vel.append(desire)
+		if isinstance(desire, DesTransVel):
+			self.lst_des_transvel.append(desire)
+		if isinstance(desire, DesTransDir):
+			self.lst_des_transdir.append(desire)
+		if isinstance(desire, DesRotVel):
+			self.lst_des_rotvel.append(desire)
 		else:
 			print("Type of desire not known: " + type(desire).__name__)
 
@@ -57,6 +67,20 @@ class Resolver:
 		"""
 		self.lst_behaviours = []
 		self.lst_desires_vel = []
+		self.lst_des_transvel =  []
+		self.lst_des_rotvel =  []
+		self.lst_des_transdir =  []
+	
+
+	def resetDesires(self):
+		"""
+		Reset all desire lists
+
+		"""
+		self.lst_desires_vel = []
+		self.lst_des_transvel =  []
+		self.lst_des_rotvel =  []
+		self.lst_des_transdir =  []
 
 
 	def set_behaviour_lst(self, behaviours):
@@ -118,7 +142,6 @@ class Resolver:
 				i = i + num_desire_prio
 
 			output_value = result_desire.value / result_desire.strength
-			print("Output: ", output_value)
 
 		return output_value
 
@@ -128,7 +151,9 @@ class Resolver:
 		and publish corresponding messages
 
 		"""
-		self.lst_desires_vel = []
+
+		# clear all desire lists
+		self.resetDesires()
 
 		# trigger the fire()-function of all active behaviours
 		for beh in self.lst_behaviours:
@@ -136,15 +161,28 @@ class Resolver:
 		
 
 		# resolve desires to get velocity values
-		cmd_value = self.resolveDesire(self.lst_desires_vel)
-		print("Resolver: cmd value = " + str(cmd_value))
+		transvel = self.resolveDesire(self.lst_des_transvel)
+		transdir = self.resolveDesire(self.lst_des_transdir)
+		rotvel = self.resolveDesire(self.lst_des_rotvel)
+		
+		# create cmd_vel msg out of resolved values
 		cmd_msg = Twist()
-		cmd_msg.linear.x = cmd_value[0]
-		cmd_msg.linear.y = cmd_value[1]
-		cmd_msg.linear.z = cmd_value[2]
-		cmd_msg.angular.x = cmd_value[3]
-		cmd_msg.angular.y = cmd_value[4]
-		cmd_msg.angular.z = cmd_value[5]
+		cmd_msg.linear.x = transvel * math.cos(math.radians(transdir))
+		cmd_msg.linear.y = transvel * math.sin(math.radians(transdir))
+		cmd_msg.linear.z = 0.0
+		cmd_msg.angular.x = 0.0
+		cmd_msg.angular.y = 0.0
+		cmd_msg.angular.z = rotvel
+
+		#cmd_value = self.resolveDesire(self.lst_desires_vel)
+		#print("Resolver: cmd value = " + str(cmd_value))
+		#cmd_msg = Twist()
+		#cmd_msg.linear.x = cmd_value[0]
+		#cmd_msg.linear.y = cmd_value[1]
+		#cmd_msg.linear.z = cmd_value[2]
+		#cmd_msg.angular.x = cmd_value[3]
+		#cmd_msg.angular.y = cmd_value[4]
+		#cmd_msg.angular.z = cmd_value[5]
 
 		# publish velocity command
 		self.pub_cmd_vel.publish(cmd_msg)
