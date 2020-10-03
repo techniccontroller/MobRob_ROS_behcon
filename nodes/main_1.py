@@ -7,6 +7,7 @@ from mobrob_behcon.behaviours.beh_align import BehAlign
 from mobrob_behcon.behaviours.beh_transvel import BehConstTransVel
 from mobrob_behcon.behaviours.beh_limfor import BehLimFor
 from mobrob_behcon.behaviours.beh_stop import BehStop
+from mobrob_behcon.behaviours.beh_turn import BehTurn
 from mobrob_behcon.strategies.rd_strategy import RDStrategy
 from mobrob_behcon.core.behcon_node import BehConNode
 
@@ -38,16 +39,16 @@ if __name__ == '__main__':
     
     #dock2.add(lf, 80);
     #dock2.add(cv, 50);
-    dock2.add(al, 75)
+    #dock2.add(al, 75)
     #dock2.add(st, 80);
     #dock2.add(srright, 90);
-    robot.add_beh_group(dock2)
+    #robot.add_beh_group(dock2)
     
-    #turn90.add(tu, 80);
-    turn90.add(al, 80)
+    turn90.add(tu, 80)
+    #turn90.add(al, 80)
     robot.add_beh_group(turn90)
     
-    robot.add_strategy(RDStrategy(dock))
+    robot.add_strategy(RDStrategy(dock, turn90))
     
     
     robot.start()		  

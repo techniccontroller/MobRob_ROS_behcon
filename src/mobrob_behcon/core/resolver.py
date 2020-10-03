@@ -50,11 +50,11 @@ class Resolver:
 		"""
 		if isinstance(desire, DesCmdVel):
 			self.lst_desires_vel.append(desire)
-		if isinstance(desire, DesTransVel):
+		elif isinstance(desire, DesTransVel):
 			self.lst_des_transvel.append(desire)
-		if isinstance(desire, DesTransDir):
+		elif isinstance(desire, DesTransDir):
 			self.lst_des_transdir.append(desire)
-		if isinstance(desire, DesRotVel):
+		elif isinstance(desire, DesRotVel):
 			self.lst_des_rotvel.append(desire)
 		else:
 			print("Type of desire not known: " + type(desire).__name__)
@@ -173,6 +173,8 @@ class Resolver:
 		cmd_msg.angular.x = 0.0
 		cmd_msg.angular.y = 0.0
 		cmd_msg.angular.z = rotvel
+
+		rospy.loginfo("Resolver: rotvel=%s", str(rotvel))
 
 		#cmd_value = self.resolveDesire(self.lst_desires_vel)
 		#print("Resolver: cmd value = " + str(cmd_value))
