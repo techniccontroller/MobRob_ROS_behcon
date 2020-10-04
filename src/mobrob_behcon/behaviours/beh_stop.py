@@ -6,13 +6,13 @@ from mobrob_behcon.desires.desires import DesTransVel
 
 class BehStop(Behaviour):
 
-    def __init__(self, name, stopdistance=0.2):
+    def __init__(self, name, stopdistance=0.30):
         super(BehStop, self).__init__(name)
         self.stopdistance = stopdistance
 
     
     def fire(self):
-        dist_front = self.percept_space.laserscanner.check_box(0.100, 0.200, 1.00, -0.200)
+        dist_front = self.percept_space.laserscanner.check_box(0.250, 0.200, 1.00, -0.200)
 
         print("BehStop - dist: " + str(dist_front) )
         rospy.loginfo("BehStop - dist: %s", str(dist_front))

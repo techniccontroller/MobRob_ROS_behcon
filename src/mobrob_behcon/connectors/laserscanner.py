@@ -5,6 +5,7 @@ import numpy as np
 from sensor_msgs.msg import LaserScan
 import time
 import math
+from mobrob_behcon.utils.mobrob_transformation import *
 
 class LaserScanner(object):
     """
@@ -14,7 +15,7 @@ class LaserScanner(object):
     Provides a function to get the latest laserscan from the laserscanner on the robot.
     """
 
-    def __init__(self, ros_topic):
+    def __init__(self, ros_topic, visu):
         """
         constructor
 
@@ -25,6 +26,7 @@ class LaserScanner(object):
         self.sub = rospy.Subscriber(self.ros_topic, LaserScan, self.callback)
         self.lst_scan_points = []
         self.last_scan_time = 0
+        self.visu = visu
 
     def callback(self, msg):
         """
@@ -144,6 +146,9 @@ class LaserScanner(object):
         :return: distance to nearest point in this box, if no obstacle in box returns 0
         :rtype: float
         """
+        self.visu.draw_box((x1, y1), (x2, y2))
+        x1, y1 = get_laser_coordinate(x1, y1)
+        x2, y2 = get_laser_coordinate(x2, y2)
         bound_x_low = x2 if x1 > x2 else x1
         bound_x_high = x1 if x1 > x2 else x2
         bound_y_low = y2 if y1 > y2 else y1
@@ -156,4 +161,8 @@ class LaserScanner(object):
             nearest_point = min(lst_scan_points_filt, key = lambda p: self.calc_dist(p[0], p[1]))
 
         return self.calc_dist(nearest_point[0], nearest_point[1])
+    
+    def draw_laserpoints(self):
+        rospy.loginfo("Laserscanner - numPoints=%d", len(self.lst_scan_points))
+        self.visu.draw_points(self.lst_scan_points)
 

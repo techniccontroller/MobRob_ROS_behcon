@@ -6,7 +6,7 @@ from mobrob_behcon.desires.desires import DesTransVel
 
 class BehLimFor(Behaviour):
 
-    def __init__(self, name, stopdistance=0.2, slowdistance=0.5, slowspeed=0.1):
+    def __init__(self, name, stopdistance=0.3, slowdistance=0.5, slowspeed=0.1):
         super(BehLimFor, self).__init__(name)
         self.stopdistance = stopdistance
         self.slowdistance = slowdistance
@@ -14,7 +14,7 @@ class BehLimFor(Behaviour):
 
     
     def fire(self):
-        dist_front = self.percept_space.laserscanner.check_box(0.100, 0.200, 1.00, -0.200)
+        dist_front = self.percept_space.laserscanner.check_box(0.250, 0.200, 1.00, -0.200)
 
         print("BehLimFor - dist: " + str(dist_front) )
         rospy.loginfo("BehLimFor - dist: %s", str(dist_front))

@@ -20,11 +20,12 @@ class PerceptualSpace(object):
     - Camera
     """
 
-    def __init__(self):
+    def __init__(self, visu):
         # define different sensor connectors
         self.laserscanner = None
         self.camera = None 
         self.egopose = None 
+        self.visu = visu
 
     def add_laserscanner(self, ros_topic="/scan"):
         """
@@ -34,7 +35,7 @@ class PerceptualSpace(object):
         :type ros_topic: string
         :return: returns nothing
         """
-        self.laserscanner = LaserScanner(ros_topic)
+        self.laserscanner = LaserScanner(ros_topic, self.visu)
     
     def add_camera(self, ip_address="mobrob", port=5001):
         """

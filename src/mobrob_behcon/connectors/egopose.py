@@ -26,7 +26,7 @@ class EgoPose(object):
             self.sub = rospy.Subscriber(self.ros_topic, Odometry, self.callbackOdometry)
         elif self.ros_topic == '/pose':
             self.sub = rospy.Subscriber(self.ros_topic, Pose, self.callbackPose)
-        self.current_pose = None
+        self.current_pose = (0.0, 0.0, 0.0)
         self.last_pose_time = 0
 
     def callbackPose(self, msg):
@@ -55,7 +55,7 @@ class EgoPose(object):
         self.current_pose = (x, y, yaw)
         self.last_pose_time = EgoPose.get_current_time()
 
-    def get_current_Pose(self):
+    def get_current_pose(self):
         """
         Get current pose of robot
 

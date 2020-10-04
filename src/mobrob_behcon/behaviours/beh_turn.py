@@ -28,7 +28,7 @@ class BehTurn(Behaviour):
             self.start_pose, _ = self.percept_space.egopose.get_current_Pose()
             self.init = False
         
-        current_pose, _ = self.percept_space.egopose.get_current_Pose()
+        current_pose, _ = self.percept_space.egopose.get_current_pose()
 
         diff_angle = self.normalize_angle(current_pose[2] - self.start_pose[2])
 

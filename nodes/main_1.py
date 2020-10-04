@@ -22,7 +22,7 @@ if __name__ == '__main__':
     dock = BehaviourGroup("Dock")
     dock2 = BehaviourGroup("Dock2")
     turn90 = BehaviourGroup("turn90")
-    cv = BehConstTransVel("ConstTransVel", trans_vel=0.2)
+    cv = BehConstTransVel("ConstTransVel", trans_vel=0.0)
     tu = BehTurn("Turn", -90)
     lf = BehLimFor("LimFor", stopdistance=0.2, slowdistance=0.5, slowspeed=0.1)
     al = BehAlign("Align", tolerance=0.030, rot_vel=0.5)

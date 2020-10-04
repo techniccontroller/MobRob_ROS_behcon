@@ -187,5 +187,5 @@ class Resolver:
 		#cmd_msg.angular.z = cmd_value[5]
 
 		# publish velocity command
-		self.pub_cmd_vel.publish(cmd_msg)
+		#self.pub_cmd_vel.publish(cmd_msg)
 		
