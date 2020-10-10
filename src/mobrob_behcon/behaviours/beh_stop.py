@@ -14,7 +14,6 @@ class BehStop(Behaviour):
     def fire(self):
         dist_front = self.percept_space.laserscanner.check_box(0.250, 0.200, 1.00, -0.200)
 
-        print("BehStop - dist: " + str(dist_front) )
         rospy.loginfo("BehStop - dist: %s", str(dist_front))
 
         if dist_front > 0:
