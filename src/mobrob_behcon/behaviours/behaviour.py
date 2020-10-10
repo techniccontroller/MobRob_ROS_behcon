@@ -68,7 +68,7 @@ class Behaviour():
     def fire(self):
         """
         Abstract method which will 
-        be called in the cyclic polling loop.
+        be called in the cyclic polling loop from resolver.
 
         Needs to be defined by inherited classes. 
 
