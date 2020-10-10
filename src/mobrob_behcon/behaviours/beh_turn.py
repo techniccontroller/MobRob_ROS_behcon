@@ -9,32 +9,32 @@ class BehTurn(Behaviour):
 
     def __init__(self, name, degrees=90, rot_vel=0.2):
         super(BehTurn, self).__init__(name)
-        self.degrees = self.normalize_angle(degrees)
+        self.degrees = degrees
         self.rot_vel = abs(rot_vel)
         self.init = True
     
-    
     def normalize_angle(self, angle):
         newAngle = angle
-        while newAngle <= -180: 
-            newAngle += 360
-        while newAngle > 180: 
-            newAngle -= 360
+        while newAngle <= -math.pi: 
+            newAngle += 2*math.pi
+        while newAngle > math.pi: 
+            newAngle -= 2*math.pi
         return newAngle
-
     
     def fire(self):
         if self.init:
-            self.start_pose, _ = self.percept_space.egopose.get_current_Pose()
+            self.start_pose, _ = self.percept_space.egopose.get_current_pose()
+            rospy.loginfo("BehTurn - degrees: %s, start_pose: %s,  target:%s", str(self.degrees), str(self.start_pose[2]), str(self.start_pose[2] + math.radians(self.degrees)))
+            self.target_orientation = self.normalize_angle(self.start_pose[2] + math.radians(self.degrees))
             self.init = False
         
         current_pose, _ = self.percept_space.egopose.get_current_pose()
 
-        diff_angle = self.normalize_angle(current_pose[2] - self.start_pose[2])
+        diff_angle = self.target_orientation - current_pose[2]
 
-        rospy.loginfo("BehTurn - currrent=%s, start=%s, diff=%s", str(math.degrees(current_pose[2])), str(math.degrees(self.start_pose[2])), str(math.degrees(diff_angle)))
+        rospy.loginfo("BehTurn - current=%s, target=%s, diff=%s", str(current_pose[2]), str(self.target_orientation), str(diff_angle))
 
-        if abs(self.degrees - math.degrees(diff_angle)) > 5:
+        if abs(math.degrees(diff_angle)) > 5:
             if self.degrees > 0:
                 self.add_desire(DesRotVel(self.rot_vel, 0.6))
             else:

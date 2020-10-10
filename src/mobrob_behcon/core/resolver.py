@@ -11,6 +11,7 @@ from mobrob_behcon.desires.desires import DesCmdVel, DesTransVel, DesTransDir, D
 from mobrob_behcon.behaviours.behaviour import Behaviour
 import copy
 import math
+import time
 
 class Resolver:
 
@@ -38,6 +39,9 @@ class Resolver:
 
 		# ROS publisher
 		self.pub_cmd_vel = rospy.Publisher('cmd_vel', Twist, queue_size=10)
+
+		self.last_cmd_msg = None
+		self.last_sendtime_vel = 0
 
 
 	def add_desire(self, desire):
@@ -174,7 +178,23 @@ class Resolver:
 		cmd_msg.angular.y = 0.0
 		cmd_msg.angular.z = rotvel
 
-		rospy.loginfo("Resolver: rotvel=%s", str(rotvel))
+		currenttime = Resolver.get_current_time()
+		diff_to_last = 0
+
+		# calc difference between last send cmd_vel command
+		if self.last_cmd_msg:
+			diff_to_last = abs(self.last_cmd_msg.linear.x - cmd_msg.linear.x) \
+							+ abs(self.last_cmd_msg.linear.y - cmd_msg.linear.y) \
+							+ abs(self.last_cmd_msg.angular.z - cmd_msg.angular.z)
+			
+		# check if a update need to be send
+		if diff_to_last > 0.01 or currenttime - self.last_sendtime_vel > 1000:
+			rospy.loginfo("Resolver: transvel=%f, rotvel=%f", transvel, rotvel)
+			self.pub_cmd_vel.publish(cmd_msg)
+			self.last_sendtime_vel = currenttime
+			self.last_cmd_msg = cmd_msg
+
+		
 
 		#cmd_value = self.resolveDesire(self.lst_desires_vel)
 		#print("Resolver: cmd value = " + str(cmd_value))
@@ -187,5 +207,12 @@ class Resolver:
 		#cmd_msg.angular.z = cmd_value[5]
 
 		# publish velocity command
-		#self.pub_cmd_vel.publish(cmd_msg)
-		
+
+	@staticmethod
+	def get_current_time():
+		"""
+		Get current time in milliseconds
+
+		:return: time in milliseconds
+		"""     
+		return int(round(time.time() * 1000))

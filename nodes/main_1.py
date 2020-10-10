@@ -22,10 +22,10 @@ if __name__ == '__main__':
     dock = BehaviourGroup("Dock")
     dock2 = BehaviourGroup("Dock2")
     turn90 = BehaviourGroup("turn90")
-    cv = BehConstTransVel("ConstTransVel", trans_vel=0.0)
+    cv = BehConstTransVel("ConstTransVel", trans_vel=0.2)
     tu = BehTurn("Turn", -90)
     lf = BehLimFor("LimFor", stopdistance=0.2, slowdistance=0.5, slowspeed=0.1)
-    al = BehAlign("Align", tolerance=0.030, rot_vel=0.5)
+    al = BehAlign("Align", tolerance=0.020, rot_vel=0.2)
     st = BehStop("Stop", stopdistance=0.3)
     #BehSaveRADock srfull = new BehSaveRADock("SaveDock1", 1000, 1000);
     #BehSaveRADock srright = new BehSaveRADock("SaveDock2", 300, 1000);

@@ -17,7 +17,6 @@ class BehAlign(Behaviour):
         left_dist = self.percept_space.laserscanner.check_box(0.250, 0.100, 0.800, 0.200)
         right_dist = self.percept_space.laserscanner.check_box(0.250, -0.100, 0.800, -0.200)
 
-        print("BehAlign: Hi!" + str(self.counter) + " diff: " + str(left_dist-right_dist) )
         rospy.loginfo("BehAlign - diff: %s", str(left_dist-right_dist))
         self.counter = self.counter + 1
 
