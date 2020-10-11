@@ -77,7 +77,8 @@ class LaserScanner(object):
 
     @staticmethod
     def extract_points(ranges):
-        """Extract points from a list of distances
+        """
+        Extract points from a list of distances
 
         :param ranges: list of distances (length=360)
         :type ranges: list(float)
@@ -94,6 +95,16 @@ class LaserScanner(object):
 
     @staticmethod
     def calc_dist(x, y):
+        """
+        Calculate distance from origin to given point
+
+        :param x: x-coordinate [m]
+        :type x: float
+        :param y: y-coordinate [m]
+        :type y: float
+        :return: distance [m]
+        :rtype: float
+        """
         return math.sqrt(x*x + y*y)
     
     @staticmethod
@@ -133,7 +144,7 @@ class LaserScanner(object):
     
     def check_box(self, x1, y1, x2, y2):
         """
-        Check if some obstacle in given box
+        Check if some obstacle is in given box. Returns distance.
 
         :param x1: x-coordinate of first corner of box
         :type x1: float
@@ -146,23 +157,34 @@ class LaserScanner(object):
         :return: distance to nearest point in this box, if no obstacle in box returns 0
         :rtype: float
         """
+        # draw box on visualisation
         self.visu.draw_box((x1, y1), (x2, y2))
+        # transform corner points of box to laser frame
         x1, y1 = get_laser_coordinate(x1, y1)
         x2, y2 = get_laser_coordinate(x2, y2)
+        # calculate bounderies of box
         bound_x_low = x2 if x1 > x2 else x1
         bound_x_high = x1 if x1 > x2 else x2
         bound_y_low = y2 if y1 > y2 else y1
         bound_y_high = y1 if y1 > y2 else y2
 
+        # get latest scan points
         lst_scan_points, _ = self.get_lst_scan_points()
+        # filter scanpoints to get only points inside box
         lst_scan_points_filt = self.filter_points(lst_scan_points, bound_x_low, bound_x_high, bound_y_low, bound_y_high)
         nearest_point = (0, 0)
+        # if some scanpoints are left in filtered list, find neareast point
         if len(lst_scan_points_filt) > 0:
             nearest_point = min(lst_scan_points_filt, key = lambda p: self.calc_dist(p[0], p[1]))
+            nearest_point = get_robot_coordinate(nearest_point[0], nearest_point[1])
 
+        # calculate and return distance to nearest point
         return self.calc_dist(nearest_point[0], nearest_point[1])
     
     def draw_laserpoints(self):
+        """
+        Draw all laser scanpoints to visualisation
+        """
         rospy.loginfo("Laserscanner - numPoints=%d", len(self.lst_scan_points))
         self.visu.draw_points(self.lst_scan_points)
 
