@@ -14,7 +14,8 @@ class BehAlign(Behaviour):
     """
 
     def __init__(self, name, tolerance=0.1, rot_vel=20):
-        """[summary]
+        """
+        constructor
 
         :param name: name of behaviour
         :type name: string

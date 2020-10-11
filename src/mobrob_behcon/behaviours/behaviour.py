@@ -93,7 +93,7 @@ class Behaviour():
         """
         Set the behaviour as successful ended.
         With the success code some more information 
-        about he success can be given to the behaviourgroup
+        about the success can be given to the behaviourgroup
 
         :param code: success code, defaults to 0
         :type code: int, optional
