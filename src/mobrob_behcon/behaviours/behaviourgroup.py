@@ -93,7 +93,7 @@ class BehaviourGroup(object):
         :param code: error code, defaults to 0
         :type code: int, optional
         """
-        if code > self.error
+        if code > self.error:
             self.error = code
     
 

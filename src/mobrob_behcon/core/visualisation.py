@@ -46,11 +46,9 @@ class KOOSVisu(object):
     def set_current_pose(self, current_pose):
         self.current_pose = current_pose   
 
-
     def draw_robot(self, color = (0, 255, 0)):
         LF, RF, RB, LB = get_robot_corners(self.current_pose)
         linewidth = 2#int(0.001 * self.scale)
-        print(LF)
         cv2.line(self.img, self.to_visu_coord(LF), self.to_visu_coord(RF), color, thickness=linewidth)
         cv2.line(self.img, self.to_visu_coord(RF), self.to_visu_coord(RB), color, thickness=linewidth)
         cv2.line(self.img, self.to_visu_coord(RB), self.to_visu_coord(LB), color, thickness=linewidth)

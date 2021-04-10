@@ -33,7 +33,7 @@ class BehConNode:
 
             self.resolver.runOnce()
             ego_pose, _ = self.percept_space.egopose.get_current_pose()
-            #self.percept_space.visu.set_current_pose(ego_pose)
+            self.percept_space.visu.set_current_pose(ego_pose)
             self.percept_space.visu.draw_robot()
             self.percept_space.laserscanner.draw_laserpoints()
             self.visu.send_image()

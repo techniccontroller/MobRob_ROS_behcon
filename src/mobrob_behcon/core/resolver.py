@@ -14,7 +14,6 @@ import math
 import time
 
 class Resolver:
-
 	""" 
 	The class Resolver 
 
