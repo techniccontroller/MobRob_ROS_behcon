@@ -64,6 +64,7 @@ Class overview:
    camera.CameraTCP
    egopose.EgoPose
    laserscanner.LaserScanner
+   gripper.Gripper
 
 
 :mod:`mobrob_behcon.strategies` --- strategies module
@@ -80,6 +81,7 @@ Class overview:
    :template: class.rst
 
    strategy.Strategy
+   rd_strategy.RDStrategy
 
 :mod:`mobrob_behcon.behaviours` --- behaviours module
 -----------------------------------------------------
@@ -95,6 +97,12 @@ Class overview:
    :template: class.rst
 
    behaviour.Behaviour
+   beh_align.BehAlign
+   beh_limfor.BehLimFor
+   beh_stop.BehStop
+   beh_transvel.BehConstTransVel
+   beh_turn.BehTurn
+   behaviourgroup.BehaviourGroup
 
 Indices and tables
 ==================
