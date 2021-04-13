@@ -16,6 +16,7 @@ class Strategy():
 
     """
     __metaclass__ = ABCMeta
+    lst_behgrps = []
 
     def __init__(self):
         self.beh_node = None
@@ -47,3 +48,25 @@ class Strategy():
         :return: True if statemachine is in finish-state, else False
         """
         return self.finish
+
+    def add_behgrp(self, behgrp):
+        """
+        add behaviour sroup to strategy
+
+        :param behgrp: behaviour group
+        :type behgrp: BehaviourGroup
+        """
+        self.lst_behgrps.append(behgrp)
+
+    def activate_exclusive(self, behgrp):
+        """
+        activate given behaviour group (need to be added before to strategy)
+
+        :param behgrp: behaviour group
+        :type behgrp: BehaviourGroup
+        """
+
+        for bg in self.lst_behgrps:
+            if bg != behgrp:
+                bg.deactivate()
+        behgrp.activate_exclusive()
