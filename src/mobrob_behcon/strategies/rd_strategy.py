@@ -8,12 +8,14 @@ class RDStrategy(Strategy):
         super(RDStrategy, self).__init__()
         self.dock = dock
         self.turn90 = turn90
-        self.dock.activate_exclusive()
+        self.add_behgrp(dock)
+        self.add_behgrp(turn90)
+        self.activate_exclusive(dock)
 
     def plan(self):
         rospy.loginfo("Strategy - dock=%s, turn90=%s", str(self.dock.success), str(self.turn90.success))
         if self.dock.success == 0:
             self.dock.success = -1
-            self.turn90.activate_exclusive()
+            self.activate_exclusive(turn90)
         if self.turn90.success == 0:
             self.finish = True

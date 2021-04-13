@@ -22,6 +22,7 @@ class BehaviourGroup(object):
         self.lst_behaviours = []
         self.success = -1
         self.error = -1
+        self.active = False
 
     def set_resolver(self, resolver):
         """
@@ -65,12 +66,19 @@ class BehaviourGroup(object):
         """
         self.success = -1
         self.error = -1
+        self.active = True
         lst_active_behaviours = []
         for beh_cap in self.lst_behaviours:
             beh_cap.behaviour.set_priority(beh_cap.priority)
             beh_cap.behaviour.set_current_beh_group(self)
             lst_active_behaviours.append(beh_cap.behaviour)
         self.resolver.set_behaviour_lst(lst_active_behaviours)
+    
+    def deactivate(self):
+        """
+        deactivate the behaviour group
+        """
+        self.active = False
 
     def set_success(self, code):
         """
