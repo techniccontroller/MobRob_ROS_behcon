@@ -31,7 +31,7 @@ class BehTurn(Behaviour):
         self.init = True
     
     @staticmethod
-    def normalize_angle(self, angle):
+    def normalize_angle(angle):
         """
         Function to normalize an given angle
 
