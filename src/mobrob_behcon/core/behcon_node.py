@@ -4,6 +4,7 @@ import rospy
 from mobrob_behcon.core.resolver import Resolver
 from mobrob_behcon.core.perceptual_space import PerceptualSpace
 from mobrob_behcon.core.visualisation import KOOSVisu
+from mobrob_behcon.visu.visu_behcon import VisuBehCon
 
 
 class BehConNode:
@@ -20,16 +21,15 @@ class BehConNode:
         #self.percept_space.add_camera('mobrob_camera', 5001)
         self.percept_space.add_laserscanner('/scan')
         self.percept_space.add_egopose('/odom')
+        self.visubehcon = VisuBehCon(self)
         print("node created")
 
     def start(self):
+        self.visubehcon.draw()
         rate = rospy.Rate(10) # 10hz
         while not rospy.is_shutdown():
             
-            self.strategy.plan()
-
-            if self.strategy.is_finished():
-                rospy.signal_shutdown("Finished execution")
+            self.strategy.plan()           
 
             self.resolver.runOnce()
             ego_pose, _ = self.percept_space.egopose.get_current_pose()
@@ -37,6 +37,11 @@ class BehConNode:
             self.percept_space.visu.draw_robot()
             self.percept_space.laserscanner.draw_laserpoints()
             self.visu.send_image()
+            self.visubehcon.update()
+
+            if self.strategy.is_finished():
+                rospy.loginfo("Strategy finished -> shutdown")
+                rospy.signal_shutdown("Finished execution")
             rate.sleep()
 
     def add_strategy(self, strategy):
