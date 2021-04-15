@@ -34,8 +34,8 @@ class BehAlign(Behaviour):
         will be called by resolver in every polling cycle.
         """
         # check area in left front and right front of robot for distance to wall
-        left_dist = self.percept_space.laserscanner.check_box(0.250, 0.100, 0.800, 0.200)
-        right_dist = self.percept_space.laserscanner.check_box(0.250, -0.100, 0.800, -0.200)
+        left_dist = self.percept_space.laserscanner.check_box(0.250, 0.100, 1.000, 0.200)
+        right_dist = self.percept_space.laserscanner.check_box(0.250, -0.100, 1.000, -0.200)
 
         # log important information
         rospy.loginfo("BehAlign - diff: %s", str(left_dist-right_dist))
