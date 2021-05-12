@@ -20,5 +20,7 @@ More details are on my Website: https://techniccontroller.de/
 ## Folders
 
 **doc**: contains sphinx documentation of all classes
+
 **nodes**: contains the main files, for different tasks to be executed
+
 **src**: contains all source codes, seperated in different domains
