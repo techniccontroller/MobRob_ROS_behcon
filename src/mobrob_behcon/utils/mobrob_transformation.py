@@ -96,7 +96,7 @@ def get_T_world_cluster(yaw_ego, x_ego, y_ego, x_cls, y_cls):
 
 def get_world_coordinate(currentPose, x, y):
     """
-    function transforms a point in robot space to world space
+    Transforms a point in robot space to world space
 
     :param currentPose: current pose of robot in world space (x, y, yaw)
     :type currentPose: (float, float, float)
@@ -104,6 +104,8 @@ def get_world_coordinate(currentPose, x, y):
     :type x: float
     :param y: y coordinate in robot space
     :type y: float
+    :return: point in world space
+    :rtype: (float, float)
     """
     yaw_ego = currentPose[2]
     x_ego = currentPose[0]
@@ -117,12 +119,14 @@ def get_world_coordinate(currentPose, x, y):
 
 def get_laser_coordinate(x, y):
     """
-    function transforms a point in robot space to laser space
+    Transforms a point in robot space to laser space
 
     :param x: x coordinate in robot space
     :type x: float
     :param y: y coordinate in robot space
     :type y: float
+    :return: point in laser space
+    :rtype: (float, float)
     """
     T_robot_laser = get_T_robot_laser()
     T_laser_robot = np.linalg.inv(T_robot_laser)
@@ -134,12 +138,14 @@ def get_laser_coordinate(x, y):
 
 def get_robot_coordinate(x, y):
     """
-    function transforms a point in laser space to robot space
+    Transforms a point in laser space to robot space
 
     :param x: x coordinate in laser space
     :type x: float
     :param y: y coordinate in laser space
     :type y: float
+    :return: point in robot space
+    :rtype: (float, float)
     """
     T_robot_laser = get_T_robot_laser()
 

@@ -8,9 +8,34 @@ from mobrob_behcon.visu.visu_behcon import VisuBehCon
 
 
 class BehConNode:
+    """
+    The class BehConNode
+
+    This class represents the central container of all components.
+    An object of this class serves as a link between the components 
+    of the behavior pattern control: 
+
+    - Strategy
+
+    - Resolver
+
+    - PreceptualSpace
+
+    - List of BehaviourGroups
+
+    - VisuBehCon (Visualisation for Strategy)
+
+    - KOOSVisu (Visualistation for PerceptualSpace)
+   
+    """
 
     def __init__(self, id):
-        """Initialize class attributes."""
+        """ 
+        constructor
+
+        :param id: name of object
+        :type id: string
+        """
         self.id = id
         rospy.init_node(self.id, anonymous=True)
         self.resolver = Resolver()
@@ -25,6 +50,9 @@ class BehConNode:
         print("node created")
 
     def start(self):
+        """ 
+        Start the execution of the robot tasks
+        """
         self.visubehcon.draw()
         rate = rospy.Rate(10) # 10hz
         while not rospy.is_shutdown():
@@ -45,10 +73,24 @@ class BehConNode:
             rate.sleep()
 
     def add_strategy(self, strategy):
+        """
+        add Strategy to the robot control software
+
+        :param strategy: strategy object to be added
+        :type strategy: Strategy
+        :return: returns nothing
+        """
         strategy.set_node(self)
         self.strategy = strategy
     
     def add_beh_group(self, beh_group):
+        """
+        add BehaviourGroup to the robot control software
+
+        :param strategy: BehaviourGroup object to be added
+        :type strategy: BehaviourGroup
+        :return: returns nothing
+        """
         beh_group.set_resolver(self.resolver)
         beh_group.set_percept_space(self.percept_space)
         self.lst_behGroups.append(beh_group)

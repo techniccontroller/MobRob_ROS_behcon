@@ -1,11 +1,20 @@
 from graphics import *
 
 class VisuBehCon:
+	"""
+	The class VisuBehCon
+
+	This class visualizes the current software configuration of the behaviour based control of the robot. 
+	This includes the strategy and all behaviours with their priorities. 
+	
+	During runtime, it will also update the current state of strategy and the output to the resolver.
+	"""
 
 	def __init__(self, behconnode):
-		"""[summary]
+		"""
+		constructor
 
-		:param behconnode: ros node for behcon
+		:param behconnode: the BehConNode to be visulatized
 		:type behconnode: BehConNode
 		"""
 
@@ -27,6 +36,22 @@ class VisuBehCon:
 
 
 	def create_box_w_lbl(self, pt, width, height, color, text):
+		"""
+		Creates a box with text
+
+		:param pt: position of rectangle (left top corner)
+		:type pt: (int, int)
+		:param width: width of rectangle
+		:type width: int
+		:param height: height of rectangle
+		:type height: int
+		:param color: color of rectangle
+		:type color: string
+		:param text: text
+		:type text: string
+		:return: tkinter rectangle and text object
+		:rtype: Rectangle, Text
+		"""
 		rect = Rectangle(pt, Point(pt.x+width, pt.y+height))
 		rect.setFill(color)
 		rect.setOutline("black")
@@ -42,6 +67,9 @@ class VisuBehCon:
 
 	
 	def draw(self):
+		"""
+		This function draws the whole configuration in a tkinter window.
+		"""
 		# get number of behaviour groups
 		num_beh_group = len(self.behconnode.strategy.lst_behgrps)
 		print(num_beh_group)
@@ -201,6 +229,9 @@ class VisuBehCon:
 		y_res = y_res + h_beh + margin
 
 	def update(self):
+		"""
+		This function will update the state of Strategy and number of Desires in Resolver.
+		"""
 		# update active behaviour group
 		for item in self.ovl_behGroups:
 			if item[1].active == True:

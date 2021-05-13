@@ -21,6 +21,11 @@ class PerceptualSpace(object):
     """
 
     def __init__(self, visu):
+        """constructor
+
+        :param visu: an object of KOOSVisu
+        :type visu: KOOSVisu
+        """
         # define different sensor connectors
         self.laserscanner = None
         self.camera = None 
@@ -40,6 +45,7 @@ class PerceptualSpace(object):
     def add_camera(self, ip_address="mobrob", port=5001):
         """
         Add camera (TCP) to the configuration. A camera server needs to be running on the network for that. 
+
         e.g. following: https://github.com/techniccontroller/MobRob_PI_Scripts/blob/master/Camera/videoTCPServer8_first_capture.py 
 
         :param ip_address: ip address of camera server

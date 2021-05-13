@@ -40,7 +40,7 @@ class BehReached(Behaviour):
         if dist_front > 0:
             if dist_front < self.stopdistance:
                 do_stop = True
-                rospy.loginfo("BehStop - Stop because of obstacle in front in distance of %s!", str(dist_front))
+                rospy.loginfo("BehReached - Stop because of obstacle in front in distance of %s!", str(dist_front))
         
         if do_stop:
             # robot need to stop because of obstacle, 
