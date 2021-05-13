@@ -63,7 +63,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'MobRob_ROS_behcon'
-copyright = u'2020, Techniccontroller'
+copyright = u'2021, Techniccontroller'
 author = u'Techniccontroller'
 
 # The version info for the project you're documenting, acts as replacement for
