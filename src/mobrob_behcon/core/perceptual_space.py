@@ -46,7 +46,9 @@ class PerceptualSpace(object):
         """
         Add camera (TCP) to the configuration. A camera server needs to be running on the network for that. 
 
-        e.g. following: https://github.com/techniccontroller/MobRob_PI_Scripts/blob/master/Camera/videoTCPServer8_first_capture.py 
+        e.g. following: 
+        
+        https://github.com/techniccontroller/MobRob_PI_Scripts/blob/master/Camera/videoTCPServer8_first_capture.py 
 
         :param ip_address: ip address of camera server
         :param port: port of camera server
