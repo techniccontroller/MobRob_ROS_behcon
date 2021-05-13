@@ -110,6 +110,25 @@ Class overview:
    beh_turn.BehTurn
    behaviourgroup.BehaviourGroup
 
+:mod:`mobrob_behcon.visu` --- visu module
+-----------------------------------------------------
+
+This module contains classes about behaviours. 
+
+.. currentmodule:: mobrob_behcon.visu
+
+Class overview:
+
+.. autosummary::
+   :toctree: stubs
+   :template: class.rst
+
+   visu_behcon.VisuBehCon
+   graphics.GraphWin
+   Transform
+   
+
+
 :mod:`mobrob_behcon.utils` --- utils module
 -----------------------------------------------------
 
