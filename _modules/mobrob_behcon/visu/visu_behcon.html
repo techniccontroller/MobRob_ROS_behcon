@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mobrob_behcon.visu.visu_behcon &mdash; MobRob_ROS_behcon 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="MobRob_ROS_behcon 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">MobRob_ROS_behcon 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mobrob_behcon.visu.visu_behcon</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">graphics</span> <span class="kn">import</span> <span class="o">*</span>
+
+<div class="viewcode-block" id="VisuBehCon"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.visu.visu_behcon.VisuBehCon.html#mobrob_behcon.visu.visu_behcon.VisuBehCon">[docs]</a><span class="k">class</span> <span class="nc">VisuBehCon</span><span class="p">:</span>
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	The class VisuBehCon</span>
+
+<span class="sd">	This class visualizes the current software configuration of the behaviour based control of the robot. </span>
+<span class="sd">	This includes the strategy and all behaviours with their priorities. </span>
+<span class="sd">	</span>
+<span class="sd">	During runtime, it will also update the current state of strategy and the output to the resolver.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="VisuBehCon.__init__"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.visu.visu_behcon.VisuBehCon.html#mobrob_behcon.visu.visu_behcon.VisuBehCon.__init__">[docs]</a>	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">behconnode</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		constructor</span>
+
+<span class="sd">		:param behconnode: the BehConNode to be visulatized</span>
+<span class="sd">		:type behconnode: BehConNode</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">behconnode</span> <span class="o">=</span> <span class="n">behconnode</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl1</span> <span class="o">=</span> <span class="s2">&quot;#fff2cc&quot;</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl2</span> <span class="o">=</span> <span class="s2">&quot;#f8cbad&quot;</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl3</span> <span class="o">=</span> <span class="s2">&quot;#ffffff&quot;</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl4</span> <span class="o">=</span> <span class="s2">&quot;#d6dce5&quot;</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl5</span> <span class="o">=</span> <span class="s2">&quot;#e2f0d9&quot;</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl6</span> <span class="o">=</span> <span class="s2">&quot;#ffe699&quot;</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl7</span> <span class="o">=</span> <span class="s2">&quot;#ffff9f&quot;</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl8</span> <span class="o">=</span> <span class="s2">&quot;#bdd7ee&quot;</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl9</span> <span class="o">=</span> <span class="s2">&quot;#deebf7&quot;</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">rect_behGroups</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">lbl_behGroups</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">ovl_behGroups</span> <span class="o">=</span> <span class="p">[]</span></div>
+
+
+<div class="viewcode-block" id="VisuBehCon.create_box_w_lbl"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.visu.visu_behcon.VisuBehCon.html#mobrob_behcon.visu.visu_behcon.VisuBehCon.create_box_w_lbl">[docs]</a>	<span class="k">def</span> <span class="nf">create_box_w_lbl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pt</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Creates a box with text</span>
+
+<span class="sd">		:param pt: position of rectangle (left top corner)</span>
+<span class="sd">		:type pt: (int, int)</span>
+<span class="sd">		:param width: width of rectangle</span>
+<span class="sd">		:type width: int</span>
+<span class="sd">		:param height: height of rectangle</span>
+<span class="sd">		:type height: int</span>
+<span class="sd">		:param color: color of rectangle</span>
+<span class="sd">		:type color: string</span>
+<span class="sd">		:param text: text</span>
+<span class="sd">		:type text: string</span>
+<span class="sd">		:return: tkinter rectangle and text object</span>
+<span class="sd">		:rtype: Rectangle, Text</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">rect</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">Point</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">x</span><span class="o">+</span><span class="n">width</span><span class="p">,</span> <span class="n">pt</span><span class="o">.</span><span class="n">y</span><span class="o">+</span><span class="n">height</span><span class="p">))</span>
+		<span class="n">rect</span><span class="o">.</span><span class="n">setFill</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+		<span class="n">rect</span><span class="o">.</span><span class="n">setOutline</span><span class="p">(</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+		
+		<span class="n">lbl</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">x</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span> <span class="n">pt</span><span class="o">.</span><span class="n">y</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">text</span><span class="p">)</span>
+		<span class="n">lbl</span><span class="o">.</span><span class="n">setSize</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+		<span class="n">lbl</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;anchor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">NW</span>
+		<span class="n">lbl</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;justify&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span>
+		<span class="n">lbl</span><span class="o">.</span><span class="n">setStyle</span><span class="p">(</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
+		<span class="n">lbl</span><span class="o">.</span><span class="n">setFace</span><span class="p">(</span><span class="s2">&quot;courier&quot;</span><span class="p">)</span>
+
+		<span class="k">return</span> <span class="n">rect</span><span class="p">,</span> <span class="n">lbl</span></div>
+
+	
+<div class="viewcode-block" id="VisuBehCon.draw"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.visu.visu_behcon.VisuBehCon.html#mobrob_behcon.visu.visu_behcon.VisuBehCon.draw">[docs]</a>	<span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		This function draws the whole configuration in a tkinter window.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="c1"># get number of behaviour groups</span>
+		<span class="n">num_beh_group</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">behconnode</span><span class="o">.</span><span class="n">strategy</span><span class="o">.</span><span class="n">lst_behgrps</span><span class="p">)</span>
+		<span class="k">print</span><span class="p">(</span><span class="n">num_beh_group</span><span class="p">)</span>
+
+		<span class="c1"># define parameters</span>
+		<span class="n">border</span> <span class="o">=</span> <span class="mi">170</span>
+		<span class="n">margin</span> <span class="o">=</span> <span class="mi">5</span>
+		<span class="n">w_per_grp</span> <span class="o">=</span> <span class="mi">200</span>
+		<span class="n">win_width</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">border</span><span class="o">+</span><span class="n">w_per_grp</span><span class="o">*</span><span class="n">num_beh_group</span>
+		<span class="n">win_height</span> <span class="o">=</span> <span class="mi">500</span>
+
+		<span class="n">y_stra</span> <span class="o">=</span> <span class="mi">50</span>
+		<span class="n">x_stra</span> <span class="o">=</span> <span class="n">border</span>
+		<span class="n">w_stra</span> <span class="o">=</span> <span class="n">win_width</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x_stra</span>
+		<span class="n">h_stra</span> <span class="o">=</span> <span class="mi">100</span>
+
+		<span class="n">y_behgrp</span> <span class="o">=</span> <span class="mi">165</span>
+		<span class="n">w_behgrp</span> <span class="o">=</span> <span class="n">w_per_grp</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">margin</span>
+		<span class="n">h_behgrp</span> <span class="o">=</span> <span class="mi">290</span>
+
+		<span class="n">y_per</span> <span class="o">=</span> <span class="mi">50</span>
+		<span class="n">x_per</span> <span class="o">=</span> <span class="mi">20</span>
+		<span class="n">w_per</span> <span class="o">=</span> <span class="mi">130</span>
+		<span class="n">h_per</span> <span class="o">=</span> <span class="n">win_height</span> <span class="o">-</span> <span class="mi">70</span>
+
+		<span class="n">y_res</span> <span class="o">=</span> <span class="mi">50</span>
+		<span class="n">x_res</span> <span class="o">=</span> <span class="n">win_width</span> <span class="o">-</span> <span class="mi">150</span>
+		<span class="n">w_res</span> <span class="o">=</span> <span class="mi">130</span>
+		<span class="n">h_res</span> <span class="o">=</span> <span class="n">win_height</span> <span class="o">-</span> <span class="mi">70</span>
+
+		<span class="c1"># create window</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">win</span> <span class="o">=</span> <span class="n">GraphWin</span><span class="p">(</span><span class="s1">&#39;BehCon&#39;</span><span class="p">,</span> <span class="n">win_width</span><span class="p">,</span> <span class="n">win_height</span><span class="p">)</span>
+
+		<span class="c1"># draw behconnode</span>
+		<span class="n">rct_behcon</span><span class="p">,</span> <span class="n">lbl_behcon</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_box_w_lbl</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">win_width</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="n">win_height</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl1</span><span class="p">,</span> <span class="s2">&quot;BehConNode&quot;</span><span class="p">)</span>
+		<span class="n">rct_behcon</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+		<span class="n">lbl_behcon</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+
+
+		<span class="c1"># draw strategy</span>
+		<span class="n">rct_strgy</span><span class="p">,</span> <span class="n">lbl_strgy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_box_w_lbl</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x_stra</span><span class="p">,</span> <span class="n">y_stra</span><span class="p">),</span> <span class="n">w_stra</span><span class="p">,</span> <span class="n">h_stra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl2</span><span class="p">,</span> <span class="s2">&quot;Strategy&quot;</span><span class="p">)</span>
+		<span class="n">rct_strgy</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+		<span class="n">lbl_strgy</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+		
+		<span class="bp">self</span><span class="o">.</span><span class="n">ovl_behGroups</span> <span class="o">=</span> <span class="p">[]</span>
+
+		<span class="c1"># draw each behaviour group</span>
+		<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="k">for</span> <span class="n">beh_group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">behconnode</span><span class="o">.</span><span class="n">strategy</span><span class="o">.</span><span class="n">lst_behgrps</span><span class="p">:</span>
+			<span class="n">x_behgrp</span> <span class="o">=</span> <span class="n">border</span><span class="o">+</span><span class="mi">5</span><span class="o">+</span><span class="n">w_per_grp</span><span class="o">*</span><span class="n">i</span>
+			<span class="n">oval</span> <span class="o">=</span> <span class="n">Oval</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x_behgrp</span><span class="o">+</span><span class="n">w_behgrp</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">85</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="n">x_behgrp</span><span class="o">+</span><span class="n">w_behgrp</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">20</span><span class="p">,</span> <span class="mi">115</span><span class="p">))</span>
+			<span class="k">if</span> <span class="n">beh_group</span><span class="o">.</span><span class="n">active</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+				<span class="n">oval</span><span class="o">.</span><span class="n">setFill</span><span class="p">(</span><span class="s2">&quot;green&quot;</span><span class="p">)</span>
+			<span class="k">else</span><span class="p">:</span>
+				<span class="n">oval</span><span class="o">.</span><span class="n">setFill</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl3</span><span class="p">)</span>
+			<span class="n">oval</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+
+			<span class="n">ovaltext</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x_behgrp</span><span class="o">+</span><span class="n">w_behgrp</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">beh_group</span><span class="o">.</span><span class="n">success</span><span class="p">)</span>
+			<span class="n">ovaltext</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+			
+			<span class="n">rct_behgrp</span><span class="p">,</span> <span class="n">lbl_behgrp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_box_w_lbl</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x_behgrp</span><span class="p">,</span> <span class="n">y_behgrp</span><span class="p">),</span> <span class="n">w_behgrp</span><span class="p">,</span> <span class="n">h_behgrp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl4</span><span class="p">,</span> <span class="n">beh_group</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+			<span class="n">rct_behgrp</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+			<span class="n">lbl_behgrp</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+			<span class="n">line</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x_behgrp</span><span class="o">+</span><span class="n">w_behgrp</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y_behgrp</span><span class="o">-</span><span class="mi">50</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="n">x_behgrp</span><span class="o">+</span><span class="n">w_behgrp</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y_behgrp</span><span class="p">))</span>
+			<span class="c1">#line.setArrow(&quot;last&quot;)</span>
+			<span class="n">line</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+			
+			<span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+				<span class="n">line2</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x_behgrp</span><span class="o">+</span><span class="n">w_behgrp</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">w_per_grp</span><span class="o">+</span><span class="mi">20</span><span class="p">,</span> <span class="n">y_behgrp</span><span class="o">-</span><span class="mi">65</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="n">x_behgrp</span><span class="o">+</span><span class="n">w_behgrp</span><span class="o">*</span><span class="mf">0.5</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="n">y_behgrp</span><span class="o">-</span><span class="mi">65</span><span class="p">))</span>
+				<span class="n">line2</span><span class="o">.</span><span class="n">setArrow</span><span class="p">(</span><span class="s2">&quot;last&quot;</span><span class="p">)</span>
+				<span class="n">line2</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+			<span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+
+			<span class="n">y_beh</span> <span class="o">=</span> <span class="n">y_behgrp</span> <span class="o">+</span> <span class="mi">20</span>
+			<span class="n">h_beh</span> <span class="o">=</span> <span class="mi">40</span>
+			<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">beh_group</span><span class="o">.</span><span class="n">lst_behaviours</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">6</span><span class="p">:</span>
+				<span class="n">h_beh</span> <span class="o">=</span> <span class="mi">30</span>
+
+			<span class="c1"># draw the behaviours of the behaviour group</span>
+			<span class="k">for</span> <span class="n">beh</span> <span class="ow">in</span> <span class="n">beh_group</span><span class="o">.</span><span class="n">lst_behaviours</span><span class="p">:</span>
+				<span class="n">rct_beh</span><span class="p">,</span> <span class="n">lbl_beh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_box_w_lbl</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x_behgrp</span><span class="o">+</span><span class="n">margin</span><span class="p">,</span> <span class="n">y_beh</span><span class="p">),</span> <span class="n">w_behgrp</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">margin</span><span class="p">,</span> <span class="n">h_beh</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl5</span><span class="p">,</span> <span class="n">beh</span><span class="o">.</span><span class="n">behaviour</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+				<span class="n">rct_beh</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+				<span class="n">lbl_beh</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+				<span class="n">text</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x_behgrp</span><span class="o">+</span><span class="n">margin</span><span class="o">+</span><span class="n">w_behgrp</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">margin</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="n">y_beh</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">margin</span><span class="p">),</span> <span class="n">beh</span><span class="o">.</span><span class="n">priority</span><span class="p">)</span>
+				<span class="n">text</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+				<span class="n">y_beh</span> <span class="o">=</span> <span class="n">y_beh</span> <span class="o">+</span> <span class="n">h_beh</span> <span class="o">+</span> <span class="n">margin</span>
+
+			<span class="c1"># save handles to oval graphic element of behaviour group to update it later</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">ovl_behGroups</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">oval</span><span class="p">,</span> <span class="n">beh_group</span><span class="p">,</span> <span class="n">ovaltext</span><span class="p">])</span>
+		
+		<span class="n">h_beh</span> <span class="o">=</span> <span class="mi">40</span>
+
+		<span class="c1"># draw perceptual space (sensors)</span>
+		<span class="n">rct_per</span><span class="p">,</span> <span class="n">lbl_per</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_box_w_lbl</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x_per</span><span class="p">,</span> <span class="n">y_per</span><span class="p">),</span> <span class="n">w_per</span><span class="p">,</span> <span class="n">h_per</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl6</span><span class="p">,</span> <span class="s2">&quot;PerceptualSpace&quot;</span><span class="p">)</span>
+		<span class="n">rct_per</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+		<span class="n">lbl_per</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+
+		<span class="n">y_per</span> <span class="o">=</span> <span class="n">y_per</span> <span class="o">+</span> <span class="mi">20</span>
+
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">behconnode</span><span class="o">.</span><span class="n">percept_space</span><span class="o">.</span><span class="n">laserscanner</span><span class="p">:</span>
+			<span class="n">rct</span><span class="p">,</span> <span class="n">lbl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_box_w_lbl</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x_per</span><span class="o">+</span><span class="n">margin</span><span class="p">,</span> <span class="n">y_per</span><span class="p">),</span> <span class="n">w_per</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">margin</span><span class="p">,</span> <span class="n">h_beh</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl7</span><span class="p">,</span> <span class="s2">&quot;LaserScanner&quot;</span><span class="p">)</span>
+			<span class="n">rct</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+			<span class="n">lbl</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+			<span class="n">lbl2</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x_per</span><span class="o">+</span><span class="n">margin</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span> <span class="n">y_per</span><span class="o">+</span><span class="mi">20</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">behconnode</span><span class="o">.</span><span class="n">percept_space</span><span class="o">.</span><span class="n">laserscanner</span><span class="o">.</span><span class="n">ros_topic</span><span class="p">)</span>
+			<span class="n">lbl2</span><span class="o">.</span><span class="n">setSize</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+			<span class="n">lbl2</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;anchor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">NW</span>
+			<span class="n">lbl2</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;justify&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span>
+			<span class="n">lbl2</span><span class="o">.</span><span class="n">setFace</span><span class="p">(</span><span class="s2">&quot;courier&quot;</span><span class="p">)</span>
+			<span class="n">lbl2</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+			<span class="n">y_per</span> <span class="o">=</span> <span class="n">y_per</span> <span class="o">+</span> <span class="n">h_beh</span> <span class="o">+</span> <span class="n">margin</span>
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">behconnode</span><span class="o">.</span><span class="n">percept_space</span><span class="o">.</span><span class="n">camera</span><span class="p">:</span>
+			<span class="n">rct</span><span class="p">,</span> <span class="n">lbl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_box_w_lbl</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x_per</span><span class="o">+</span><span class="n">margin</span><span class="p">,</span> <span class="n">y_per</span><span class="p">),</span> <span class="n">w_per</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">margin</span><span class="p">,</span> <span class="n">h_beh</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl7</span><span class="p">,</span> <span class="s2">&quot;Camera&quot;</span><span class="p">)</span>
+			<span class="n">rct</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+			<span class="n">lbl</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+			<span class="n">lbl2</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x_per</span><span class="o">+</span><span class="n">margin</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span> <span class="n">y_per</span><span class="o">+</span><span class="mi">20</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">behconnode</span><span class="o">.</span><span class="n">percept_space</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+			<span class="n">lbl2</span><span class="o">.</span><span class="n">setSize</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+			<span class="n">lbl2</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;anchor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">NW</span>
+			<span class="n">lbl2</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;justify&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span>
+			<span class="n">lbl2</span><span class="o">.</span><span class="n">setFace</span><span class="p">(</span><span class="s2">&quot;courier&quot;</span><span class="p">)</span>
+			<span class="n">lbl2</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+			<span class="n">y_per</span> <span class="o">=</span> <span class="n">y_per</span> <span class="o">+</span> <span class="n">h_beh</span> <span class="o">+</span> <span class="n">margin</span>
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">behconnode</span><span class="o">.</span><span class="n">percept_space</span><span class="o">.</span><span class="n">egopose</span><span class="p">:</span>
+			<span class="n">rct</span><span class="p">,</span> <span class="n">lbl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_box_w_lbl</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x_per</span><span class="o">+</span><span class="n">margin</span><span class="p">,</span> <span class="n">y_per</span><span class="p">),</span> <span class="n">w_per</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">margin</span><span class="p">,</span> <span class="n">h_beh</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl7</span><span class="p">,</span> <span class="s2">&quot;EgoPose&quot;</span><span class="p">)</span>
+			<span class="n">rct</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+			<span class="n">lbl</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+			<span class="n">lbl2</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x_per</span><span class="o">+</span><span class="n">margin</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span> <span class="n">y_per</span><span class="o">+</span><span class="mi">20</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">behconnode</span><span class="o">.</span><span class="n">percept_space</span><span class="o">.</span><span class="n">egopose</span><span class="o">.</span><span class="n">ros_topic</span><span class="p">)</span>
+			<span class="n">lbl2</span><span class="o">.</span><span class="n">setSize</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+			<span class="n">lbl2</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;anchor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">NW</span>
+			<span class="n">lbl2</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;justify&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span>
+			<span class="n">lbl2</span><span class="o">.</span><span class="n">setFace</span><span class="p">(</span><span class="s2">&quot;courier&quot;</span><span class="p">)</span>
+			<span class="n">lbl2</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+			<span class="n">y_per</span> <span class="o">=</span> <span class="n">y_per</span> <span class="o">+</span> <span class="n">h_beh</span> <span class="o">+</span> <span class="n">margin</span>
+
+		<span class="c1"># draw resolver (actuators)</span>
+		<span class="n">rct_res</span><span class="p">,</span> <span class="n">lbl_res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_box_w_lbl</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x_res</span><span class="p">,</span> <span class="n">y_res</span><span class="p">),</span> <span class="n">w_res</span><span class="p">,</span> <span class="n">h_res</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl8</span><span class="p">,</span> <span class="s2">&quot;Resolver&quot;</span><span class="p">)</span>
+		<span class="n">rct_res</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+		<span class="n">lbl_res</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+
+		<span class="n">y_res</span> <span class="o">=</span> <span class="n">y_res</span> <span class="o">+</span> <span class="mi">20</span>
+
+		<span class="n">num_destransvel</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">behconnode</span><span class="o">.</span><span class="n">resolver</span><span class="o">.</span><span class="n">lst_des_transvel</span><span class="p">)</span>
+		<span class="n">rct</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lbl_destransvel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_box_w_lbl</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x_res</span><span class="o">+</span><span class="n">margin</span><span class="p">,</span> <span class="n">y_res</span><span class="p">),</span> <span class="n">w_res</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">margin</span><span class="p">,</span> <span class="n">h_beh</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl9</span><span class="p">,</span> <span class="s2">&quot;DesTransVel[&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_destransvel</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span><span class="p">)</span>
+		<span class="n">rct</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">lbl_destransvel</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+		<span class="n">y_res</span> <span class="o">=</span> <span class="n">y_res</span> <span class="o">+</span> <span class="n">h_beh</span> <span class="o">+</span> <span class="n">margin</span>
+		
+		<span class="n">num_destransdir</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">behconnode</span><span class="o">.</span><span class="n">resolver</span><span class="o">.</span><span class="n">lst_des_transdir</span><span class="p">)</span>
+		<span class="n">rct</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lbl_destransdir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_box_w_lbl</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x_res</span><span class="o">+</span><span class="n">margin</span><span class="p">,</span> <span class="n">y_res</span><span class="p">),</span> <span class="n">w_res</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">margin</span><span class="p">,</span> <span class="n">h_beh</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl9</span><span class="p">,</span> <span class="s2">&quot;DesTransDir[&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_destransdir</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span><span class="p">)</span>
+		<span class="n">rct</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">lbl_destransdir</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+		<span class="n">y_res</span> <span class="o">=</span> <span class="n">y_res</span> <span class="o">+</span> <span class="n">h_beh</span> <span class="o">+</span> <span class="n">margin</span>
+		
+		<span class="n">num_desrotvel</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">behconnode</span><span class="o">.</span><span class="n">resolver</span><span class="o">.</span><span class="n">lst_des_rotvel</span><span class="p">)</span>
+		<span class="n">rct</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lbl_desrotvel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_box_w_lbl</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">x_res</span><span class="o">+</span><span class="n">margin</span><span class="p">,</span> <span class="n">y_res</span><span class="p">),</span> <span class="n">w_res</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">margin</span><span class="p">,</span> <span class="n">h_beh</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl9</span><span class="p">,</span> <span class="s2">&quot;DesRotVel[&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_desrotvel</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span><span class="p">)</span>
+		<span class="n">rct</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">lbl_desrotvel</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">win</span><span class="p">)</span>
+		<span class="n">y_res</span> <span class="o">=</span> <span class="n">y_res</span> <span class="o">+</span> <span class="n">h_beh</span> <span class="o">+</span> <span class="n">margin</span></div>
+
+<div class="viewcode-block" id="VisuBehCon.update"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.visu.visu_behcon.VisuBehCon.html#mobrob_behcon.visu.visu_behcon.VisuBehCon.update">[docs]</a>	<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		This function will update the state of Strategy and number of Desires in Resolver.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="c1"># update active behaviour group</span>
+		<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ovl_behGroups</span><span class="p">:</span>
+			<span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">active</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+				<span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">setFill</span><span class="p">(</span><span class="s2">&quot;green&quot;</span><span class="p">)</span>
+			<span class="k">else</span><span class="p">:</span>
+				<span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">setFill</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clr_lvl3</span><span class="p">)</span>
+			<span class="n">item</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">success</span><span class="p">)</span>
+
+		<span class="c1"># update number of desires</span>
+		<span class="n">num_destransvel</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">behconnode</span><span class="o">.</span><span class="n">resolver</span><span class="o">.</span><span class="n">lst_des_transvel</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">lbl_destransvel</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;DesTransVel[&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_destransvel</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span><span class="p">)</span>
+		<span class="n">num_destransdir</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">behconnode</span><span class="o">.</span><span class="n">resolver</span><span class="o">.</span><span class="n">lst_des_transdir</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">lbl_destransdir</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;DesTransDir[&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_destransdir</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span><span class="p">)</span>
+		<span class="n">num_desrotvel</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">behconnode</span><span class="o">.</span><span class="n">resolver</span><span class="o">.</span><span class="n">lst_des_rotvel</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">lbl_desrotvel</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;DesRotVel[&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_desrotvel</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span><span class="p">)</span></div></div>
+
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">MobRob_ROS_behcon 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2020, Techniccontroller.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

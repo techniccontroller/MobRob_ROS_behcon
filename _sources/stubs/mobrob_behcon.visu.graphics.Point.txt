@@ -1,0 +1,46 @@
+Point
+=================================
+
+.. currentmodule:: mobrob_behcon.visu.graphics
+
+.. autoclass:: Point
+
+    
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~Point.__init__
+        ~Point.clone
+        ~Point.draw
+        ~Point.getX
+        ~Point.getY
+        ~Point.move
+        ~Point.setFill
+        ~Point.setOutline
+        ~Point.setWidth
+        ~Point.undraw
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: clone
+    .. automethod:: draw
+    .. automethod:: getX
+    .. automethod:: getY
+    .. automethod:: move
+    .. automethod:: setFill
+    .. automethod:: setOutline
+    .. automethod:: setWidth
+    .. automethod:: undraw
+
+    
+    
+
+    

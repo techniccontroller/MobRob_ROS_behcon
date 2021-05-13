@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>_BBox &mdash; MobRob_ROS_behcon 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="MobRob_ROS_behcon 1.0 documentation" href="../index.html" />
+    <link rel="next" title="Rectangle" href="mobrob_behcon.visu.graphics.Rectangle.html" />
+    <link rel="prev" title="Point" href="mobrob_behcon.visu.graphics.Point.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="mobrob_behcon.visu.graphics.Rectangle.html" title="Rectangle"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="mobrob_behcon.visu.graphics.Point.html" title="Point"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="bbox">
+<h1>_BBox<a class="headerlink" href="#bbox" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="mobrob_behcon.visu.graphics._BBox">
+<em class="property">class </em><code class="descclassname">mobrob_behcon.visu.graphics.</code><code class="descname">_BBox</code><span class="sig-paren">(</span><em>p1, p2, options=['outline', 'width', 'fill']</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/visu/graphics.html#_BBox"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.visu.graphics._BBox" title="Permalink to this definition">¶</a></dt>
+<dd><p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.visu.graphics._BBox.__init__" title="mobrob_behcon.visu.graphics._BBox.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>(p1,&nbsp;p2[,&nbsp;options])</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.visu.graphics._BBox.draw" title="mobrob_behcon.visu.graphics._BBox.draw"><code class="xref py py-obj docutils literal"><span class="pre">draw</span></code></a>(graphwin)</td>
+<td>Draw the object in graphwin, which should be a GraphWin object.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.visu.graphics._BBox.getCenter" title="mobrob_behcon.visu.graphics._BBox.getCenter"><code class="xref py py-obj docutils literal"><span class="pre">getCenter</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.visu.graphics._BBox.getP1" title="mobrob_behcon.visu.graphics._BBox.getP1"><code class="xref py py-obj docutils literal"><span class="pre">getP1</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.visu.graphics._BBox.getP2" title="mobrob_behcon.visu.graphics._BBox.getP2"><code class="xref py py-obj docutils literal"><span class="pre">getP2</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.visu.graphics._BBox.move" title="mobrob_behcon.visu.graphics._BBox.move"><code class="xref py py-obj docutils literal"><span class="pre">move</span></code></a>(dx,&nbsp;dy)</td>
+<td>move object dx units in x direction and dy units in y</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.visu.graphics._BBox.setFill" title="mobrob_behcon.visu.graphics._BBox.setFill"><code class="xref py py-obj docutils literal"><span class="pre">setFill</span></code></a>(color)</td>
+<td>Set interior color to color</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.visu.graphics._BBox.setOutline" title="mobrob_behcon.visu.graphics._BBox.setOutline"><code class="xref py py-obj docutils literal"><span class="pre">setOutline</span></code></a>(color)</td>
+<td>Set outline color to color</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.visu.graphics._BBox.setWidth" title="mobrob_behcon.visu.graphics._BBox.setWidth"><code class="xref py py-obj docutils literal"><span class="pre">setWidth</span></code></a>(width)</td>
+<td>Set line weight to width</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.visu.graphics._BBox.undraw" title="mobrob_behcon.visu.graphics._BBox.undraw"><code class="xref py py-obj docutils literal"><span class="pre">undraw</span></code></a>()</td>
+<td>Undraw the object (i.e.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Details</p>
+<dl class="method">
+<dt id="mobrob_behcon.visu.graphics._BBox.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>p1, p2, options=['outline', 'width', 'fill']</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/visu/graphics.html#_BBox.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.visu.graphics._BBox.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mobrob_behcon.visu.graphics._BBox.draw">
+<code class="descname">draw</code><span class="sig-paren">(</span><em>graphwin</em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.visu.graphics._BBox.draw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw the object in graphwin, which should be a GraphWin
+object.  A GraphicsObject may only be drawn into one
+window. Raises an error if attempt made to draw an object that
+is already visible.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mobrob_behcon.visu.graphics._BBox.getCenter">
+<code class="descname">getCenter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/visu/graphics.html#_BBox.getCenter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.visu.graphics._BBox.getCenter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mobrob_behcon.visu.graphics._BBox.getP1">
+<code class="descname">getP1</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/visu/graphics.html#_BBox.getP1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.visu.graphics._BBox.getP1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mobrob_behcon.visu.graphics._BBox.getP2">
+<code class="descname">getP2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/visu/graphics.html#_BBox.getP2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.visu.graphics._BBox.getP2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mobrob_behcon.visu.graphics._BBox.move">
+<code class="descname">move</code><span class="sig-paren">(</span><em>dx</em>, <em>dy</em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.visu.graphics._BBox.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>move object dx units in x direction and dy units in y
+direction</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mobrob_behcon.visu.graphics._BBox.setFill">
+<code class="descname">setFill</code><span class="sig-paren">(</span><em>color</em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.visu.graphics._BBox.setFill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set interior color to color</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mobrob_behcon.visu.graphics._BBox.setOutline">
+<code class="descname">setOutline</code><span class="sig-paren">(</span><em>color</em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.visu.graphics._BBox.setOutline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set outline color to color</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mobrob_behcon.visu.graphics._BBox.setWidth">
+<code class="descname">setWidth</code><span class="sig-paren">(</span><em>width</em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.visu.graphics._BBox.setWidth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set line weight to width</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mobrob_behcon.visu.graphics._BBox.undraw">
+<code class="descname">undraw</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.visu.graphics._BBox.undraw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Undraw the object (i.e. hide it). Returns silently if the
+object is not currently drawn.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="mobrob_behcon.visu.graphics.Point.html"
+                        title="previous chapter">Point</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="mobrob_behcon.visu.graphics.Rectangle.html"
+                        title="next chapter">Rectangle</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/stubs/mobrob_behcon.visu.graphics._BBox.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="mobrob_behcon.visu.graphics.Rectangle.html" title="Rectangle"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="mobrob_behcon.visu.graphics.Point.html" title="Point"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2020, Techniccontroller.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>
