@@ -125,8 +125,19 @@ Class overview:
 
    visu_behcon.VisuBehCon
    graphics.GraphWin
-   Transform
-   
+   graphics.Transform
+   graphics.GraphicsObject
+   graphics.Point
+   graphics._BBox
+   graphics.Rectangle
+   graphics.Oval
+   graphics.Circle
+   graphics.Line
+   graphics.Polygon
+   graphics.Text
+   graphics.Entry
+   graphics.Image
+
 
 
 :mod:`mobrob_behcon.utils` --- utils module
