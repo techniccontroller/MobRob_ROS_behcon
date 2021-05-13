@@ -1,0 +1,52 @@
+KOOSVisu
+=========================================
+
+.. currentmodule:: mobrob_behcon.core.visualisation
+
+.. autoclass:: KOOSVisu
+
+    
+    
+    .. rubric:: Attributes
+
+    .. autosummary::
+    
+        ~KOOSVisu.colours
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~KOOSVisu.__init__
+        ~KOOSVisu.clear_image
+        ~KOOSVisu.draw_box
+        ~KOOSVisu.draw_cluster_points
+        ~KOOSVisu.draw_point
+        ~KOOSVisu.draw_points
+        ~KOOSVisu.draw_robot
+        ~KOOSVisu.send_image
+        ~KOOSVisu.set_current_pose
+        ~KOOSVisu.to_visu_coord
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: clear_image
+    .. automethod:: draw_box
+    .. automethod:: draw_cluster_points
+    .. automethod:: draw_point
+    .. automethod:: draw_points
+    .. automethod:: draw_robot
+    .. automethod:: send_image
+    .. automethod:: set_current_pose
+    .. automethod:: to_visu_coord
+
+    
+    
+
+    

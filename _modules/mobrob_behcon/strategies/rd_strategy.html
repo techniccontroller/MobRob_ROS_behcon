@@ -50,8 +50,24 @@
 <span class="kn">from</span> <span class="nn">mobrob_behcon.strategies.strategy</span> <span class="kn">import</span> <span class="n">Strategy</span>
 
 <div class="viewcode-block" id="RDStrategy"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.strategies.rd_strategy.RDStrategy.html#mobrob_behcon.strategies.rd_strategy.RDStrategy">[docs]</a><span class="k">class</span> <span class="nc">RDStrategy</span><span class="p">(</span><span class="n">Strategy</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The class RDStrategy</span>
+
+<span class="sd">    The class is a child of the abstract class Strategy </span>
+<span class="sd">    and manages the strategic level of the behaviours based control </span>
+<span class="sd">    of the application **R**\ ightAngle\ **D**\ ock as statemachine.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="RDStrategy.__init__"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.strategies.rd_strategy.RDStrategy.html#mobrob_behcon.strategies.rd_strategy.RDStrategy.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dock</span><span class="p">,</span> <span class="n">turn90</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        constructor</span>
+
+<span class="sd">        :param dock: a BehaviourGroup containing the necessary behaviours for first task</span>
+<span class="sd">        :type dock: BehaviourGroup</span>
+<span class="sd">        :param turn90: a BehaviourGroup containing the necessary behaviours for second task</span>
+<span class="sd">        :type turn90: BehaviourGroup</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">RDStrategy</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dock</span> <span class="o">=</span> <span class="n">dock</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">turn90</span> <span class="o">=</span> <span class="n">turn90</span>
@@ -60,6 +76,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">activate_exclusive</span><span class="p">(</span><span class="n">dock</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="RDStrategy.plan"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.strategies.rd_strategy.RDStrategy.html#mobrob_behcon.strategies.rd_strategy.RDStrategy.plan">[docs]</a>    <span class="k">def</span> <span class="nf">plan</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        plan() method, where the magic happens :). It contains and manages the state machine. </span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Strategy - dock=</span><span class="si">%s</span><span class="s2">, turn90=</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dock</span><span class="o">.</span><span class="n">success</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turn90</span><span class="o">.</span><span class="n">success</span><span class="p">))</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dock</span><span class="o">.</span><span class="n">success</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dock</span><span class="o">.</span><span class="n">success</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>

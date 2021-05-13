@@ -1,0 +1,30 @@
+DesCmdLight
+=========================================
+
+.. currentmodule:: mobrob_behcon.desires.desires
+
+.. autoclass:: DesCmdLight
+
+    
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~DesCmdLight.__init__
+        ~DesCmdLight.set_priority
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: set_priority
+
+    
+    
+
+    

@@ -1,0 +1,7 @@
+get_robot_corners
+===========================================================
+
+
+.. currentmodule:: mobrob_behcon.utils.mobrob_transformation
+
+.. autofunction:: get_robot_corners

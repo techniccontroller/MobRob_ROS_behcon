@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Overview: module code &mdash; MobRob_ROS_behcon 1.0 documentation</title>
+    <title>get_robot_corners &mdash; MobRob_ROS_behcon 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -24,7 +24,8 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="MobRob_ROS_behcon 1.0 documentation" href="../index.html" /> 
+    <link rel="top" title="MobRob_ROS_behcon 1.0 documentation" href="../index.html" />
+    <link rel="prev" title="get_robot_coordinate" href="mobrob_behcon.utils.mobrob_transformation.get_robot_coordinate.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -33,6 +34,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="mobrob_behcon.utils.mobrob_transformation.get_robot_coordinate.html" title="get_robot_coordinate"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -42,35 +46,44 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="mobrob_behcon/behaviours/beh_align.html">mobrob_behcon.behaviours.beh_align</a></li>
-<li><a href="mobrob_behcon/behaviours/beh_limfor.html">mobrob_behcon.behaviours.beh_limfor</a></li>
-<li><a href="mobrob_behcon/behaviours/beh_reached.html">mobrob_behcon.behaviours.beh_reached</a></li>
-<li><a href="mobrob_behcon/behaviours/beh_stop.html">mobrob_behcon.behaviours.beh_stop</a></li>
-<li><a href="mobrob_behcon/behaviours/beh_transvel.html">mobrob_behcon.behaviours.beh_transvel</a></li>
-<li><a href="mobrob_behcon/behaviours/beh_turn.html">mobrob_behcon.behaviours.beh_turn</a></li>
-<li><a href="mobrob_behcon/behaviours/behaviour.html">mobrob_behcon.behaviours.behaviour</a></li>
-<li><a href="mobrob_behcon/behaviours/behaviourgroup.html">mobrob_behcon.behaviours.behaviourgroup</a></li>
-<li><a href="mobrob_behcon/connectors/camera.html">mobrob_behcon.connectors.camera</a></li>
-<li><a href="mobrob_behcon/connectors/egopose.html">mobrob_behcon.connectors.egopose</a></li>
-<li><a href="mobrob_behcon/connectors/gripper.html">mobrob_behcon.connectors.gripper</a></li>
-<li><a href="mobrob_behcon/connectors/laserscanner.html">mobrob_behcon.connectors.laserscanner</a></li>
-<li><a href="mobrob_behcon/core/behcon_node.html">mobrob_behcon.core.behcon_node</a></li>
-<li><a href="mobrob_behcon/core/perceptual_space.html">mobrob_behcon.core.perceptual_space</a></li>
-<li><a href="mobrob_behcon/core/resolver.html">mobrob_behcon.core.resolver</a></li>
-<li><a href="mobrob_behcon/core/visualisation.html">mobrob_behcon.core.visualisation</a></li>
-<li><a href="mobrob_behcon/desires/desire.html">mobrob_behcon.desires.desire</a></li>
-<li><a href="mobrob_behcon/desires/desires.html">mobrob_behcon.desires.desires</a></li>
-<li><a href="mobrob_behcon/strategies/rd_strategy.html">mobrob_behcon.strategies.rd_strategy</a></li>
-<li><a href="mobrob_behcon/strategies/strategy.html">mobrob_behcon.strategies.strategy</a></li>
-<li><a href="mobrob_behcon/utils/mobrob_transformation.html">mobrob_behcon.utils.mobrob_transformation</a></li>
-</ul>
+  <div class="section" id="get-robot-corners">
+<h1>get_robot_corners<a class="headerlink" href="#get-robot-corners" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="mobrob_behcon.utils.mobrob_transformation.get_robot_corners">
+<code class="descclassname">mobrob_behcon.utils.mobrob_transformation.</code><code class="descname">get_robot_corners</code><span class="sig-paren">(</span><em>currentPose</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/utils/mobrob_transformation.html#get_robot_corners"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.utils.mobrob_transformation.get_robot_corners" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get corners of robot as coordinates in world space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>currentPose</strong> (<em>(float, float, float)</em>) &#8211; current pose of robot in world space (x, y, yaw)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">points of all four corners (pt1, pt2, pt3, pt4)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">((float,float),(float,float),(float,float),(float,float))</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
 
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="mobrob_behcon.utils.mobrob_transformation.get_robot_coordinate.html"
+                        title="previous chapter">get_robot_coordinate</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/stubs/mobrob_behcon.utils.mobrob_transformation.get_robot_corners.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -94,6 +107,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="mobrob_behcon.utils.mobrob_transformation.get_robot_coordinate.html" title="get_robot_coordinate"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>

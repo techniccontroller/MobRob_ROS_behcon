@@ -1,0 +1,7 @@
+get_laser_coordinate
+==============================================================
+
+
+.. currentmodule:: mobrob_behcon.utils.mobrob_transformation
+
+.. autofunction:: get_laser_coordinate

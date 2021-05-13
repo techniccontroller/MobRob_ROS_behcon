@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>BehConstTransVel &mdash; MobRob_ROS_behcon 1.0 documentation</title>
+    <title>BehReached &mdash; MobRob_ROS_behcon 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="MobRob_ROS_behcon 1.0 documentation" href="../index.html" />
-    <link rel="next" title="BehTurn" href="mobrob_behcon.behaviours.beh_turn.BehTurn.html" />
-    <link rel="prev" title="BehReached" href="mobrob_behcon.behaviours.beh_reached.BehReached.html" /> 
+    <link rel="next" title="BehConstTransVel" href="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.html" />
+    <link rel="prev" title="BehStop" href="mobrob_behcon.behaviours.beh_stop.BehStop.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -36,10 +36,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="mobrob_behcon.behaviours.beh_turn.BehTurn.html" title="BehTurn"
+          <a href="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.html" title="BehConstTransVel"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="mobrob_behcon.behaviours.beh_reached.BehReached.html" title="BehReached"
+          <a href="mobrob_behcon.behaviours.beh_stop.BehStop.html" title="BehStop"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &raquo;</li> 
       </ul>
@@ -50,14 +50,14 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="behconsttransvel">
-<h1>BehConstTransVel<a class="headerlink" href="#behconsttransvel" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="behreached">
+<h1>BehReached<a class="headerlink" href="#behreached" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel">
-<em class="property">class </em><code class="descclassname">mobrob_behcon.behaviours.beh_transvel.</code><code class="descname">BehConstTransVel</code><span class="sig-paren">(</span><em>name</em>, <em>trans_vel=0.2</em>, <em>trans_dir=0.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/behaviours/beh_transvel.html#BehConstTransVel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.behaviours.beh_transvel.BehConstTransVel" title="Permalink to this definition">¶</a></dt>
-<dd><p>The class BehConstTransVel</p>
+<dt id="mobrob_behcon.behaviours.beh_reached.BehReached">
+<em class="property">class </em><code class="descclassname">mobrob_behcon.behaviours.beh_reached.</code><code class="descname">BehReached</code><span class="sig-paren">(</span><em>name</em>, <em>stopdistance=0.3</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/behaviours/beh_reached.html#BehReached"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.behaviours.beh_reached.BehReached" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class BehReached</p>
 <p>This class is a child of the class Behaviour representing 
-a behaviour which drives the robot with constant speed.</p>
+a behaviour which stops the robot when it reached some obstacle in front.</p>
 <p class="rubric">Methods</p>
 <table border="1" class="longtable docutils">
 <colgroup>
@@ -65,39 +65,39 @@ a behaviour which drives the robot with constant speed.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.__init__" title="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>(name[,&nbsp;trans_vel,&nbsp;trans_dir])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.behaviours.beh_reached.BehReached.__init__" title="mobrob_behcon.behaviours.beh_reached.BehReached.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>(name[,&nbsp;stopdistance])</td>
 <td>constructor</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.add_desire" title="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.add_desire"><code class="xref py py-obj docutils literal"><span class="pre">add_desire</span></code></a>(desire)</td>
+<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.behaviours.beh_reached.BehReached.add_desire" title="mobrob_behcon.behaviours.beh_reached.BehReached.add_desire"><code class="xref py py-obj docutils literal"><span class="pre">add_desire</span></code></a>(desire)</td>
 <td>Send desire to resolver.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.error" title="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.error"><code class="xref py py-obj docutils literal"><span class="pre">error</span></code></a>([code])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.behaviours.beh_reached.BehReached.error" title="mobrob_behcon.behaviours.beh_reached.BehReached.error"><code class="xref py py-obj docutils literal"><span class="pre">error</span></code></a>([code])</td>
 <td>Raise an error about the behaviour.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.fire" title="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.fire"><code class="xref py py-obj docutils literal"><span class="pre">fire</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.behaviours.beh_reached.BehReached.fire" title="mobrob_behcon.behaviours.beh_reached.BehReached.fire"><code class="xref py py-obj docutils literal"><span class="pre">fire</span></code></a>()</td>
 <td>The fire()-method, which is necessary in every Behaviour,  will be called by resolver in every polling cycle.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.set_current_beh_group" title="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.set_current_beh_group"><code class="xref py py-obj docutils literal"><span class="pre">set_current_beh_group</span></code></a>(beh_group)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.behaviours.beh_reached.BehReached.set_current_beh_group" title="mobrob_behcon.behaviours.beh_reached.BehReached.set_current_beh_group"><code class="xref py py-obj docutils literal"><span class="pre">set_current_beh_group</span></code></a>(beh_group)</td>
 <td>Set current active behaviourgroup</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.set_percept_space" title="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.set_percept_space"><code class="xref py py-obj docutils literal"><span class="pre">set_percept_space</span></code></a>(percept_space)</td>
+<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.behaviours.beh_reached.BehReached.set_percept_space" title="mobrob_behcon.behaviours.beh_reached.BehReached.set_percept_space"><code class="xref py py-obj docutils literal"><span class="pre">set_percept_space</span></code></a>(percept_space)</td>
 <td>Set the reference to percept_space</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.set_priority" title="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.set_priority"><code class="xref py py-obj docutils literal"><span class="pre">set_priority</span></code></a>(priority)</td>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.behaviours.beh_reached.BehReached.set_priority" title="mobrob_behcon.behaviours.beh_reached.BehReached.set_priority"><code class="xref py py-obj docutils literal"><span class="pre">set_priority</span></code></a>(priority)</td>
 <td>Set current priority of the behaviour,</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.set_resolver" title="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.set_resolver"><code class="xref py py-obj docutils literal"><span class="pre">set_resolver</span></code></a>(resolver)</td>
+<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.behaviours.beh_reached.BehReached.set_resolver" title="mobrob_behcon.behaviours.beh_reached.BehReached.set_resolver"><code class="xref py py-obj docutils literal"><span class="pre">set_resolver</span></code></a>(resolver)</td>
 <td>Set the reference to resolver</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.success" title="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.success"><code class="xref py py-obj docutils literal"><span class="pre">success</span></code></a>([code])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.behaviours.beh_reached.BehReached.success" title="mobrob_behcon.behaviours.beh_reached.BehReached.success"><code class="xref py py-obj docutils literal"><span class="pre">success</span></code></a>([code])</td>
 <td>Set the behaviour as successful ended.</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Details</p>
 <dl class="method">
-<dt id="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>name</em>, <em>trans_vel=0.2</em>, <em>trans_dir=0.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/behaviours/beh_transvel.html#BehConstTransVel.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.__init__" title="Permalink to this definition">¶</a></dt>
+<dt id="mobrob_behcon.behaviours.beh_reached.BehReached.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>name</em>, <em>stopdistance=0.3</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/behaviours/beh_reached.html#BehReached.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.behaviours.beh_reached.BehReached.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>constructor</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -105,8 +105,7 @@ a behaviour which drives the robot with constant speed.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/library/string.html#module-string" title="(in Python v3.9)"><em>string</em></a>) &#8211; name of behaviour</li>
-<li><strong>trans_vel</strong> (<em>float, optional</em>) &#8211; speed at which the robot should move [m/s], defaults to 0.2</li>
-<li><strong>trans_dir</strong> (<em>float, optional</em>) &#8211; direction in which the robot should move [deg], defaults to 0.0</li>
+<li><strong>stopdistance</strong> (<em>float, optional</em>) &#8211; distance on with the robot should stop, defaults to 0.30</li>
 </ul>
 </td>
 </tr>
@@ -115,8 +114,8 @@ a behaviour which drives the robot with constant speed.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.add_desire">
-<code class="descname">add_desire</code><span class="sig-paren">(</span><em>desire</em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.add_desire" title="Permalink to this definition">¶</a></dt>
+<dt id="mobrob_behcon.behaviours.beh_reached.BehReached.add_desire">
+<code class="descname">add_desire</code><span class="sig-paren">(</span><em>desire</em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.behaviours.beh_reached.BehReached.add_desire" title="Permalink to this definition">¶</a></dt>
 <dd><p>Send desire to resolver.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -129,8 +128,8 @@ a behaviour which drives the robot with constant speed.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.error">
-<code class="descname">error</code><span class="sig-paren">(</span><em>code=0</em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.error" title="Permalink to this definition">¶</a></dt>
+<dt id="mobrob_behcon.behaviours.beh_reached.BehReached.error">
+<code class="descname">error</code><span class="sig-paren">(</span><em>code=0</em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.behaviours.beh_reached.BehReached.error" title="Permalink to this definition">¶</a></dt>
 <dd><p>Raise an error about the behaviour.
 With the error code some more information 
 about the error can be given to the behaviourgroup</p>
@@ -145,15 +144,15 @@ about the error can be given to the behaviourgroup</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.fire">
-<code class="descname">fire</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/behaviours/beh_transvel.html#BehConstTransVel.fire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.fire" title="Permalink to this definition">¶</a></dt>
+<dt id="mobrob_behcon.behaviours.beh_reached.BehReached.fire">
+<code class="descname">fire</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/behaviours/beh_reached.html#BehReached.fire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.behaviours.beh_reached.BehReached.fire" title="Permalink to this definition">¶</a></dt>
 <dd><p>The fire()-method, which is necessary in every Behaviour, 
 will be called by resolver in every polling cycle.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.set_current_beh_group">
-<code class="descname">set_current_beh_group</code><span class="sig-paren">(</span><em>beh_group</em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.set_current_beh_group" title="Permalink to this definition">¶</a></dt>
+<dt id="mobrob_behcon.behaviours.beh_reached.BehReached.set_current_beh_group">
+<code class="descname">set_current_beh_group</code><span class="sig-paren">(</span><em>beh_group</em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.behaviours.beh_reached.BehReached.set_current_beh_group" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set current active behaviourgroup</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -166,8 +165,8 @@ will be called by resolver in every polling cycle.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.set_percept_space">
-<code class="descname">set_percept_space</code><span class="sig-paren">(</span><em>percept_space</em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.set_percept_space" title="Permalink to this definition">¶</a></dt>
+<dt id="mobrob_behcon.behaviours.beh_reached.BehReached.set_percept_space">
+<code class="descname">set_percept_space</code><span class="sig-paren">(</span><em>percept_space</em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.behaviours.beh_reached.BehReached.set_percept_space" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the reference to percept_space</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -180,8 +179,8 @@ will be called by resolver in every polling cycle.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.set_priority">
-<code class="descname">set_priority</code><span class="sig-paren">(</span><em>priority</em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.set_priority" title="Permalink to this definition">¶</a></dt>
+<dt id="mobrob_behcon.behaviours.beh_reached.BehReached.set_priority">
+<code class="descname">set_priority</code><span class="sig-paren">(</span><em>priority</em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.behaviours.beh_reached.BehReached.set_priority" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set current priority of the behaviour, 
 can be changed during runtime</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -195,8 +194,8 @@ can be changed during runtime</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.set_resolver">
-<code class="descname">set_resolver</code><span class="sig-paren">(</span><em>resolver</em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.set_resolver" title="Permalink to this definition">¶</a></dt>
+<dt id="mobrob_behcon.behaviours.beh_reached.BehReached.set_resolver">
+<code class="descname">set_resolver</code><span class="sig-paren">(</span><em>resolver</em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.behaviours.beh_reached.BehReached.set_resolver" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the reference to resolver</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -209,8 +208,8 @@ can be changed during runtime</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.success">
-<code class="descname">success</code><span class="sig-paren">(</span><em>code=0</em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.success" title="Permalink to this definition">¶</a></dt>
+<dt id="mobrob_behcon.behaviours.beh_reached.BehReached.success">
+<code class="descname">success</code><span class="sig-paren">(</span><em>code=0</em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.behaviours.beh_reached.BehReached.success" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the behaviour as successful ended.
 With the success code some more information 
 about the success can be given to the behaviourgroup</p>
@@ -235,15 +234,15 @@ about the success can be given to the behaviourgroup</p>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="mobrob_behcon.behaviours.beh_reached.BehReached.html"
-                        title="previous chapter">BehReached</a></p>
+  <p class="topless"><a href="mobrob_behcon.behaviours.beh_stop.BehStop.html"
+                        title="previous chapter">BehStop</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="mobrob_behcon.behaviours.beh_turn.BehTurn.html"
-                        title="next chapter">BehTurn</a></p>
+  <p class="topless"><a href="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.html"
+                        title="next chapter">BehConstTransVel</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/stubs/mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.txt"
+      <li><a href="../_sources/stubs/mobrob_behcon.behaviours.beh_reached.BehReached.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -271,10 +270,10 @@ about the success can be given to the behaviourgroup</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="mobrob_behcon.behaviours.beh_turn.BehTurn.html" title="BehTurn"
+          <a href="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.html" title="BehConstTransVel"
              >next</a> |</li>
         <li class="right" >
-          <a href="mobrob_behcon.behaviours.beh_reached.BehReached.html" title="BehReached"
+          <a href="mobrob_behcon.behaviours.beh_stop.BehStop.html" title="BehStop"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &raquo;</li> 
       </ul>

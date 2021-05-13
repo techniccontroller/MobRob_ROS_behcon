@@ -55,7 +55,11 @@
 <dl class="class">
 <dt id="mobrob_behcon.strategies.rd_strategy.RDStrategy">
 <em class="property">class </em><code class="descclassname">mobrob_behcon.strategies.rd_strategy.</code><code class="descname">RDStrategy</code><span class="sig-paren">(</span><em>dock</em>, <em>turn90</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/strategies/rd_strategy.html#RDStrategy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.strategies.rd_strategy.RDStrategy" title="Permalink to this definition">¶</a></dt>
-<dd><p class="rubric">Attributes</p>
+<dd><p>The class RDStrategy</p>
+<p>The class is a child of the abstract class Strategy 
+and manages the strategic level of the behaviours based control 
+of the application <strong>R</strong>ightAngle<strong>D</strong>ock as statemachine.</p>
+<p class="rubric">Attributes</p>
 <table border="1" class="longtable docutils">
 <colgroup>
 <col width="10%" />
@@ -75,7 +79,7 @@
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.strategies.rd_strategy.RDStrategy.__init__" title="mobrob_behcon.strategies.rd_strategy.RDStrategy.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>(dock,&nbsp;turn90)</td>
-<td></td>
+<td>constructor</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.strategies.rd_strategy.RDStrategy.activate_exclusive" title="mobrob_behcon.strategies.rd_strategy.RDStrategy.activate_exclusive"><code class="xref py py-obj docutils literal"><span class="pre">activate_exclusive</span></code></a>(behgrp)</td>
 <td>activate given behaviour group (need to be added before to strategy)</td>
@@ -87,7 +91,7 @@
 <td>Returns if stratgy in finish-state</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.strategies.rd_strategy.RDStrategy.plan" title="mobrob_behcon.strategies.rd_strategy.RDStrategy.plan"><code class="xref py py-obj docutils literal"><span class="pre">plan</span></code></a>()</td>
-<td></td>
+<td>plan() method, where the magic happens :). It contains and manages the state machine.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.strategies.rd_strategy.RDStrategy.set_node" title="mobrob_behcon.strategies.rd_strategy.RDStrategy.set_node"><code class="xref py py-obj docutils literal"><span class="pre">set_node</span></code></a>(beh_node)</td>
 <td>Sets the active BehConNode, where it has been added to.</td>
@@ -98,7 +102,20 @@
 <dl class="method">
 <dt id="mobrob_behcon.strategies.rd_strategy.RDStrategy.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>dock</em>, <em>turn90</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/strategies/rd_strategy.html#RDStrategy.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.strategies.rd_strategy.RDStrategy.__init__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>constructor</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dock</strong> (<a class="reference internal" href="mobrob_behcon.behaviours.behaviourgroup.BehaviourGroup.html#mobrob_behcon.behaviours.behaviourgroup.BehaviourGroup" title="mobrob_behcon.behaviours.behaviourgroup.BehaviourGroup"><em>BehaviourGroup</em></a>) &#8211; a BehaviourGroup containing the necessary behaviours for first task</li>
+<li><strong>turn90</strong> (<a class="reference internal" href="mobrob_behcon.behaviours.behaviourgroup.BehaviourGroup.html#mobrob_behcon.behaviours.behaviourgroup.BehaviourGroup" title="mobrob_behcon.behaviours.behaviourgroup.BehaviourGroup"><em>BehaviourGroup</em></a>) &#8211; a BehaviourGroup containing the necessary behaviours for second task</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="mobrob_behcon.strategies.rd_strategy.RDStrategy.activate_exclusive">
@@ -145,7 +162,8 @@
 <dl class="method">
 <dt id="mobrob_behcon.strategies.rd_strategy.RDStrategy.plan">
 <code class="descname">plan</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/strategies/rd_strategy.html#RDStrategy.plan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.strategies.rd_strategy.RDStrategy.plan" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>plan() method, where the magic happens :). It contains and manages the state machine.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="mobrob_behcon.strategies.rd_strategy.RDStrategy.set_node">

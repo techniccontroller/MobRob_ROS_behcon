@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Desire &mdash; MobRob_ROS_behcon 1.0 documentation</title>
+    <title>DesRotVel &mdash; MobRob_ROS_behcon 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="MobRob_ROS_behcon 1.0 documentation" href="../index.html" />
-    <link rel="next" title="DesCmdVel" href="mobrob_behcon.desires.desires.DesCmdVel.html" />
-    <link rel="prev" title="KOOSVisu" href="mobrob_behcon.core.visualisation.KOOSVisu.html" /> 
+    <link rel="next" title="DesCmdLight" href="mobrob_behcon.desires.desires.DesCmdLight.html" />
+    <link rel="prev" title="DesTransVel" href="mobrob_behcon.desires.desires.DesTransVel.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -36,10 +36,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="mobrob_behcon.desires.desires.DesCmdVel.html" title="DesCmdVel"
+          <a href="mobrob_behcon.desires.desires.DesCmdLight.html" title="DesCmdLight"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="mobrob_behcon.core.visualisation.KOOSVisu.html" title="KOOSVisu"
+          <a href="mobrob_behcon.desires.desires.DesTransVel.html" title="DesTransVel"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &raquo;</li> 
       </ul>
@@ -50,20 +50,15 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="desire">
-<h1>Desire<a class="headerlink" href="#desire" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="desrotvel">
+<h1>DesRotVel<a class="headerlink" href="#desrotvel" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="mobrob_behcon.desires.desire.Desire">
-<em class="property">class </em><code class="descclassname">mobrob_behcon.desires.desire.</code><code class="descname">Desire</code><span class="sig-paren">(</span><em>value</em>, <em>strength</em>, <em>function=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/desires/desire.html#Desire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.desires.desire.Desire" title="Permalink to this definition">¶</a></dt>
-<dd><p>The class Desire</p>
-<p>A desire consist of</p>
-<ul class="simple">
-<li>a value (any number/array),</li>
-<li>a dynamic strength (0.0 - 1.0) and</li>
-<li>a static priority (0 - 100)</li>
-<li>a function to be executed if desire is accepted (optional)</li>
-</ul>
-<p>The priority will be set when Desire is forwarded to resolver.</p>
+<dt id="mobrob_behcon.desires.desires.DesRotVel">
+<em class="property">class </em><code class="descclassname">mobrob_behcon.desires.desires.</code><code class="descname">DesRotVel</code><span class="sig-paren">(</span><em>value</em>, <em>strength</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/desires/desires.html#DesRotVel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.desires.desires.DesRotVel" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class DesTransVel</p>
+<p>Represents a Desire for controlling the rotation speed of the robot.
+Similar to its parent class it hase three attributes: value, strength, priority.
+The value is the rotation speed (max: 0.2)</p>
 <p class="rubric">Methods</p>
 <table border="1" class="longtable docutils">
 <colgroup>
@@ -71,40 +66,23 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.desires.desire.Desire.__init__" title="mobrob_behcon.desires.desire.Desire.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>(value,&nbsp;strength[,&nbsp;function])</td>
-<td>Construct a new &#8216;Desire&#8217; object.</td>
+<tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.desires.desires.DesRotVel.__init__" title="mobrob_behcon.desires.desires.DesRotVel.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>(value,&nbsp;strength)</td>
+<td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.desires.desire.Desire.set_priority" title="mobrob_behcon.desires.desire.Desire.set_priority"><code class="xref py py-obj docutils literal"><span class="pre">set_priority</span></code></a>(priority)</td>
+<tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.desires.desires.DesRotVel.set_priority" title="mobrob_behcon.desires.desires.DesRotVel.set_priority"><code class="xref py py-obj docutils literal"><span class="pre">set_priority</span></code></a>(priority)</td>
 <td>Setter for attribute priority</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Details</p>
 <dl class="method">
-<dt id="mobrob_behcon.desires.desire.Desire.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>value</em>, <em>strength</em>, <em>function=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/desires/desire.html#Desire.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.desires.desire.Desire.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Construct a new &#8216;Desire&#8217; object.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>value</strong> &#8211; the numberic value of the desire, can be also be a array/list</li>
-<li><strong>strength</strong> &#8211; the strength of the desire</li>
-<li><strong>function</strong> &#8211; the function need to be executed when desire is accepted (optional)</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">returns nothing</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
+<dt id="mobrob_behcon.desires.desires.DesRotVel.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>value</em>, <em>strength</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/desires/desires.html#DesRotVel.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.desires.desires.DesRotVel.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
-<dt id="mobrob_behcon.desires.desire.Desire.set_priority">
-<code class="descname">set_priority</code><span class="sig-paren">(</span><em>priority</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/desires/desire.html#Desire.set_priority"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.desires.desire.Desire.set_priority" title="Permalink to this definition">¶</a></dt>
+<dt id="mobrob_behcon.desires.desires.DesRotVel.set_priority">
+<code class="descname">set_priority</code><span class="sig-paren">(</span><em>priority</em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.desires.desires.DesRotVel.set_priority" title="Permalink to this definition">¶</a></dt>
 <dd><p>Setter for attribute priority</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -129,15 +107,15 @@
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="mobrob_behcon.core.visualisation.KOOSVisu.html"
-                        title="previous chapter">KOOSVisu</a></p>
+  <p class="topless"><a href="mobrob_behcon.desires.desires.DesTransVel.html"
+                        title="previous chapter">DesTransVel</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="mobrob_behcon.desires.desires.DesCmdVel.html"
-                        title="next chapter">DesCmdVel</a></p>
+  <p class="topless"><a href="mobrob_behcon.desires.desires.DesCmdLight.html"
+                        title="next chapter">DesCmdLight</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/stubs/mobrob_behcon.desires.desire.Desire.txt"
+      <li><a href="../_sources/stubs/mobrob_behcon.desires.desires.DesRotVel.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -165,10 +143,10 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="mobrob_behcon.desires.desires.DesCmdVel.html" title="DesCmdVel"
+          <a href="mobrob_behcon.desires.desires.DesCmdLight.html" title="DesCmdLight"
              >next</a> |</li>
         <li class="right" >
-          <a href="mobrob_behcon.core.visualisation.KOOSVisu.html" title="KOOSVisu"
+          <a href="mobrob_behcon.desires.desires.DesTransVel.html" title="DesTransVel"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &raquo;</li> 
       </ul>

@@ -1,0 +1,30 @@
+DesTransVel
+=========================================
+
+.. currentmodule:: mobrob_behcon.desires.desires
+
+.. autoclass:: DesTransVel
+
+    
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~DesTransVel.__init__
+        ~DesTransVel.set_priority
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: set_priority
+
+    
+    
+
+    

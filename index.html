@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="MobRob_ROS_behcon 1.0 documentation" href="#" />
-    <link rel="next" title="Resolver" href="stubs/mobrob_behcon.core.resolver.Resolver.html" /> 
+    <link rel="next" title="BehConNode" href="stubs/mobrob_behcon.core.behcon_node.BehConNode.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -35,7 +35,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="stubs/mobrob_behcon.core.resolver.Resolver.html" title="Resolver"
+          <a href="stubs/mobrob_behcon.core.behcon_node.BehConNode.html" title="BehConNode"
              accesskey="N">next</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">MobRob_ROS_behcon 1.0 documentation</a> &raquo;</li> 
       </ul>
@@ -55,7 +55,7 @@
 </div>
 <div class="section" id="mobrob-behcon-core-core-module">
 <h2><code class="xref py py-mod docutils literal"><span class="pre">mobrob_behcon.core</span></code> &#8212; core module<a class="headerlink" href="#mobrob-behcon-core-core-module" title="Permalink to this headline">¶</a></h2>
-<p>This module contains several classes.</p>
+<p>This module contains core classes.</p>
 <p>Class overview:</p>
 <table border="1" class="longtable docutils">
 <colgroup>
@@ -63,18 +63,24 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="stubs/mobrob_behcon.core.resolver.Resolver.html#mobrob_behcon.core.resolver.Resolver" title="mobrob_behcon.core.resolver.Resolver"><code class="xref py py-obj docutils literal"><span class="pre">resolver.Resolver</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="stubs/mobrob_behcon.core.behcon_node.BehConNode.html#mobrob_behcon.core.behcon_node.BehConNode" title="mobrob_behcon.core.behcon_node.BehConNode"><code class="xref py py-obj docutils literal"><span class="pre">behcon_node.BehConNode</span></code></a>(id)</td>
+<td>The class BehConNode</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="stubs/mobrob_behcon.core.resolver.Resolver.html#mobrob_behcon.core.resolver.Resolver" title="mobrob_behcon.core.resolver.Resolver"><code class="xref py py-obj docutils literal"><span class="pre">resolver.Resolver</span></code></a>()</td>
 <td>The class Resolver</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="stubs/mobrob_behcon.core.perceptual_space.PerceptualSpace.html#mobrob_behcon.core.perceptual_space.PerceptualSpace" title="mobrob_behcon.core.perceptual_space.PerceptualSpace"><code class="xref py py-obj docutils literal"><span class="pre">perceptual_space.PerceptualSpace</span></code></a>(visu)</td>
+<tr class="row-odd"><td><a class="reference internal" href="stubs/mobrob_behcon.core.perceptual_space.PerceptualSpace.html#mobrob_behcon.core.perceptual_space.PerceptualSpace" title="mobrob_behcon.core.perceptual_space.PerceptualSpace"><code class="xref py py-obj docutils literal"><span class="pre">perceptual_space.PerceptualSpace</span></code></a>(visu)</td>
 <td>The class PerceptualSpace</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="stubs/mobrob_behcon.core.visualisation.KOOSVisu.html#mobrob_behcon.core.visualisation.KOOSVisu" title="mobrob_behcon.core.visualisation.KOOSVisu"><code class="xref py py-obj docutils literal"><span class="pre">visualisation.KOOSVisu</span></code></a>()</td>
+<td>The class KOOSVisu</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="mobrob-behcon-desires-desires-module">
 <h2><code class="xref py py-mod docutils literal"><span class="pre">mobrob_behcon.desires</span></code> &#8212; desires module<a class="headerlink" href="#mobrob-behcon-desires-desires-module" title="Permalink to this headline">¶</a></h2>
-<p>This module contains several classes.</p>
+<p>This module contains several classes about desires.</p>
 <p>Class overview:</p>
 <table border="1" class="longtable docutils">
 <colgroup>
@@ -88,12 +94,21 @@
 <tr class="row-even"><td><a class="reference internal" href="stubs/mobrob_behcon.desires.desires.DesCmdVel.html#mobrob_behcon.desires.desires.DesCmdVel" title="mobrob_behcon.desires.desires.DesCmdVel"><code class="xref py py-obj docutils literal"><span class="pre">desires.DesCmdVel</span></code></a>(value,&nbsp;strength)</td>
 <td>The class DesCmdVel</td>
 </tr>
+<tr class="row-odd"><td><a class="reference internal" href="stubs/mobrob_behcon.desires.desires.DesTransVel.html#mobrob_behcon.desires.desires.DesTransVel" title="mobrob_behcon.desires.desires.DesTransVel"><code class="xref py py-obj docutils literal"><span class="pre">desires.DesTransVel</span></code></a>(value,&nbsp;strength)</td>
+<td>The class DesTransVel</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="stubs/mobrob_behcon.desires.desires.DesRotVel.html#mobrob_behcon.desires.desires.DesRotVel" title="mobrob_behcon.desires.desires.DesRotVel"><code class="xref py py-obj docutils literal"><span class="pre">desires.DesRotVel</span></code></a>(value,&nbsp;strength)</td>
+<td>The class DesTransVel</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="stubs/mobrob_behcon.desires.desires.DesCmdLight.html#mobrob_behcon.desires.desires.DesCmdLight" title="mobrob_behcon.desires.desires.DesCmdLight"><code class="xref py py-obj docutils literal"><span class="pre">desires.DesCmdLight</span></code></a>(value,&nbsp;strength)</td>
+<td></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="mobrob-behcon-connectors-connectors-module">
 <h2><code class="xref py py-mod docutils literal"><span class="pre">mobrob_behcon.connectors</span></code> &#8212; connectors module<a class="headerlink" href="#mobrob-behcon-connectors-connectors-module" title="Permalink to this headline">¶</a></h2>
-<p>This module contains several classes.</p>
+<p>This module contains classes to connect sensors and actuators.</p>
 <p>Class overview:</p>
 <table border="1" class="longtable docutils">
 <colgroup>
@@ -118,7 +133,7 @@
 </div>
 <div class="section" id="mobrob-behcon-strategies-strategies-module">
 <h2><code class="xref py py-mod docutils literal"><span class="pre">mobrob_behcon.strategies</span></code> &#8212; strategies module<a class="headerlink" href="#mobrob-behcon-strategies-strategies-module" title="Permalink to this headline">¶</a></h2>
-<p>This module contains several classes.</p>
+<p>This module contains strategy classes.</p>
 <p>Class overview:</p>
 <table border="1" class="longtable docutils">
 <colgroup>
@@ -130,14 +145,14 @@
 <td>The abstract class Strategy</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="stubs/mobrob_behcon.strategies.rd_strategy.RDStrategy.html#mobrob_behcon.strategies.rd_strategy.RDStrategy" title="mobrob_behcon.strategies.rd_strategy.RDStrategy"><code class="xref py py-obj docutils literal"><span class="pre">rd_strategy.RDStrategy</span></code></a>(dock,&nbsp;turn90)</td>
-<td></td>
+<td>The class RDStrategy</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="mobrob-behcon-behaviours-behaviours-module">
 <h2><code class="xref py py-mod docutils literal"><span class="pre">mobrob_behcon.behaviours</span></code> &#8212; behaviours module<a class="headerlink" href="#mobrob-behcon-behaviours-behaviours-module" title="Permalink to this headline">¶</a></h2>
-<p>This module contains several classes.</p>
+<p>This module contains classes about behaviours.</p>
 <p>Class overview:</p>
 <table border="1" class="longtable docutils">
 <colgroup>
@@ -157,14 +172,57 @@
 <tr class="row-even"><td><a class="reference internal" href="stubs/mobrob_behcon.behaviours.beh_stop.BehStop.html#mobrob_behcon.behaviours.beh_stop.BehStop" title="mobrob_behcon.behaviours.beh_stop.BehStop"><code class="xref py py-obj docutils literal"><span class="pre">beh_stop.BehStop</span></code></a>(name[,&nbsp;stopdistance])</td>
 <td>The class BehStop</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="stubs/mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.html#mobrob_behcon.behaviours.beh_transvel.BehConstTransVel" title="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel"><code class="xref py py-obj docutils literal"><span class="pre">beh_transvel.BehConstTransVel</span></code></a>(name[,&nbsp;...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="stubs/mobrob_behcon.behaviours.beh_reached.BehReached.html#mobrob_behcon.behaviours.beh_reached.BehReached" title="mobrob_behcon.behaviours.beh_reached.BehReached"><code class="xref py py-obj docutils literal"><span class="pre">beh_reached.BehReached</span></code></a>(name[,&nbsp;stopdistance])</td>
+<td>The class BehReached</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="stubs/mobrob_behcon.behaviours.beh_transvel.BehConstTransVel.html#mobrob_behcon.behaviours.beh_transvel.BehConstTransVel" title="mobrob_behcon.behaviours.beh_transvel.BehConstTransVel"><code class="xref py py-obj docutils literal"><span class="pre">beh_transvel.BehConstTransVel</span></code></a>(name[,&nbsp;...])</td>
 <td>The class BehConstTransVel</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="stubs/mobrob_behcon.behaviours.beh_turn.BehTurn.html#mobrob_behcon.behaviours.beh_turn.BehTurn" title="mobrob_behcon.behaviours.beh_turn.BehTurn"><code class="xref py py-obj docutils literal"><span class="pre">beh_turn.BehTurn</span></code></a>(name[,&nbsp;degrees,&nbsp;rot_vel])</td>
+<tr class="row-odd"><td><a class="reference internal" href="stubs/mobrob_behcon.behaviours.beh_turn.BehTurn.html#mobrob_behcon.behaviours.beh_turn.BehTurn" title="mobrob_behcon.behaviours.beh_turn.BehTurn"><code class="xref py py-obj docutils literal"><span class="pre">beh_turn.BehTurn</span></code></a>(name[,&nbsp;degrees,&nbsp;rot_vel])</td>
 <td>The class BehTurn</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="stubs/mobrob_behcon.behaviours.behaviourgroup.BehaviourGroup.html#mobrob_behcon.behaviours.behaviourgroup.BehaviourGroup" title="mobrob_behcon.behaviours.behaviourgroup.BehaviourGroup"><code class="xref py py-obj docutils literal"><span class="pre">behaviourgroup.BehaviourGroup</span></code></a>(name)</td>
+<tr class="row-even"><td><a class="reference internal" href="stubs/mobrob_behcon.behaviours.behaviourgroup.BehaviourGroup.html#mobrob_behcon.behaviours.behaviourgroup.BehaviourGroup" title="mobrob_behcon.behaviours.behaviourgroup.BehaviourGroup"><code class="xref py py-obj docutils literal"><span class="pre">behaviourgroup.BehaviourGroup</span></code></a>(name)</td>
 <td>The class BehaviourGroup</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="mobrob-behcon-utils-utils-module">
+<h2><code class="xref py py-mod docutils literal"><span class="pre">mobrob_behcon.utils</span></code> &#8212; utils module<a class="headerlink" href="#mobrob-behcon-utils-utils-module" title="Permalink to this headline">¶</a></h2>
+<p>This module contains classes with several helpful utils.</p>
+<p>Function overview:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="stubs/mobrob_behcon.utils.mobrob_transformation.get_T_world_robot.html#mobrob_behcon.utils.mobrob_transformation.get_T_world_robot" title="mobrob_behcon.utils.mobrob_transformation.get_T_world_robot"><code class="xref py py-obj docutils literal"><span class="pre">mobrob_transformation.get_T_world_robot</span></code></a>(...)</td>
+<td>Get transformation from world to robot</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="stubs/mobrob_behcon.utils.mobrob_transformation.get_T_robot_laser.html#mobrob_behcon.utils.mobrob_transformation.get_T_robot_laser" title="mobrob_behcon.utils.mobrob_transformation.get_T_robot_laser"><code class="xref py py-obj docutils literal"><span class="pre">mobrob_transformation.get_T_robot_laser</span></code></a>()</td>
+<td>Get transformation from robot to laser</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="stubs/mobrob_behcon.utils.mobrob_transformation.get_T_laser_cluster.html#mobrob_behcon.utils.mobrob_transformation.get_T_laser_cluster" title="mobrob_behcon.utils.mobrob_transformation.get_T_laser_cluster"><code class="xref py py-obj docutils literal"><span class="pre">mobrob_transformation.get_T_laser_cluster</span></code></a>(...)</td>
+<td>Get transformationmatrix from laser to cluster</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="stubs/mobrob_behcon.utils.mobrob_transformation.get_T_of_3Dpoint.html#mobrob_behcon.utils.mobrob_transformation.get_T_of_3Dpoint" title="mobrob_behcon.utils.mobrob_transformation.get_T_of_3Dpoint"><code class="xref py py-obj docutils literal"><span class="pre">mobrob_transformation.get_T_of_3Dpoint</span></code></a>(x,&nbsp;y)</td>
+<td>Get transformationmatix of simple 3D translation vector</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="stubs/mobrob_behcon.utils.mobrob_transformation.get_T_world_cluster.html#mobrob_behcon.utils.mobrob_transformation.get_T_world_cluster" title="mobrob_behcon.utils.mobrob_transformation.get_T_world_cluster"><code class="xref py py-obj docutils literal"><span class="pre">mobrob_transformation.get_T_world_cluster</span></code></a>(...)</td>
+<td>Get transformation from world to laserpoint cluster</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="stubs/mobrob_behcon.utils.mobrob_transformation.get_world_coordinate.html#mobrob_behcon.utils.mobrob_transformation.get_world_coordinate" title="mobrob_behcon.utils.mobrob_transformation.get_world_coordinate"><code class="xref py py-obj docutils literal"><span class="pre">mobrob_transformation.get_world_coordinate</span></code></a>(...)</td>
+<td>Transforms a point in robot space to world space</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="stubs/mobrob_behcon.utils.mobrob_transformation.get_laser_coordinate.html#mobrob_behcon.utils.mobrob_transformation.get_laser_coordinate" title="mobrob_behcon.utils.mobrob_transformation.get_laser_coordinate"><code class="xref py py-obj docutils literal"><span class="pre">mobrob_transformation.get_laser_coordinate</span></code></a>(x,&nbsp;y)</td>
+<td>Transforms a point in robot space to laser space</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="stubs/mobrob_behcon.utils.mobrob_transformation.get_robot_coordinate.html#mobrob_behcon.utils.mobrob_transformation.get_robot_coordinate" title="mobrob_behcon.utils.mobrob_transformation.get_robot_coordinate"><code class="xref py py-obj docutils literal"><span class="pre">mobrob_transformation.get_robot_coordinate</span></code></a>(x,&nbsp;y)</td>
+<td>Transforms a point in laser space to robot space</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="stubs/mobrob_behcon.utils.mobrob_transformation.get_robot_corners.html#mobrob_behcon.utils.mobrob_transformation.get_robot_corners" title="mobrob_behcon.utils.mobrob_transformation.get_robot_corners"><code class="xref py py-obj docutils literal"><span class="pre">mobrob_transformation.get_robot_corners</span></code></a>(...)</td>
+<td>Get corners of robot as coordinates in world space</td>
 </tr>
 </tbody>
 </table>
@@ -193,14 +251,15 @@
 <li><a class="reference internal" href="#mobrob-behcon-connectors-connectors-module"><code class="docutils literal"><span class="pre">mobrob_behcon.connectors</span></code> &#8212; connectors module</a></li>
 <li><a class="reference internal" href="#mobrob-behcon-strategies-strategies-module"><code class="docutils literal"><span class="pre">mobrob_behcon.strategies</span></code> &#8212; strategies module</a></li>
 <li><a class="reference internal" href="#mobrob-behcon-behaviours-behaviours-module"><code class="docutils literal"><span class="pre">mobrob_behcon.behaviours</span></code> &#8212; behaviours module</a></li>
+<li><a class="reference internal" href="#mobrob-behcon-utils-utils-module"><code class="docutils literal"><span class="pre">mobrob_behcon.utils</span></code> &#8212; utils module</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 
   <h4>Next topic</h4>
-  <p class="topless"><a href="stubs/mobrob_behcon.core.resolver.Resolver.html"
-                        title="next chapter">Resolver</a></p>
+  <p class="topless"><a href="stubs/mobrob_behcon.core.behcon_node.BehConNode.html"
+                        title="next chapter">BehConNode</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -232,7 +291,7 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="stubs/mobrob_behcon.core.resolver.Resolver.html" title="Resolver"
+          <a href="stubs/mobrob_behcon.core.behcon_node.BehConNode.html" title="BehConNode"
              >next</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">MobRob_ROS_behcon 1.0 documentation</a> &raquo;</li> 
       </ul>

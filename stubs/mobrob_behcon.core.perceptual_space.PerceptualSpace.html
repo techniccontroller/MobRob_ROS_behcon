@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="MobRob_ROS_behcon 1.0 documentation" href="../index.html" />
-    <link rel="next" title="Desire" href="mobrob_behcon.desires.desire.Desire.html" />
+    <link rel="next" title="KOOSVisu" href="mobrob_behcon.core.visualisation.KOOSVisu.html" />
     <link rel="prev" title="Resolver" href="mobrob_behcon.core.resolver.Resolver.html" /> 
   </head>
   <body role="document">
@@ -36,7 +36,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="mobrob_behcon.desires.desire.Desire.html" title="Desire"
+          <a href="mobrob_behcon.core.visualisation.KOOSVisu.html" title="KOOSVisu"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="mobrob_behcon.core.resolver.Resolver.html" title="Resolver"
@@ -72,7 +72,7 @@ can refer to this to get sensor data.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="#mobrob_behcon.core.perceptual_space.PerceptualSpace.__init__" title="mobrob_behcon.core.perceptual_space.PerceptualSpace.__init__"><code class="xref py py-obj docutils literal"><span class="pre">__init__</span></code></a>(visu)</td>
-<td></td>
+<td>constructor</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="#mobrob_behcon.core.perceptual_space.PerceptualSpace.add_camera" title="mobrob_behcon.core.perceptual_space.PerceptualSpace.add_camera"><code class="xref py py-obj docutils literal"><span class="pre">add_camera</span></code></a>([ip_address,&nbsp;port])</td>
 <td>Add camera (TCP) to the configuration.</td>
@@ -89,13 +89,22 @@ can refer to this to get sensor data.</p>
 <dl class="method">
 <dt id="mobrob_behcon.core.perceptual_space.PerceptualSpace.__init__">
 <code class="descname">__init__</code><span class="sig-paren">(</span><em>visu</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/core/perceptual_space.html#PerceptualSpace.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.core.perceptual_space.PerceptualSpace.__init__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>constructor</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>visu</strong> (<a class="reference internal" href="mobrob_behcon.core.visualisation.KOOSVisu.html#mobrob_behcon.core.visualisation.KOOSVisu" title="mobrob_behcon.core.visualisation.KOOSVisu"><em>KOOSVisu</em></a>) &#8211; an object of KOOSVisu</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="mobrob_behcon.core.perceptual_space.PerceptualSpace.add_camera">
 <code class="descname">add_camera</code><span class="sig-paren">(</span><em>ip_address='mobrob'</em>, <em>port=5001</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/core/perceptual_space.html#PerceptualSpace.add_camera"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mobrob_behcon.core.perceptual_space.PerceptualSpace.add_camera" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add camera (TCP) to the configuration. A camera server needs to be running on the network for that. 
-e.g. following: <a class="reference external" href="https://github.com/techniccontroller/MobRob_PI_Scripts/blob/master/Camera/videoTCPServer8_first_capture.py">https://github.com/techniccontroller/MobRob_PI_Scripts/blob/master/Camera/videoTCPServer8_first_capture.py</a></p>
+<dd><p>Add camera (TCP) to the configuration. A camera server needs to be running on the network for that.</p>
+<p>e.g. following: <a class="reference external" href="https://github.com/techniccontroller/MobRob_PI_Scripts/blob/master/Camera/videoTCPServer8_first_capture.py">https://github.com/techniccontroller/MobRob_PI_Scripts/blob/master/Camera/videoTCPServer8_first_capture.py</a></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -160,8 +169,8 @@ This will provide information about the current pose of the robot.</p>
   <p class="topless"><a href="mobrob_behcon.core.resolver.Resolver.html"
                         title="previous chapter">Resolver</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="mobrob_behcon.desires.desire.Desire.html"
-                        title="next chapter">Desire</a></p>
+  <p class="topless"><a href="mobrob_behcon.core.visualisation.KOOSVisu.html"
+                        title="next chapter">KOOSVisu</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -193,7 +202,7 @@ This will provide information about the current pose of the robot.</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="mobrob_behcon.desires.desire.Desire.html" title="Desire"
+          <a href="mobrob_behcon.core.visualisation.KOOSVisu.html" title="KOOSVisu"
              >next</a> |</li>
         <li class="right" >
           <a href="mobrob_behcon.core.resolver.Resolver.html" title="Resolver"

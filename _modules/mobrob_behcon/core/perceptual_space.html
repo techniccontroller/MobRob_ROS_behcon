@@ -68,6 +68,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="PerceptualSpace.__init__"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.perceptual_space.PerceptualSpace.html#mobrob_behcon.core.perceptual_space.PerceptualSpace.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">visu</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;constructor</span>
+
+<span class="sd">        :param visu: an object of KOOSVisu</span>
+<span class="sd">        :type visu: KOOSVisu</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># define different sensor connectors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">laserscanner</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">camera</span> <span class="o">=</span> <span class="bp">None</span> 
@@ -87,6 +92,7 @@
 <div class="viewcode-block" id="PerceptualSpace.add_camera"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.perceptual_space.PerceptualSpace.html#mobrob_behcon.core.perceptual_space.PerceptualSpace.add_camera">[docs]</a>    <span class="k">def</span> <span class="nf">add_camera</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip_address</span><span class="o">=</span><span class="s2">&quot;mobrob&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5001</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add camera (TCP) to the configuration. A camera server needs to be running on the network for that. </span>
+
 <span class="sd">        e.g. following: https://github.com/techniccontroller/MobRob_PI_Scripts/blob/master/Camera/videoTCPServer8_first_capture.py </span>
 
 <span class="sd">        :param ip_address: ip address of camera server</span>
