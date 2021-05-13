@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mobrob_behcon.desires.desires &mdash; MobRob_ROS_behcon 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="MobRob_ROS_behcon 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">MobRob_ROS_behcon 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mobrob_behcon.desires.desires</h1><div class="highlight"><pre>
+<span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">from</span> <span class="nn">mobrob_behcon.desires.desire</span> <span class="kn">import</span> <span class="n">Desire</span>
+
+<div class="viewcode-block" id="DesCmdVel"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.desires.desires.DesCmdVel.html#mobrob_behcon.desires.desires.DesCmdVel">[docs]</a><span class="k">class</span> <span class="nc">DesCmdVel</span><span class="p">(</span><span class="n">Desire</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The class DesCmdVel</span>
+
+<span class="sd">    Represents a Desire for controlling the movement of the robot.</span>
+<span class="sd">    Similar to its parent class it hase three attributes: value, strength, priority.</span>
+<span class="sd">    The value is a tuple of 6 float values mapped to following values </span>
+<span class="sd">    in **/cmd_vel** message: [linear.x, linear.y, linear.z, angular.x, angular.y, angular.z]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="DesCmdVel.__init__"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.desires.desires.DesCmdVel.html#mobrob_behcon.desires.desires.DesCmdVel.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">strength</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DesCmdVel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">strength</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span></div></div>
+
+
+<span class="c1"># class DesCmdGripper(Desire):</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     The class DesCmdGripper</span>
+
+<span class="c1">#     Represents a Desire for controlling the gripper of the robot.</span>
+<span class="c1">#     There are two spcialities about this type of desire.</span>
+
+<span class="c1">#     - all desires of this type will be executed ignoreing **strength** and **priority**.</span>
+    
+<span class="c1">#     - there is a aditional attribute called **function** which holds a reference to a function to be executed by resolver. </span>
+<span class="c1">#     As parameter the attribute **value** will be inserted.</span>
+
+
+<span class="c1">#     &quot;&quot;&quot;</span>
+
+<span class="c1">#     def __init__(self, value=0, strength=1.0, function=None):</span>
+<span class="c1">#         super(DesCmdGripper, self).__init__(value, strength, function)</span>
+
+
+<span class="k">class</span> <span class="nc">DesTransVel</span><span class="p">(</span><span class="n">Desire</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The class DesTransVel</span>
+
+<span class="sd">    Represents a Desire for controlling the translation speed of the robot.</span>
+<span class="sd">    Similar to its parent class it hase three attributes: value, strength, priority.</span>
+<span class="sd">    The value is the translation speed (max: 0.2 m/s).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">strength</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DesTransVel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">strength</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">DesTransDir</span><span class="p">(</span><span class="n">Desire</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The class DesTransDir</span>
+
+<span class="sd">    Represents a Desire for controlling the movement direction of the robot.</span>
+<span class="sd">    Similar to its parent class it hase three attributes: value, strength, priority.</span>
+<span class="sd">    The value is the angle in which the robot should move (forward = 0 deg).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">strength</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DesTransDir</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">strength</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">DesRotVel</span><span class="p">(</span><span class="n">Desire</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The class DesTransVel</span>
+
+<span class="sd">    Represents a Desire for controlling the rotation speed of the robot.</span>
+<span class="sd">    Similar to its parent class it hase three attributes: value, strength, priority.</span>
+<span class="sd">    The value is the rotation speed (max: 0.2)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">strength</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DesRotVel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">strength</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">DesCmdLight</span><span class="p">(</span><span class="n">Desire</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">strength</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DesCmdLight</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">strength</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">MobRob_ROS_behcon 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2020, Techniccontroller.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

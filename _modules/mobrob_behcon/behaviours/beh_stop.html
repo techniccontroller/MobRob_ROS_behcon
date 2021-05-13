@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mobrob_behcon.behaviours.beh_stop &mdash; MobRob_ROS_behcon 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="MobRob_ROS_behcon 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">MobRob_ROS_behcon 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mobrob_behcon.behaviours.beh_stop</h1><div class="highlight"><pre>
+<span class="ch">#!/usr/bin/env python</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">mobrob_behcon.behaviours.behaviour</span> <span class="kn">import</span> <span class="n">Behaviour</span>
+<span class="kn">from</span> <span class="nn">mobrob_behcon.core.perceptual_space</span> <span class="kn">import</span> <span class="n">PerceptualSpace</span>
+<span class="kn">from</span> <span class="nn">mobrob_behcon.desires.desires</span> <span class="kn">import</span> <span class="n">DesTransVel</span>
+
+<div class="viewcode-block" id="BehStop"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.behaviours.beh_stop.BehStop.html#mobrob_behcon.behaviours.beh_stop.BehStop">[docs]</a><span class="k">class</span> <span class="nc">BehStop</span><span class="p">(</span><span class="n">Behaviour</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The class BehStop</span>
+
+<span class="sd">    This class is a child of the class Behaviour representing </span>
+<span class="sd">    a behaviour which stops the robot when some obstacle from any side is approaching.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="BehStop.__init__"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.behaviours.beh_stop.BehStop.html#mobrob_behcon.behaviours.beh_stop.BehStop.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">stopdistance</span><span class="o">=</span><span class="mf">0.30</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        constructor</span>
+
+<span class="sd">        :param name: name of behaviour</span>
+<span class="sd">        :type name: string</span>
+<span class="sd">        :param stopdistance: distance on with the robot should stop, defaults to 0.30</span>
+<span class="sd">        :type stopdistance: float, optional</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BehStop</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stopdistance</span> <span class="o">=</span> <span class="n">stopdistance</span></div>
+
+    
+<div class="viewcode-block" id="BehStop.fire"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.behaviours.beh_stop.BehStop.html#mobrob_behcon.behaviours.beh_stop.BehStop.fire">[docs]</a>    <span class="k">def</span> <span class="nf">fire</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The fire()-method, which is necessary in every Behaviour, </span>
+<span class="sd">        will be called by resolver in every polling cycle.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># check all sides of robot for obstacles</span>
+        <span class="n">dist_front</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">percept_space</span><span class="o">.</span><span class="n">laserscanner</span><span class="o">.</span><span class="n">check_box</span><span class="p">(</span><span class="mf">0.250</span><span class="p">,</span> <span class="mf">0.500</span><span class="p">,</span> <span class="mf">0.530</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.500</span><span class="p">)</span>
+        <span class="n">dist_back</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">percept_space</span><span class="o">.</span><span class="n">laserscanner</span><span class="o">.</span><span class="n">check_box</span><span class="p">(</span><span class="o">-</span><span class="mf">0.250</span><span class="p">,</span> <span class="mf">0.500</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.530</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.500</span><span class="p">)</span>
+        <span class="n">dist_left</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">percept_space</span><span class="o">.</span><span class="n">laserscanner</span><span class="o">.</span><span class="n">check_box</span><span class="p">(</span><span class="o">-</span><span class="mf">0.250</span><span class="p">,</span> <span class="mf">0.500</span><span class="p">,</span> <span class="mf">0.250</span><span class="p">,</span> <span class="mf">0.120</span><span class="p">)</span>
+        <span class="n">dist_right</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">percept_space</span><span class="o">.</span><span class="n">laserscanner</span><span class="o">.</span><span class="n">check_box</span><span class="p">(</span><span class="o">-</span><span class="mf">0.250</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.120</span><span class="p">,</span> <span class="mf">0.250</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.500</span><span class="p">)</span>
+
+        <span class="n">do_stop</span> <span class="o">=</span> <span class="bp">False</span>
+
+        <span class="c1"># check if on one side is a obstacle nearer than stopdistance</span>
+        <span class="k">if</span> <span class="n">dist_front</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">dist_front</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">stopdistance</span><span class="p">:</span>
+                <span class="n">do_stop</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;BehStop - Stop because of obstacle in front in distance of </span><span class="si">%s</span><span class="s2">!&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">dist_front</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">dist_back</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">dist_back</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">stopdistance</span><span class="p">:</span>
+                <span class="n">do_stop</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;BehStop - Stop because of obstacle in back in distance of </span><span class="si">%s</span><span class="s2">!&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">dist_back</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">dist_left</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">dist_left</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">stopdistance</span><span class="p">:</span>
+                <span class="n">do_stop</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;BehStop - Stop because of obstacle on left in distance of </span><span class="si">%s</span><span class="s2">!&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">dist_left</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">dist_right</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">dist_right</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">stopdistance</span><span class="p">:</span>
+                <span class="n">do_stop</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;BehStop - Stop because of obstacle on right in distance of </span><span class="si">%s</span><span class="s2">!&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">dist_right</span><span class="p">))</span>
+        
+        <span class="k">if</span> <span class="n">do_stop</span><span class="p">:</span>
+            <span class="c1"># robot need to stop because of obstacle, </span>
+            <span class="c1"># create desire and set behaviour as success with code 99 -&gt; emergency stop</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_desire</span><span class="p">(</span><span class="n">DesTransVel</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="mi">99</span><span class="p">)</span></div></div>
+        
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">MobRob_ROS_behcon 1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2020, Techniccontroller.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

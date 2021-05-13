@@ -1,0 +1,44 @@
+Strategy
+==========================================
+
+.. currentmodule:: mobrob_behcon.strategies.strategy
+
+.. autoclass:: Strategy
+
+    
+    
+    .. rubric:: Attributes
+
+    .. autosummary::
+    
+        ~Strategy.lst_behgrps
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~Strategy.__init__
+        ~Strategy.activate_exclusive
+        ~Strategy.add_behgrp
+        ~Strategy.is_finished
+        ~Strategy.plan
+        ~Strategy.set_node
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: activate_exclusive
+    .. automethod:: add_behgrp
+    .. automethod:: is_finished
+    .. automethod:: plan
+    .. automethod:: set_node
+
+    
+    
+
+    

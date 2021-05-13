@@ -1,0 +1,44 @@
+BehStop
+=========================================
+
+.. currentmodule:: mobrob_behcon.behaviours.beh_stop
+
+.. autoclass:: BehStop
+
+    
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~BehStop.__init__
+        ~BehStop.add_desire
+        ~BehStop.error
+        ~BehStop.fire
+        ~BehStop.set_current_beh_group
+        ~BehStop.set_percept_space
+        ~BehStop.set_priority
+        ~BehStop.set_resolver
+        ~BehStop.success
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: add_desire
+    .. automethod:: error
+    .. automethod:: fire
+    .. automethod:: set_current_beh_group
+    .. automethod:: set_percept_space
+    .. automethod:: set_priority
+    .. automethod:: set_resolver
+    .. automethod:: success
+
+    
+    
+
+    

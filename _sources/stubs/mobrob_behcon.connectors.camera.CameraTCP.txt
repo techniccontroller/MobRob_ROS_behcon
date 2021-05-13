@@ -1,0 +1,41 @@
+CameraTCP
+=========================================
+
+.. currentmodule:: mobrob_behcon.connectors.camera
+
+.. autoclass:: CameraTCP
+
+    
+    
+    .. rubric:: Attributes
+
+    .. autosummary::
+    
+        ~CameraTCP.BUFFER_SIZE
+        ~CameraTCP.MESSAGE
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~CameraTCP.__init__
+        ~CameraTCP.get_frame
+        ~CameraTCP.recvall
+        ~CameraTCP.stringToRGB
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: get_frame
+    .. automethod:: recvall
+    .. automethod:: stringToRGB
+
+    
+    
+
+    

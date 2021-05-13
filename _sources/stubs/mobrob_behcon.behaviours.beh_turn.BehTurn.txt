@@ -1,0 +1,46 @@
+BehTurn
+=========================================
+
+.. currentmodule:: mobrob_behcon.behaviours.beh_turn
+
+.. autoclass:: BehTurn
+
+    
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~BehTurn.__init__
+        ~BehTurn.add_desire
+        ~BehTurn.error
+        ~BehTurn.fire
+        ~BehTurn.normalize_angle
+        ~BehTurn.set_current_beh_group
+        ~BehTurn.set_percept_space
+        ~BehTurn.set_priority
+        ~BehTurn.set_resolver
+        ~BehTurn.success
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: add_desire
+    .. automethod:: error
+    .. automethod:: fire
+    .. automethod:: normalize_angle
+    .. automethod:: set_current_beh_group
+    .. automethod:: set_percept_space
+    .. automethod:: set_priority
+    .. automethod:: set_resolver
+    .. automethod:: success
+
+    
+    
+
+    
