@@ -11,15 +11,15 @@ class Gripper(object):
     Provides multiple functions to control the gripper.
     """
 
-    def __init__(self, ros_service):
+    def __init__(self, ros_service = 'attiny_command'):
         """
         constructor
 
-        :param ros_service: possible topics are **'/pose'** (myrobot_model/Pose) or **'/odom'** (nav_msgs/Odometry)
+        :param ros_service: name of service for attiny (default: **'attiny_command'**)
         :type ros_service: string
         """
-        rospy.wait_for_service('attiny_command')
-        self.attiny_command = rospy.ServiceProxy('attiny_command', AttinyCommand)
+        rospy.wait_for_service(ros_service)
+        self.attiny_command = rospy.ServiceProxy(ros_service , AttinyCommand)
         
     
     def send_command(self, command):
