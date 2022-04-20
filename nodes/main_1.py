@@ -16,7 +16,7 @@ from mobrob_behcon.core.behcon_node import BehConNode
 if __name__ == '__main__':
     
     print("start")
-    raw_input("Press Enter to continue...")
+    input("Press Enter to continue...")
 
     robot = BehConNode("mobrob_node")
 
