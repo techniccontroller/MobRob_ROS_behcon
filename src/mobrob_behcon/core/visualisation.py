@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 
 import cv2
+import numpy as np
 import rospy
 from cv_bridge import CvBridge
 from sensor_msgs.msg import Image
 
 from mobrob_behcon.utils.mobrob_transformation import *
+from mobrob_slam.utils.graphical_functions import cov2elli
 
 
 class KOOSVisu(object):
@@ -60,13 +62,18 @@ class KOOSVisu(object):
         :return: pixel coordinates on canvas
         :rtype: (int, int)
         """
-        x = point[0]
-        y = point[1]
+        point = np.array(point).reshape(2, -1)
+        x = point[0, :]
+        y = point[1, :]
         x_center = self.width / 2
         y_center = self.height / 2
         x_visu = x_center - (y * self.scale)
         y_visu = y_center - (x * self.scale)
-        return int(x_visu), int(y_visu)
+
+        if point.size == 2:
+            return int(x_visu[0]), int(y_visu[0])
+        else:
+            return np.vstack((x_visu, y_visu)).astype(np.int32)
 
     def set_current_pose(self, current_pose):
         """
@@ -170,6 +177,8 @@ class KOOSVisu(object):
         else:
             lst_points = np.array(lst_points)
             assert lst_points.shape[0] == 2, "point array as wrong shape, should be (2, -1)"
+            for i in range(lst_points.shape[1]):
+                self.draw_point_laser(lst_points[:, i], color)
 
     def draw_cluster_points_laser(self, points, cluster_labels):
         """
@@ -232,7 +241,6 @@ class KOOSVisu(object):
         assert point.size == 2, "wrong shape of point" + str(point)
         if abs(point[0]) < 100 and abs(point[1]) < 100:
             (x_visu, y_visu) = self.to_visu_coord(point)
-            radius = int(0.005 * self.scale)
             if 0 < x_visu < self.width and 0 < y_visu < self.height:
                 line_width = size  # int(0.001 * self.scale)
                 cv2.line(self.img,
@@ -245,3 +253,34 @@ class KOOSVisu(object):
                          (x_visu, y_visu - 10 * size),
                          color,
                          thickness=line_width)
+
+    def draw_crosses_world(self, lst_points, color=(255, 255, 255), size=2):
+        """
+        Draws a list of crosses to canvas.
+
+        :param lst_points: list of points (defined in world space)
+        :type lst_points: list of (float, float)
+        :param color: color of dot on canvas, defaults to (255, 255, 255)
+        :type color: (byte, byte, byte)
+        :param size: size of crosses, defaults to 2
+        :type: int
+        """
+        if isinstance(lst_points, list):
+            for i in range(len(lst_points)):
+                self.draw_cross_world(lst_points[i], color, size)
+        else:
+            lst_points = np.array(lst_points)
+            assert lst_points.shape[0] == 2, "point array as wrong shape, should be (2, -1), is " + str(lst_points.shape)
+            for i in range(lst_points.shape[1]):
+                self.draw_cross_world(lst_points[:, i], color, size)
+
+    def draw_ellipse_world(self, point, covariance, sigma, color=(0, 128, 128)):
+        point = np.array(point).flatten()
+        assert point.size == 2, "wrong shape of point" + str(point)
+        assert covariance.shape == (2, 2), "wrong shape of covariance" + str(covariance)
+        xx, yy = cov2elli(point, covariance, sigma, 16)
+        pts = self.to_visu_coord(np.vstack((xx, yy))).T.reshape((-1, 1, 2))
+        line_width = 2  # int(0.001 * self.scale)
+        cv2.polylines(self.img, [pts], isClosed=True, color=color, thickness=line_width)
+
+
