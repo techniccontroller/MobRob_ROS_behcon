@@ -1,7 +1,0 @@
-get_T_world_cluster
-=============================================================
-
-
-.. currentmodule:: mobrob_behcon.utils.mobrob_transformation
-
-.. autofunction:: get_T_world_cluster

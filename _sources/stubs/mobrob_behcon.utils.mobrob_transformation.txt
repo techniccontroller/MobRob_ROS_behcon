@@ -1,7 +1,0 @@
-mobrob_transformation
-=========================================
-
-
-.. currentmodule:: mobrob_behcon.utils
-
-.. automodule:: mobrob_transformation
