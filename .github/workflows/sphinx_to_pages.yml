@@ -21,14 +21,15 @@ jobs:
       run: |
         cd './doc'
         make html BUILDDIR=../../MobRob_ROS_behcon_docs
-        cd ../../MobRob_ROS_behcon_docs/html
+        cd $GITHUB_WORKSPACE/.
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git stash
         git checkout --force gh-pages
         git clean -fd
         rm -vrf *
-        rm -rf .doctrees
+        rm -rf ../../MobRob_ROS_behcon_docs/html/.doctrees
+        cp -vr ../../MobRob_ROS_behcon_docs/html/. .
         touch ".nojekyll"
         git add .
         git commit --allow-empty -m "Add changes for $GITHUB_SHA"
