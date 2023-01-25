@@ -19,7 +19,7 @@ More details are on my Website: https://techniccontroller.de/mobrob-behaviour-ba
 
 ## Folders
 
-**doc**: contains sphinx documentation of all classes
+**doc**: contains sphinx documentation of all classes ([latest html deployment](https://techniccontroller.github.io/MobRob_ROS_behcon/))
 
 **nodes**: contains the main files, for different tasks to be executed
 
