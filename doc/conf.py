@@ -26,7 +26,8 @@ import os
 
 target_dir = os.path.abspath("../src")
 print(target_dir)
-sys.path.insert(0, os.path.abspath('../..'))
+for x in os.walk("../src"):
+  sys.path.insert(0, x[0])
 print(sys.path)
 
 # -- General configuration ------------------------------------------------
