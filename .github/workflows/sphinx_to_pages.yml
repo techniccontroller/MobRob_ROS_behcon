@@ -6,16 +6,32 @@ on:
     branches: [master]
 
 jobs:
-  pages:
-    runs-on: ubuntu-20.04
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    permissions:
-      pages: write
-      id-token: write
+  build:
+    runs-on: ubuntu-latest
     steps:
-    - id: deployment
-      uses: sphinx-notes/pages@v3
+    - uses: actions/setup-python@v4
+    - uses: actions/checkout@master
       with:
-        documentation_path: './doc'
+        fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+    - name: Install sphinx
+      run: sudo apt-get install -y python-sphinx
+    - name: Build and Commit
+      run: |
+        cd './doc'
+        make html BUILDDIR=../../MobRob_ROS_behcon_docs
+        cd ../../MobRob_ROS_behcon_docs/html
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git stash
+        git checkout --force gh-pages
+        git clean -fd
+        rm -vrf *
+        rm -rf .doctrees
+        touch ".nojekyll"
+        git add .
+        git commit --allow-empty -m "Add changes for $GITHUB_SHA"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: gh-pages
