@@ -26,6 +26,7 @@ import os
 
 target_dir = os.path.abspath("../src")
 print(target_dir)
+sys.path.insert(0, target_dir)
 print(sys.path)
 
 # -- General configuration ------------------------------------------------
