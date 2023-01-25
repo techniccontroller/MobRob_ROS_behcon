@@ -1,0 +1,362 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mobrob_behcon.core.visualisation &#8212; MobRob_ROS_behcon 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css" />
+    
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mobrob_behcon.core.visualisation</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mobrob_behcon.core.visualisation</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">cv_bridge</span> <span class="kn">import</span> <span class="n">CvBridge</span>
+<span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="kn">from</span> <span class="nn">mobrob_behcon.utils.mobrob_transformation</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">mobrob_slam.utils.graphical_functions</span> <span class="kn">import</span> <span class="n">cov2elli</span>
+
+
+<div class="viewcode-block" id="KOOSVisu"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.visualisation.KOOSVisu.html#mobrob_behcon.core.visualisation.KOOSVisu">[docs]</a><span class="k">class</span> <span class="nc">KOOSVisu</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The class KOOSVisu</span>
+
+<span class="sd">    This class represents a visualization of the robot environment </span>
+<span class="sd">    from a bird&#39;s eye view. The different classes like Laser Scanner or </span>
+<span class="sd">    Behaviour can draw on the canvas. </span>
+<span class="sd">    Output is published as a video stream via a ROS Publisher.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">colours</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+               <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+               <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+               <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+               <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+               <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+
+<div class="viewcode-block" id="KOOSVisu.__init__"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.visualisation.KOOSVisu.html#mobrob_behcon.core.visualisation.KOOSVisu.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        constructor</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s2">&quot;image_koosvisu&quot;</span><span class="p">,</span> <span class="n">Image</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bridge</span> <span class="o">=</span> <span class="n">CvBridge</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">600</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">600</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="mf">200.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clear_image</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_pose</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="KOOSVisu.clear_image"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.visualisation.KOOSVisu.html#mobrob_behcon.core.visualisation.KOOSVisu.clear_image">[docs]</a>    <span class="k">def</span> <span class="nf">clear_image</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clears the canvas.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># create empty image</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="KOOSVisu.send_image"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.visualisation.KOOSVisu.html#mobrob_behcon.core.visualisation.KOOSVisu.send_image">[docs]</a>    <span class="k">def</span> <span class="nf">send_image</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sends out the canvas via the ROS publisher.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bridge</span><span class="o">.</span><span class="n">cv2_to_imgmsg</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span> <span class="s2">&quot;bgr8&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clear_image</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="KOOSVisu.to_visu_coord"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.visualisation.KOOSVisu.html#mobrob_behcon.core.visualisation.KOOSVisu.to_visu_coord">[docs]</a>    <span class="k">def</span> <span class="nf">to_visu_coord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Converts a point in world coordinates to pixel coordinates on canvas.</span>
+
+<span class="sd">        :param point: point to be converted to pixel coord</span>
+<span class="sd">        :type point: number[2]</span>
+<span class="sd">        :return: pixel coordinates on canvas</span>
+<span class="sd">        :rtype: (int, int)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">point</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">point</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="n">x_center</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">y_center</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">x_visu</span> <span class="o">=</span> <span class="n">x_center</span> <span class="o">-</span> <span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
+        <span class="n">y_visu</span> <span class="o">=</span> <span class="n">y_center</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">point</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">x_visu</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">y_visu</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">x_visu</span><span class="p">,</span> <span class="n">y_visu</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="KOOSVisu.set_current_pose"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.visualisation.KOOSVisu.html#mobrob_behcon.core.visualisation.KOOSVisu.set_current_pose">[docs]</a>    <span class="k">def</span> <span class="nf">set_current_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_pose</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Setter for robots current pose</span>
+
+<span class="sd">        :param current_pose: current pose of robot in world space (x, y, yaw)</span>
+<span class="sd">        :type current_pose: (float, float, float)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_pose</span> <span class="o">=</span> <span class="n">current_pose</span></div>
+
+<div class="viewcode-block" id="KOOSVisu.draw_origin_world"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.visualisation.KOOSVisu.html#mobrob_behcon.core.visualisation.KOOSVisu.draw_origin_world">[docs]</a>    <span class="k">def</span> <span class="nf">draw_origin_world</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">line_width</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># int(0.001 * self.scale)</span>
+        <span class="c1"># X axis</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">arrowedLine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+                        <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+                        <span class="n">thickness</span><span class="o">=</span><span class="n">line_width</span><span class="p">)</span>
+        <span class="c1"># Y axis</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">arrowedLine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span>
+                        <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                        <span class="n">thickness</span><span class="o">=</span><span class="n">line_width</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="KOOSVisu.draw_robot"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.visualisation.KOOSVisu.html#mobrob_behcon.core.visualisation.KOOSVisu.draw_robot">[docs]</a>    <span class="k">def</span> <span class="nf">draw_robot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Draws the robot on the canvas as rectangle with the given color.</span>
+
+<span class="sd">        :param color: color of robot on canvas, defaults to (0, 255, 0)</span>
+<span class="sd">        :type color: (byte, byte, byte)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">LF</span><span class="p">,</span> <span class="n">RF</span><span class="p">,</span> <span class="n">RB</span><span class="p">,</span> <span class="n">LB</span> <span class="o">=</span> <span class="n">get_robot_corners</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_pose</span><span class="p">)</span>
+        <span class="n">LM</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">LF</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">LB</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">RM</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">RF</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">RB</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">FM</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">LF</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">RF</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">line_width</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># int(0.001 * self.scale)</span>
+        <span class="c1"># rect</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">LF</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">RF</span><span class="p">),</span> <span class="n">color</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="n">line_width</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">RF</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">RB</span><span class="p">),</span> <span class="n">color</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="n">line_width</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">RB</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">LB</span><span class="p">),</span> <span class="n">color</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="n">line_width</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">LB</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">LF</span><span class="p">),</span> <span class="n">color</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="n">line_width</span><span class="p">)</span>
+        <span class="c1"># triangle</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">FM</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">RM</span><span class="p">),</span> <span class="n">color</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="n">line_width</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">RM</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">LM</span><span class="p">),</span> <span class="n">color</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="n">line_width</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">LM</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">FM</span><span class="p">),</span> <span class="n">color</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="n">line_width</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="KOOSVisu.draw_box"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.visualisation.KOOSVisu.html#mobrob_behcon.core.visualisation.KOOSVisu.draw_box">[docs]</a>    <span class="k">def</span> <span class="nf">draw_box</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pt1</span><span class="p">,</span> <span class="n">pt2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Draws a box on the canvas. Box is defined by two points in robot space.</span>
+
+<span class="sd">        :param pt1: Right back point of box in robot space (x, y)</span>
+<span class="sd">        :type pt1: (float, float)</span>
+<span class="sd">        :param pt2: Left front point of box in robot space (x, y)</span>
+<span class="sd">        :type pt2: (float, float)</span>
+<span class="sd">        :param color: color of box on canvas, defaults to (255, 0, 0)</span>
+<span class="sd">        :type color: (byte, byte, byte)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">LF</span> <span class="o">=</span> <span class="n">get_world_coordinate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_pose</span><span class="p">,</span> <span class="n">pt2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pt2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">RF</span> <span class="o">=</span> <span class="n">get_world_coordinate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_pose</span><span class="p">,</span> <span class="n">pt2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pt1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">RB</span> <span class="o">=</span> <span class="n">get_world_coordinate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_pose</span><span class="p">,</span> <span class="n">pt1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pt1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">LB</span> <span class="o">=</span> <span class="n">get_world_coordinate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_pose</span><span class="p">,</span> <span class="n">pt1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pt2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">line_width</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># int(0.001 * self.scale)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">LF</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">RF</span><span class="p">),</span> <span class="n">color</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="n">line_width</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">RF</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">RB</span><span class="p">),</span> <span class="n">color</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="n">line_width</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">RB</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">LB</span><span class="p">),</span> <span class="n">color</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="n">line_width</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">LB</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">LF</span><span class="p">),</span> <span class="n">color</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="n">line_width</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="KOOSVisu.draw_point_laser"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.visualisation.KOOSVisu.html#mobrob_behcon.core.visualisation.KOOSVisu.draw_point_laser">[docs]</a>    <span class="k">def</span> <span class="nf">draw_point_laser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Draws a dot on canvas. The dot is defined by one point in laser space.</span>
+
+<span class="sd">        :param point: point in laser space (x, y)</span>
+<span class="sd">        :type point: (float, float)</span>
+<span class="sd">        :param color: color of dot on canvas, defaults to (255, 255, 255)</span>
+<span class="sd">        :type color: (byte, byte, byte)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">point</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">point</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">point</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;wrong shape of laser point&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">100</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+            <span class="p">(</span><span class="n">x_robot</span><span class="p">,</span> <span class="n">y_robot</span><span class="p">)</span> <span class="o">=</span> <span class="n">get_robot_coordinate</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="c1"># print((x_robot, y_robot))</span>
+            <span class="p">(</span><span class="n">x_visu</span><span class="p">,</span> <span class="n">y_visu</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">get_world_coordinate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_pose</span><span class="p">,</span> <span class="n">x_robot</span><span class="p">,</span> <span class="n">y_robot</span><span class="p">))</span>
+            <span class="c1"># (x_visu, y_visu) = self.to_visu_coord(get_world_coordinate(self.current_pose, point[0], point[1]))</span>
+            <span class="n">radius</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.005</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
+            <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">x_visu</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">y_visu</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">:</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">x_visu</span><span class="p">,</span> <span class="n">y_visu</span><span class="p">),</span> <span class="n">radius</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="KOOSVisu.draw_points_laser"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.visualisation.KOOSVisu.html#mobrob_behcon.core.visualisation.KOOSVisu.draw_points_laser">[docs]</a>    <span class="k">def</span> <span class="nf">draw_points_laser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lst_points</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Draws a list of points to canvas.</span>
+
+<span class="sd">        :param lst_points: list of points (defined in laser space)</span>
+<span class="sd">        :type lst_points: list of (float, float)</span>
+<span class="sd">        :param color: color of dot on canvas, defaults to (255, 255, 255)</span>
+<span class="sd">        :type color: (byte, byte, byte)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lst_points</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lst_points</span><span class="p">)):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">draw_point_laser</span><span class="p">(</span><span class="n">lst_points</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lst_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">lst_points</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="n">lst_points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;point array as wrong shape, should be (2, -1)&quot;</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lst_points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">draw_point_laser</span><span class="p">(</span><span class="n">lst_points</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="KOOSVisu.draw_cluster_points_laser"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.visualisation.KOOSVisu.html#mobrob_behcon.core.visualisation.KOOSVisu.draw_cluster_points_laser">[docs]</a>    <span class="k">def</span> <span class="nf">draw_cluster_points_laser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">cluster_labels</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Draws a list of clustered points to canvas. </span>
+<span class="sd">        Six different colors are available to color the clusters differently.</span>
+
+<span class="sd">        :param points: list of points (defined in laser space)</span>
+<span class="sd">        :type points: list of (float, float)</span>
+<span class="sd">        :param cluster_labels: list of cluster labels, the list has to have the same length as points</span>
+<span class="sd">        :type cluster_labels: list of int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">cluster_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">draw_point_laser</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">draw_point_laser</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">colours</span><span class="p">[</span><span class="n">cluster_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span> <span class="mi">6</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="KOOSVisu.draw_point_world"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.visualisation.KOOSVisu.html#mobrob_behcon.core.visualisation.KOOSVisu.draw_point_world">[docs]</a>    <span class="k">def</span> <span class="nf">draw_point_world</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Draws a dot on canvas. The dot is defined by one point in world space.</span>
+
+<span class="sd">        :param point: point in world space (x, y)</span>
+<span class="sd">        :type point: (float, float)</span>
+<span class="sd">        :param color: color of dot on canvas, defaults to (255, 255, 255)</span>
+<span class="sd">        :type color: (byte, byte, byte)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">point</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">point</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">point</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;wrong shape of point&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">100</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+            <span class="p">(</span><span class="n">x_visu</span><span class="p">,</span> <span class="n">y_visu</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+            <span class="n">radius</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.005</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
+            <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">x_visu</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">y_visu</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">:</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">x_visu</span><span class="p">,</span> <span class="n">y_visu</span><span class="p">),</span> <span class="n">radius</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="KOOSVisu.draw_points_world"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.visualisation.KOOSVisu.html#mobrob_behcon.core.visualisation.KOOSVisu.draw_points_world">[docs]</a>    <span class="k">def</span> <span class="nf">draw_points_world</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lst_points</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Draws a list of points to canvas. points are defined in world space</span>
+
+<span class="sd">        :param lst_points: list of points (defined in world space)</span>
+<span class="sd">        :type lst_points: list of (float, float)</span>
+<span class="sd">        :param color: color of dot on canvas, defaults to (255, 255, 255)</span>
+<span class="sd">        :type color: (byte, byte, byte)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lst_points</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">draw_point_world</span><span class="p">(</span><span class="n">lst_points</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="KOOSVisu.draw_line_world"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.visualisation.KOOSVisu.html#mobrob_behcon.core.visualisation.KOOSVisu.draw_line_world">[docs]</a>    <span class="k">def</span> <span class="nf">draw_line_world</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slope</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)):</span>
+        <span class="n">x_max</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">x_max</span><span class="p">,</span> <span class="n">x_max</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">slope</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">offset</span>
+        <span class="n">line_width</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># int(0.001 * self.scale)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span>
+                 <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">((</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])),</span>
+                 <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">((</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])),</span>
+                 <span class="n">color</span><span class="p">,</span>
+                 <span class="n">thickness</span><span class="o">=</span><span class="n">line_width</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="KOOSVisu.draw_cross_world"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.visualisation.KOOSVisu.html#mobrob_behcon.core.visualisation.KOOSVisu.draw_cross_world">[docs]</a>    <span class="k">def</span> <span class="nf">draw_cross_world</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">point</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">point</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">point</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;wrong shape of point&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">100</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+            <span class="p">(</span><span class="n">x_visu</span><span class="p">,</span> <span class="n">y_visu</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+            <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">x_visu</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">y_visu</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">:</span>
+                <span class="n">line_width</span> <span class="o">=</span> <span class="n">size</span>  <span class="c1"># int(0.001 * self.scale)</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span>
+                         <span class="p">(</span><span class="n">x_visu</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">size</span><span class="p">,</span> <span class="n">y_visu</span><span class="p">),</span>
+                         <span class="p">(</span><span class="n">x_visu</span> <span class="o">-</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">size</span><span class="p">,</span> <span class="n">y_visu</span><span class="p">),</span>
+                         <span class="n">color</span><span class="p">,</span>
+                         <span class="n">thickness</span><span class="o">=</span><span class="n">line_width</span><span class="p">)</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span>
+                         <span class="p">(</span><span class="n">x_visu</span><span class="p">,</span> <span class="n">y_visu</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">size</span><span class="p">),</span>
+                         <span class="p">(</span><span class="n">x_visu</span><span class="p">,</span> <span class="n">y_visu</span> <span class="o">-</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">size</span><span class="p">),</span>
+                         <span class="n">color</span><span class="p">,</span>
+                         <span class="n">thickness</span><span class="o">=</span><span class="n">line_width</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="KOOSVisu.draw_crosses_world"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.visualisation.KOOSVisu.html#mobrob_behcon.core.visualisation.KOOSVisu.draw_crosses_world">[docs]</a>    <span class="k">def</span> <span class="nf">draw_crosses_world</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lst_points</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Draws a list of crosses to canvas.</span>
+
+<span class="sd">        :param lst_points: list of points (defined in world space)</span>
+<span class="sd">        :type lst_points: list of (float, float)</span>
+<span class="sd">        :param color: color of dot on canvas, defaults to (255, 255, 255)</span>
+<span class="sd">        :type color: (byte, byte, byte)</span>
+<span class="sd">        :param size: size of crosses, defaults to 2</span>
+<span class="sd">        :type: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lst_points</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lst_points</span><span class="p">)):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">draw_cross_world</span><span class="p">(</span><span class="n">lst_points</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lst_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">lst_points</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="n">lst_points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;point array as wrong shape, should be (2, -1), is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lst_points</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lst_points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">draw_cross_world</span><span class="p">(</span><span class="n">lst_points</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="KOOSVisu.draw_ellipse_world"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.visualisation.KOOSVisu.html#mobrob_behcon.core.visualisation.KOOSVisu.draw_ellipse_world">[docs]</a>    <span class="k">def</span> <span class="nf">draw_ellipse_world</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">covariance</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">)):</span>
+        <span class="n">point</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">point</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">point</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;wrong shape of point&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">covariance</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;wrong shape of covariance&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">covariance</span><span class="p">)</span>
+        <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">cov2elli</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">covariance</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+        <span class="n">pts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_visu_coord</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">)))</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">line_width</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># int(0.001 * self.scale)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">polylines</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span> <span class="p">[</span><span class="n">pts</span><span class="p">],</span> <span class="n">isClosed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="n">line_width</span><span class="p">)</span></div></div>
+
+
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mobrob_behcon.core.visualisation</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Techniccontroller.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

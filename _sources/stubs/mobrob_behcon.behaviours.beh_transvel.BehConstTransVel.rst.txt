@@ -1,0 +1,54 @@
+﻿BehConstTransVel
+======================================================
+
+.. currentmodule:: mobrob_behcon.behaviours.beh_transvel
+
+.. autoclass:: BehConstTransVel
+
+    
+    
+    .. rubric:: Attributes
+
+    .. autosummary::
+    
+        ~BehConstTransVel.name
+        ~BehConstTransVel.resolver
+        ~BehConstTransVel.percept_space
+        ~BehConstTransVel.priority
+        ~BehConstTransVel.current_beh_group
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~BehConstTransVel.__init__
+        ~BehConstTransVel.add_desire
+        ~BehConstTransVel.error
+        ~BehConstTransVel.fire
+        ~BehConstTransVel.set_current_beh_group
+        ~BehConstTransVel.set_percept_space
+        ~BehConstTransVel.set_priority
+        ~BehConstTransVel.set_resolver
+        ~BehConstTransVel.success
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: add_desire
+    .. automethod:: error
+    .. automethod:: fire
+    .. automethod:: set_current_beh_group
+    .. automethod:: set_percept_space
+    .. automethod:: set_priority
+    .. automethod:: set_resolver
+    .. automethod:: success
+
+    
+    
+
+    

@@ -1,0 +1,50 @@
+﻿Line
+================================
+
+.. currentmodule:: mobrob_behcon.visu.graphics
+
+.. autoclass:: Line
+
+    
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~Line.__init__
+        ~Line.clone
+        ~Line.draw
+        ~Line.getCenter
+        ~Line.getP1
+        ~Line.getP2
+        ~Line.move
+        ~Line.setArrow
+        ~Line.setFill
+        ~Line.setOutline
+        ~Line.setWidth
+        ~Line.undraw
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: clone
+    .. automethod:: draw
+    .. automethod:: getCenter
+    .. automethod:: getP1
+    .. automethod:: getP2
+    .. automethod:: move
+    .. automethod:: setArrow
+    .. automethod:: setFill
+    .. automethod:: setOutline
+    .. automethod:: setWidth
+    .. automethod:: undraw
+
+    
+    
+
+    

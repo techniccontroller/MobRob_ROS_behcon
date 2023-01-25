@@ -1,0 +1,54 @@
+﻿BehLimFor
+=============================================
+
+.. currentmodule:: mobrob_behcon.behaviours.beh_limfor
+
+.. autoclass:: BehLimFor
+
+    
+    
+    .. rubric:: Attributes
+
+    .. autosummary::
+    
+        ~BehLimFor.name
+        ~BehLimFor.resolver
+        ~BehLimFor.percept_space
+        ~BehLimFor.priority
+        ~BehLimFor.current_beh_group
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~BehLimFor.__init__
+        ~BehLimFor.add_desire
+        ~BehLimFor.error
+        ~BehLimFor.fire
+        ~BehLimFor.set_current_beh_group
+        ~BehLimFor.set_percept_space
+        ~BehLimFor.set_priority
+        ~BehLimFor.set_resolver
+        ~BehLimFor.success
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: add_desire
+    .. automethod:: error
+    .. automethod:: fire
+    .. automethod:: set_current_beh_group
+    .. automethod:: set_percept_space
+    .. automethod:: set_priority
+    .. automethod:: set_resolver
+    .. automethod:: success
+
+    
+    
+
+    

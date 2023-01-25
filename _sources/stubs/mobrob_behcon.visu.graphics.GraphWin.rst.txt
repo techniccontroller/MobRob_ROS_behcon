@@ -1,0 +1,496 @@
+﻿GraphWin
+====================================
+
+.. currentmodule:: mobrob_behcon.visu.graphics
+
+.. autoclass:: GraphWin
+
+    
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~GraphWin.__init__
+        ~GraphWin.addItem
+        ~GraphWin.addtag
+        ~GraphWin.addtag_above
+        ~GraphWin.addtag_all
+        ~GraphWin.addtag_below
+        ~GraphWin.addtag_closest
+        ~GraphWin.addtag_enclosed
+        ~GraphWin.addtag_overlapping
+        ~GraphWin.addtag_withtag
+        ~GraphWin.after
+        ~GraphWin.after_cancel
+        ~GraphWin.after_idle
+        ~GraphWin.anchor
+        ~GraphWin.bbox
+        ~GraphWin.bell
+        ~GraphWin.bind
+        ~GraphWin.bind_all
+        ~GraphWin.bind_class
+        ~GraphWin.bindtags
+        ~GraphWin.canvasx
+        ~GraphWin.canvasy
+        ~GraphWin.cget
+        ~GraphWin.checkKey
+        ~GraphWin.checkMouse
+        ~GraphWin.clipboard_append
+        ~GraphWin.clipboard_clear
+        ~GraphWin.clipboard_get
+        ~GraphWin.close
+        ~GraphWin.columnconfigure
+        ~GraphWin.config
+        ~GraphWin.configure
+        ~GraphWin.coords
+        ~GraphWin.create_arc
+        ~GraphWin.create_bitmap
+        ~GraphWin.create_image
+        ~GraphWin.create_line
+        ~GraphWin.create_oval
+        ~GraphWin.create_polygon
+        ~GraphWin.create_rectangle
+        ~GraphWin.create_text
+        ~GraphWin.create_window
+        ~GraphWin.dchars
+        ~GraphWin.delItem
+        ~GraphWin.delete
+        ~GraphWin.deletecommand
+        ~GraphWin.destroy
+        ~GraphWin.dtag
+        ~GraphWin.event_add
+        ~GraphWin.event_delete
+        ~GraphWin.event_generate
+        ~GraphWin.event_info
+        ~GraphWin.find
+        ~GraphWin.find_above
+        ~GraphWin.find_all
+        ~GraphWin.find_below
+        ~GraphWin.find_closest
+        ~GraphWin.find_enclosed
+        ~GraphWin.find_overlapping
+        ~GraphWin.find_withtag
+        ~GraphWin.flush
+        ~GraphWin.focus
+        ~GraphWin.focus_displayof
+        ~GraphWin.focus_force
+        ~GraphWin.focus_get
+        ~GraphWin.focus_lastfor
+        ~GraphWin.focus_set
+        ~GraphWin.forget
+        ~GraphWin.getHeight
+        ~GraphWin.getKey
+        ~GraphWin.getMouse
+        ~GraphWin.getWidth
+        ~GraphWin.getboolean
+        ~GraphWin.getdouble
+        ~GraphWin.getint
+        ~GraphWin.gettags
+        ~GraphWin.getvar
+        ~GraphWin.grab_current
+        ~GraphWin.grab_release
+        ~GraphWin.grab_set
+        ~GraphWin.grab_set_global
+        ~GraphWin.grab_status
+        ~GraphWin.grid
+        ~GraphWin.grid_anchor
+        ~GraphWin.grid_bbox
+        ~GraphWin.grid_columnconfigure
+        ~GraphWin.grid_configure
+        ~GraphWin.grid_forget
+        ~GraphWin.grid_info
+        ~GraphWin.grid_location
+        ~GraphWin.grid_propagate
+        ~GraphWin.grid_remove
+        ~GraphWin.grid_rowconfigure
+        ~GraphWin.grid_size
+        ~GraphWin.grid_slaves
+        ~GraphWin.icursor
+        ~GraphWin.image_names
+        ~GraphWin.image_types
+        ~GraphWin.index
+        ~GraphWin.info
+        ~GraphWin.insert
+        ~GraphWin.isClosed
+        ~GraphWin.isOpen
+        ~GraphWin.itemcget
+        ~GraphWin.itemconfig
+        ~GraphWin.itemconfigure
+        ~GraphWin.keys
+        ~GraphWin.lift
+        ~GraphWin.location
+        ~GraphWin.lower
+        ~GraphWin.mainloop
+        ~GraphWin.move
+        ~GraphWin.moveto
+        ~GraphWin.nametowidget
+        ~GraphWin.option_add
+        ~GraphWin.option_clear
+        ~GraphWin.option_get
+        ~GraphWin.option_readfile
+        ~GraphWin.pack
+        ~GraphWin.pack_configure
+        ~GraphWin.pack_forget
+        ~GraphWin.pack_info
+        ~GraphWin.pack_propagate
+        ~GraphWin.pack_slaves
+        ~GraphWin.place
+        ~GraphWin.place_configure
+        ~GraphWin.place_forget
+        ~GraphWin.place_info
+        ~GraphWin.place_slaves
+        ~GraphWin.plot
+        ~GraphWin.plotPixel
+        ~GraphWin.postscript
+        ~GraphWin.propagate
+        ~GraphWin.quit
+        ~GraphWin.redraw
+        ~GraphWin.register
+        ~GraphWin.rowconfigure
+        ~GraphWin.scale
+        ~GraphWin.scan_dragto
+        ~GraphWin.scan_mark
+        ~GraphWin.select_adjust
+        ~GraphWin.select_clear
+        ~GraphWin.select_from
+        ~GraphWin.select_item
+        ~GraphWin.select_to
+        ~GraphWin.selection_clear
+        ~GraphWin.selection_get
+        ~GraphWin.selection_handle
+        ~GraphWin.selection_own
+        ~GraphWin.selection_own_get
+        ~GraphWin.send
+        ~GraphWin.setBackground
+        ~GraphWin.setCoords
+        ~GraphWin.setMouseHandler
+        ~GraphWin.setvar
+        ~GraphWin.size
+        ~GraphWin.slaves
+        ~GraphWin.tag_bind
+        ~GraphWin.tag_lower
+        ~GraphWin.tag_raise
+        ~GraphWin.tag_unbind
+        ~GraphWin.tk_bisque
+        ~GraphWin.tk_focusFollowsMouse
+        ~GraphWin.tk_focusNext
+        ~GraphWin.tk_focusPrev
+        ~GraphWin.tk_setPalette
+        ~GraphWin.tk_strictMotif
+        ~GraphWin.tkraise
+        ~GraphWin.toScreen
+        ~GraphWin.toWorld
+        ~GraphWin.type
+        ~GraphWin.unbind
+        ~GraphWin.unbind_all
+        ~GraphWin.unbind_class
+        ~GraphWin.update
+        ~GraphWin.update_idletasks
+        ~GraphWin.wait_variable
+        ~GraphWin.wait_visibility
+        ~GraphWin.wait_window
+        ~GraphWin.waitvar
+        ~GraphWin.winfo_atom
+        ~GraphWin.winfo_atomname
+        ~GraphWin.winfo_cells
+        ~GraphWin.winfo_children
+        ~GraphWin.winfo_class
+        ~GraphWin.winfo_colormapfull
+        ~GraphWin.winfo_containing
+        ~GraphWin.winfo_depth
+        ~GraphWin.winfo_exists
+        ~GraphWin.winfo_fpixels
+        ~GraphWin.winfo_geometry
+        ~GraphWin.winfo_height
+        ~GraphWin.winfo_id
+        ~GraphWin.winfo_interps
+        ~GraphWin.winfo_ismapped
+        ~GraphWin.winfo_manager
+        ~GraphWin.winfo_name
+        ~GraphWin.winfo_parent
+        ~GraphWin.winfo_pathname
+        ~GraphWin.winfo_pixels
+        ~GraphWin.winfo_pointerx
+        ~GraphWin.winfo_pointerxy
+        ~GraphWin.winfo_pointery
+        ~GraphWin.winfo_reqheight
+        ~GraphWin.winfo_reqwidth
+        ~GraphWin.winfo_rgb
+        ~GraphWin.winfo_rootx
+        ~GraphWin.winfo_rooty
+        ~GraphWin.winfo_screen
+        ~GraphWin.winfo_screencells
+        ~GraphWin.winfo_screendepth
+        ~GraphWin.winfo_screenheight
+        ~GraphWin.winfo_screenmmheight
+        ~GraphWin.winfo_screenmmwidth
+        ~GraphWin.winfo_screenvisual
+        ~GraphWin.winfo_screenwidth
+        ~GraphWin.winfo_server
+        ~GraphWin.winfo_toplevel
+        ~GraphWin.winfo_viewable
+        ~GraphWin.winfo_visual
+        ~GraphWin.winfo_visualid
+        ~GraphWin.winfo_visualsavailable
+        ~GraphWin.winfo_vrootheight
+        ~GraphWin.winfo_vrootwidth
+        ~GraphWin.winfo_vrootx
+        ~GraphWin.winfo_vrooty
+        ~GraphWin.winfo_width
+        ~GraphWin.winfo_x
+        ~GraphWin.winfo_y
+        ~GraphWin.xview
+        ~GraphWin.xview_moveto
+        ~GraphWin.xview_scroll
+        ~GraphWin.yview
+        ~GraphWin.yview_moveto
+        ~GraphWin.yview_scroll
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: addItem
+    .. automethod:: addtag
+    .. automethod:: addtag_above
+    .. automethod:: addtag_all
+    .. automethod:: addtag_below
+    .. automethod:: addtag_closest
+    .. automethod:: addtag_enclosed
+    .. automethod:: addtag_overlapping
+    .. automethod:: addtag_withtag
+    .. automethod:: after
+    .. automethod:: after_cancel
+    .. automethod:: after_idle
+    .. automethod:: anchor
+    .. automethod:: bbox
+    .. automethod:: bell
+    .. automethod:: bind
+    .. automethod:: bind_all
+    .. automethod:: bind_class
+    .. automethod:: bindtags
+    .. automethod:: canvasx
+    .. automethod:: canvasy
+    .. automethod:: cget
+    .. automethod:: checkKey
+    .. automethod:: checkMouse
+    .. automethod:: clipboard_append
+    .. automethod:: clipboard_clear
+    .. automethod:: clipboard_get
+    .. automethod:: close
+    .. automethod:: columnconfigure
+    .. automethod:: config
+    .. automethod:: configure
+    .. automethod:: coords
+    .. automethod:: create_arc
+    .. automethod:: create_bitmap
+    .. automethod:: create_image
+    .. automethod:: create_line
+    .. automethod:: create_oval
+    .. automethod:: create_polygon
+    .. automethod:: create_rectangle
+    .. automethod:: create_text
+    .. automethod:: create_window
+    .. automethod:: dchars
+    .. automethod:: delItem
+    .. automethod:: delete
+    .. automethod:: deletecommand
+    .. automethod:: destroy
+    .. automethod:: dtag
+    .. automethod:: event_add
+    .. automethod:: event_delete
+    .. automethod:: event_generate
+    .. automethod:: event_info
+    .. automethod:: find
+    .. automethod:: find_above
+    .. automethod:: find_all
+    .. automethod:: find_below
+    .. automethod:: find_closest
+    .. automethod:: find_enclosed
+    .. automethod:: find_overlapping
+    .. automethod:: find_withtag
+    .. automethod:: flush
+    .. automethod:: focus
+    .. automethod:: focus_displayof
+    .. automethod:: focus_force
+    .. automethod:: focus_get
+    .. automethod:: focus_lastfor
+    .. automethod:: focus_set
+    .. automethod:: forget
+    .. automethod:: getHeight
+    .. automethod:: getKey
+    .. automethod:: getMouse
+    .. automethod:: getWidth
+    .. automethod:: getboolean
+    .. automethod:: getdouble
+    .. automethod:: getint
+    .. automethod:: gettags
+    .. automethod:: getvar
+    .. automethod:: grab_current
+    .. automethod:: grab_release
+    .. automethod:: grab_set
+    .. automethod:: grab_set_global
+    .. automethod:: grab_status
+    .. automethod:: grid
+    .. automethod:: grid_anchor
+    .. automethod:: grid_bbox
+    .. automethod:: grid_columnconfigure
+    .. automethod:: grid_configure
+    .. automethod:: grid_forget
+    .. automethod:: grid_info
+    .. automethod:: grid_location
+    .. automethod:: grid_propagate
+    .. automethod:: grid_remove
+    .. automethod:: grid_rowconfigure
+    .. automethod:: grid_size
+    .. automethod:: grid_slaves
+    .. automethod:: icursor
+    .. automethod:: image_names
+    .. automethod:: image_types
+    .. automethod:: index
+    .. automethod:: info
+    .. automethod:: insert
+    .. automethod:: isClosed
+    .. automethod:: isOpen
+    .. automethod:: itemcget
+    .. automethod:: itemconfig
+    .. automethod:: itemconfigure
+    .. automethod:: keys
+    .. automethod:: lift
+    .. automethod:: location
+    .. automethod:: lower
+    .. automethod:: mainloop
+    .. automethod:: move
+    .. automethod:: moveto
+    .. automethod:: nametowidget
+    .. automethod:: option_add
+    .. automethod:: option_clear
+    .. automethod:: option_get
+    .. automethod:: option_readfile
+    .. automethod:: pack
+    .. automethod:: pack_configure
+    .. automethod:: pack_forget
+    .. automethod:: pack_info
+    .. automethod:: pack_propagate
+    .. automethod:: pack_slaves
+    .. automethod:: place
+    .. automethod:: place_configure
+    .. automethod:: place_forget
+    .. automethod:: place_info
+    .. automethod:: place_slaves
+    .. automethod:: plot
+    .. automethod:: plotPixel
+    .. automethod:: postscript
+    .. automethod:: propagate
+    .. automethod:: quit
+    .. automethod:: redraw
+    .. automethod:: register
+    .. automethod:: rowconfigure
+    .. automethod:: scale
+    .. automethod:: scan_dragto
+    .. automethod:: scan_mark
+    .. automethod:: select_adjust
+    .. automethod:: select_clear
+    .. automethod:: select_from
+    .. automethod:: select_item
+    .. automethod:: select_to
+    .. automethod:: selection_clear
+    .. automethod:: selection_get
+    .. automethod:: selection_handle
+    .. automethod:: selection_own
+    .. automethod:: selection_own_get
+    .. automethod:: send
+    .. automethod:: setBackground
+    .. automethod:: setCoords
+    .. automethod:: setMouseHandler
+    .. automethod:: setvar
+    .. automethod:: size
+    .. automethod:: slaves
+    .. automethod:: tag_bind
+    .. automethod:: tag_lower
+    .. automethod:: tag_raise
+    .. automethod:: tag_unbind
+    .. automethod:: tk_bisque
+    .. automethod:: tk_focusFollowsMouse
+    .. automethod:: tk_focusNext
+    .. automethod:: tk_focusPrev
+    .. automethod:: tk_setPalette
+    .. automethod:: tk_strictMotif
+    .. automethod:: tkraise
+    .. automethod:: toScreen
+    .. automethod:: toWorld
+    .. automethod:: type
+    .. automethod:: unbind
+    .. automethod:: unbind_all
+    .. automethod:: unbind_class
+    .. automethod:: update
+    .. automethod:: update_idletasks
+    .. automethod:: wait_variable
+    .. automethod:: wait_visibility
+    .. automethod:: wait_window
+    .. automethod:: waitvar
+    .. automethod:: winfo_atom
+    .. automethod:: winfo_atomname
+    .. automethod:: winfo_cells
+    .. automethod:: winfo_children
+    .. automethod:: winfo_class
+    .. automethod:: winfo_colormapfull
+    .. automethod:: winfo_containing
+    .. automethod:: winfo_depth
+    .. automethod:: winfo_exists
+    .. automethod:: winfo_fpixels
+    .. automethod:: winfo_geometry
+    .. automethod:: winfo_height
+    .. automethod:: winfo_id
+    .. automethod:: winfo_interps
+    .. automethod:: winfo_ismapped
+    .. automethod:: winfo_manager
+    .. automethod:: winfo_name
+    .. automethod:: winfo_parent
+    .. automethod:: winfo_pathname
+    .. automethod:: winfo_pixels
+    .. automethod:: winfo_pointerx
+    .. automethod:: winfo_pointerxy
+    .. automethod:: winfo_pointery
+    .. automethod:: winfo_reqheight
+    .. automethod:: winfo_reqwidth
+    .. automethod:: winfo_rgb
+    .. automethod:: winfo_rootx
+    .. automethod:: winfo_rooty
+    .. automethod:: winfo_screen
+    .. automethod:: winfo_screencells
+    .. automethod:: winfo_screendepth
+    .. automethod:: winfo_screenheight
+    .. automethod:: winfo_screenmmheight
+    .. automethod:: winfo_screenmmwidth
+    .. automethod:: winfo_screenvisual
+    .. automethod:: winfo_screenwidth
+    .. automethod:: winfo_server
+    .. automethod:: winfo_toplevel
+    .. automethod:: winfo_viewable
+    .. automethod:: winfo_visual
+    .. automethod:: winfo_visualid
+    .. automethod:: winfo_visualsavailable
+    .. automethod:: winfo_vrootheight
+    .. automethod:: winfo_vrootwidth
+    .. automethod:: winfo_vrootx
+    .. automethod:: winfo_vrooty
+    .. automethod:: winfo_width
+    .. automethod:: winfo_x
+    .. automethod:: winfo_y
+    .. automethod:: xview
+    .. automethod:: xview_moveto
+    .. automethod:: xview_scroll
+    .. automethod:: yview
+    .. automethod:: yview_moveto
+    .. automethod:: yview_scroll
+
+    
+    
+
+    

@@ -1,0 +1,7 @@
+﻿get\_T\_of\_3Dpoint
+==========================================================
+
+
+.. currentmodule:: mobrob_behcon.utils.mobrob_transformation
+
+.. autofunction:: get_T_of_3Dpoint

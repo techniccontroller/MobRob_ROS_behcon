@@ -1,0 +1,54 @@
+﻿BehAlign
+===========================================
+
+.. currentmodule:: mobrob_behcon.behaviours.beh_align
+
+.. autoclass:: BehAlign
+
+    
+    
+    .. rubric:: Attributes
+
+    .. autosummary::
+    
+        ~BehAlign.name
+        ~BehAlign.resolver
+        ~BehAlign.percept_space
+        ~BehAlign.priority
+        ~BehAlign.current_beh_group
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~BehAlign.__init__
+        ~BehAlign.add_desire
+        ~BehAlign.error
+        ~BehAlign.fire
+        ~BehAlign.set_current_beh_group
+        ~BehAlign.set_percept_space
+        ~BehAlign.set_priority
+        ~BehAlign.set_resolver
+        ~BehAlign.success
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: add_desire
+    .. automethod:: error
+    .. automethod:: fire
+    .. automethod:: set_current_beh_group
+    .. automethod:: set_percept_space
+    .. automethod:: set_priority
+    .. automethod:: set_resolver
+    .. automethod:: success
+
+    
+    
+
+    

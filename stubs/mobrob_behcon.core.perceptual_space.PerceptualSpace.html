@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>PerceptualSpace &#8212; MobRob_ROS_behcon 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="KOOSVisu" href="mobrob_behcon.core.visualisation.KOOSVisu.html" />
+    <link rel="prev" title="Resolver" href="mobrob_behcon.core.resolver.Resolver.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="mobrob_behcon.core.visualisation.KOOSVisu.html" title="KOOSVisu"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="mobrob_behcon.core.resolver.Resolver.html" title="Resolver"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">PerceptualSpace</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="perceptualspace">
+<h1>PerceptualSpace<a class="headerlink" href="#perceptualspace" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="mobrob_behcon.core.perceptual_space.PerceptualSpace">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">mobrob_behcon.core.perceptual_space.</span></span><span class="sig-name descname"><span class="pre">PerceptualSpace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">visu</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/core/perceptual_space.html#PerceptualSpace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.core.perceptual_space.PerceptualSpace" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class PerceptualSpace</p>
+<p>This contains all sensors of the robot. Other parts of the program
+can refer to this to get sensor data.</p>
+<p>Currently following sensors are supported:</p>
+<ul class="simple">
+<li><p>Laserscanner</p></li>
+<li><p>Egopose sensor</p></li>
+<li><p>Camera</p></li>
+</ul>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.core.perceptual_space.PerceptualSpace.__init__" title="mobrob_behcon.core.perceptual_space.PerceptualSpace.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(visu)</p></td>
+<td><p>constructor</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.core.perceptual_space.PerceptualSpace.add_camera" title="mobrob_behcon.core.perceptual_space.PerceptualSpace.add_camera"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_camera</span></code></a>([ip_address, port])</p></td>
+<td><p>Add camera (TCP) to the configuration.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.core.perceptual_space.PerceptualSpace.add_egopose" title="mobrob_behcon.core.perceptual_space.PerceptualSpace.add_egopose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_egopose</span></code></a>([ros_topic])</p></td>
+<td><p>Add egopose sensor to the configuration.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.core.perceptual_space.PerceptualSpace.add_laserscanner" title="mobrob_behcon.core.perceptual_space.PerceptualSpace.add_laserscanner"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_laserscanner</span></code></a>([ros_topic])</p></td>
+<td><p>Add laserscanner to the configuration</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Details</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.core.perceptual_space.PerceptualSpace.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">visu</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/core/perceptual_space.html#PerceptualSpace.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.core.perceptual_space.PerceptualSpace.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>visu</strong> (<a class="reference internal" href="mobrob_behcon.core.visualisation.KOOSVisu.html#mobrob_behcon.core.visualisation.KOOSVisu" title="mobrob_behcon.core.visualisation.KOOSVisu"><em>KOOSVisu</em></a>) – an object of KOOSVisu</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.core.perceptual_space.PerceptualSpace.add_camera">
+<span class="sig-name descname"><span class="pre">add_camera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ip_address</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mobrob'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5001</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/core/perceptual_space.html#PerceptualSpace.add_camera"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.core.perceptual_space.PerceptualSpace.add_camera" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add camera (TCP) to the configuration. A camera server needs to be running on the network for that.</p>
+<p>e.g. following:</p>
+<p><a class="reference external" href="https://github.com/techniccontroller/MobRob_PI_Scripts/blob/master/Camera/videoTCPServer8_first_capture.py">https://github.com/techniccontroller/MobRob_PI_Scripts/blob/master/Camera/videoTCPServer8_first_capture.py</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ip_address</strong> (<em>string</em>) – ip address of camera server</p></li>
+<li><p><strong>port</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – port of camera server</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>returns nothing</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.core.perceptual_space.PerceptualSpace.add_egopose">
+<span class="sig-name descname"><span class="pre">add_egopose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ros_topic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/odom'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/core/perceptual_space.html#PerceptualSpace.add_egopose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.core.perceptual_space.PerceptualSpace.add_egopose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add egopose sensor to the configuration. 
+This will provide information about the current pose of the robot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ros_topic</strong> (<em>string</em>) – possible topics are <strong>‘/pose’</strong> (myrobot_model/Pose) or <strong>‘/odom’</strong> (nav_msgs/Odometry)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>returns nothing</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.core.perceptual_space.PerceptualSpace.add_laserscanner">
+<span class="sig-name descname"><span class="pre">add_laserscanner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ros_topic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/scan'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/core/perceptual_space.html#PerceptualSpace.add_laserscanner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.core.perceptual_space.PerceptualSpace.add_laserscanner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add laserscanner to the configuration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ros_topic</strong> (<em>string</em>) – topic of the LaserScan data</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>returns nothing</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="mobrob_behcon.core.resolver.Resolver.html"
+                        title="previous chapter">Resolver</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="mobrob_behcon.core.visualisation.KOOSVisu.html"
+                        title="next chapter">KOOSVisu</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/stubs/mobrob_behcon.core.perceptual_space.PerceptualSpace.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="mobrob_behcon.core.visualisation.KOOSVisu.html" title="KOOSVisu"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="mobrob_behcon.core.resolver.Resolver.html" title="Resolver"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">PerceptualSpace</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Techniccontroller.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

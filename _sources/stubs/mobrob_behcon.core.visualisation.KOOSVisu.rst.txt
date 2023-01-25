@@ -1,0 +1,66 @@
+﻿KOOSVisu
+=========================================
+
+.. currentmodule:: mobrob_behcon.core.visualisation
+
+.. autoclass:: KOOSVisu
+
+    
+    
+    .. rubric:: Attributes
+
+    .. autosummary::
+    
+        ~KOOSVisu.colours
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~KOOSVisu.__init__
+        ~KOOSVisu.clear_image
+        ~KOOSVisu.draw_box
+        ~KOOSVisu.draw_cluster_points_laser
+        ~KOOSVisu.draw_cross_world
+        ~KOOSVisu.draw_crosses_world
+        ~KOOSVisu.draw_ellipse_world
+        ~KOOSVisu.draw_line_world
+        ~KOOSVisu.draw_origin_world
+        ~KOOSVisu.draw_point_laser
+        ~KOOSVisu.draw_point_world
+        ~KOOSVisu.draw_points_laser
+        ~KOOSVisu.draw_points_world
+        ~KOOSVisu.draw_robot
+        ~KOOSVisu.send_image
+        ~KOOSVisu.set_current_pose
+        ~KOOSVisu.to_visu_coord
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: clear_image
+    .. automethod:: draw_box
+    .. automethod:: draw_cluster_points_laser
+    .. automethod:: draw_cross_world
+    .. automethod:: draw_crosses_world
+    .. automethod:: draw_ellipse_world
+    .. automethod:: draw_line_world
+    .. automethod:: draw_origin_world
+    .. automethod:: draw_point_laser
+    .. automethod:: draw_point_world
+    .. automethod:: draw_points_laser
+    .. automethod:: draw_points_world
+    .. automethod:: draw_robot
+    .. automethod:: send_image
+    .. automethod:: set_current_pose
+    .. automethod:: to_visu_coord
+
+    
+    
+
+    

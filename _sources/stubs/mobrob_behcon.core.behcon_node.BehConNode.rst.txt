@@ -1,0 +1,34 @@
+﻿BehConNode
+=========================================
+
+.. currentmodule:: mobrob_behcon.core.behcon_node
+
+.. autoclass:: BehConNode
+
+    
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~BehConNode.__init__
+        ~BehConNode.add_beh_group
+        ~BehConNode.add_strategy
+        ~BehConNode.start
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: add_beh_group
+    .. automethod:: add_strategy
+    .. automethod:: start
+
+    
+    
+
+    

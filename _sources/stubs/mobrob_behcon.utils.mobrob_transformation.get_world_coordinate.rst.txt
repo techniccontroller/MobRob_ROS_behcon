@@ -1,0 +1,7 @@
+﻿get\_world\_coordinate
+==============================================================
+
+
+.. currentmodule:: mobrob_behcon.utils.mobrob_transformation
+
+.. autofunction:: get_world_coordinate

@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mobrob_behcon.utils.mobrob_transformation &#8212; MobRob_ROS_behcon 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css" />
+    
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mobrob_behcon.utils.mobrob_transformation</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mobrob_behcon.utils.mobrob_transformation</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<div class="viewcode-block" id="get_T_world_robot"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.utils.mobrob_transformation.get_T_world_robot.html#mobrob_behcon.utils.mobrob_transformation.get_T_world_robot">[docs]</a><span class="k">def</span> <span class="nf">get_T_world_robot</span><span class="p">(</span><span class="n">yaw_ego</span><span class="p">,</span> <span class="n">x_ego</span><span class="p">,</span> <span class="n">y_ego</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get transformation from world to robot</span>
+
+<span class="sd">    :param yaw_ego: yaw angle of robot (orientation)</span>
+<span class="sd">    :type yaw_ego: float</span>
+<span class="sd">    :param x_ego: x position of robot in world space</span>
+<span class="sd">    :type x_ego: float</span>
+<span class="sd">    :param y_ego: y position of robot in world space</span>
+<span class="sd">    :type y_ego: float</span>
+<span class="sd">    :return: transformationmatrix world-&gt;robot</span>
+<span class="sd">    :rtype: numpy.array(4,4)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">T_world_robot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">yaw_ego</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">yaw_ego</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">x_ego</span><span class="p">],</span>
+                             <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">yaw_ego</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">yaw_ego</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">y_ego</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span>
+    <span class="k">return</span> <span class="n">T_world_robot</span></div>
+
+
+<div class="viewcode-block" id="get_T_robot_laser"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.utils.mobrob_transformation.get_T_robot_laser.html#mobrob_behcon.utils.mobrob_transformation.get_T_robot_laser">[docs]</a><span class="k">def</span> <span class="nf">get_T_robot_laser</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get transformation from robot to laser</span>
+
+<span class="sd">    :return: transformationmatrix robot-&gt;laser</span>
+<span class="sd">    :rtype: numpy.array(4,4)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">T_robot_laser</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.055</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span>
+    <span class="k">return</span> <span class="n">T_robot_laser</span></div>
+
+
+<div class="viewcode-block" id="get_T_laser_cluster"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.utils.mobrob_transformation.get_T_laser_cluster.html#mobrob_behcon.utils.mobrob_transformation.get_T_laser_cluster">[docs]</a><span class="k">def</span> <span class="nf">get_T_laser_cluster</span><span class="p">(</span><span class="n">x_cls</span><span class="p">,</span> <span class="n">y_cls</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get transformationmatrix from laser to cluster</span>
+
+<span class="sd">    :param x_cls: x coordinate of cluster in laser space</span>
+<span class="sd">    :type x_cls: float</span>
+<span class="sd">    :param y_cls: y coordinate of cluster in laser space</span>
+<span class="sd">    :type y_cls: float</span>
+<span class="sd">    :return: transformationmatrix laser-&gt;cluster</span>
+<span class="sd">    :rtype: numpy.array(4,4)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">get_T_of_3Dpoint</span><span class="p">(</span><span class="n">x_cls</span><span class="p">,</span> <span class="n">y_cls</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_T_of_3Dpoint"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.utils.mobrob_transformation.get_T_of_3Dpoint.html#mobrob_behcon.utils.mobrob_transformation.get_T_of_3Dpoint">[docs]</a><span class="k">def</span> <span class="nf">get_T_of_3Dpoint</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get transformationmatix of simple 3D translation vector</span>
+
+<span class="sd">    :param x: x coordinate of 3D vector</span>
+<span class="sd">    :type x: float</span>
+<span class="sd">    :param y: x coordinate of 3D vector</span>
+<span class="sd">    :type y: float</span>
+<span class="sd">    :param z: x coordinate of 3D vector, defaults to 0.0</span>
+<span class="sd">    :type z: float, optional</span>
+<span class="sd">    :return: transfomationmatrix</span>
+<span class="sd">    :rtype: numpy.array(4,4)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">T_laser_cluster</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">x</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">z</span><span class="p">],</span>
+                             <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span>
+    <span class="k">return</span> <span class="n">T_laser_cluster</span></div>
+
+
+<div class="viewcode-block" id="get_T_world_cluster"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.utils.mobrob_transformation.get_T_world_cluster.html#mobrob_behcon.utils.mobrob_transformation.get_T_world_cluster">[docs]</a><span class="k">def</span> <span class="nf">get_T_world_cluster</span><span class="p">(</span><span class="n">yaw_ego</span><span class="p">,</span> <span class="n">x_ego</span><span class="p">,</span> <span class="n">y_ego</span><span class="p">,</span> <span class="n">x_cls</span><span class="p">,</span> <span class="n">y_cls</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get transformation from world to laserpoint cluster</span>
+
+<span class="sd">    :param yaw_ego: yaw angle of robot (orientation)</span>
+<span class="sd">    :type yaw_ego: float</span>
+<span class="sd">    :param x_ego: x position of robot in world space</span>
+<span class="sd">    :type x_ego: float</span>
+<span class="sd">    :param y_ego: y position of robot in world space</span>
+<span class="sd">    :type y_ego: float</span>
+<span class="sd">    :param x_cls: x coordinate of cluster in laser space</span>
+<span class="sd">    :type x_cls: float</span>
+<span class="sd">    :param y_cls: y coordinate of cluster in laser space</span>
+<span class="sd">    :type y_cls: float</span>
+<span class="sd">    :return: transfomationmatrix world-&gt;cluster</span>
+<span class="sd">    :rtype: numpy.array(4,4)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">T_world_robot</span> <span class="o">=</span> <span class="n">get_T_world_robot</span><span class="p">(</span><span class="n">yaw_ego</span><span class="p">,</span> <span class="n">x_ego</span><span class="p">,</span> <span class="n">y_ego</span><span class="p">)</span>
+    <span class="n">T_robot_laser</span> <span class="o">=</span> <span class="n">get_T_robot_laser</span><span class="p">()</span>
+    <span class="n">T_laser_cluster</span> <span class="o">=</span> <span class="n">get_T_laser_cluster</span><span class="p">(</span><span class="n">x_cls</span><span class="p">,</span> <span class="n">y_cls</span><span class="p">)</span>
+    
+    <span class="n">T_world_cluster</span> <span class="o">=</span> <span class="n">T_world_robot</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">T_robot_laser</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">T_laser_cluster</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">T_world_cluster</span></div>
+
+
+<div class="viewcode-block" id="get_world_coordinate"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.utils.mobrob_transformation.get_world_coordinate.html#mobrob_behcon.utils.mobrob_transformation.get_world_coordinate">[docs]</a><span class="k">def</span> <span class="nf">get_world_coordinate</span><span class="p">(</span><span class="n">currentPose</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Transforms a point in robot space to world space</span>
+
+<span class="sd">    :param currentPose: current pose of robot in world space (x, y, yaw)</span>
+<span class="sd">    :type currentPose: (float, float, float)</span>
+<span class="sd">    :param x: x coordinate in robot space</span>
+<span class="sd">    :type x: float</span>
+<span class="sd">    :param y: y coordinate in robot space</span>
+<span class="sd">    :type y: float</span>
+<span class="sd">    :return: point in world space</span>
+<span class="sd">    :rtype: (float, float)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">yaw_ego</span> <span class="o">=</span> <span class="n">currentPose</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">x_ego</span> <span class="o">=</span> <span class="n">currentPose</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">y_ego</span> <span class="o">=</span> <span class="n">currentPose</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">T_world_robot</span> <span class="o">=</span> <span class="n">get_T_world_robot</span><span class="p">(</span><span class="n">yaw_ego</span><span class="p">,</span> <span class="n">x_ego</span><span class="p">,</span> <span class="n">y_ego</span><span class="p">)</span>
+
+    <span class="n">vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+    <span class="n">world</span> <span class="o">=</span> <span class="n">T_world_robot</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="p">(</span><span class="n">world</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">world</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="get_laser_coordinate"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.utils.mobrob_transformation.get_laser_coordinate.html#mobrob_behcon.utils.mobrob_transformation.get_laser_coordinate">[docs]</a><span class="k">def</span> <span class="nf">get_laser_coordinate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Transforms a point in robot space to laser space</span>
+
+<span class="sd">    :param x: x coordinate in robot space</span>
+<span class="sd">    :type x: float</span>
+<span class="sd">    :param y: y coordinate in robot space</span>
+<span class="sd">    :type y: float</span>
+<span class="sd">    :return: point in laser space</span>
+<span class="sd">    :rtype: (float, float)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">T_robot_laser</span> <span class="o">=</span> <span class="n">get_T_robot_laser</span><span class="p">()</span>
+    <span class="n">T_laser_robot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">T_robot_laser</span><span class="p">)</span>
+
+    <span class="n">vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+    <span class="n">laser</span> <span class="o">=</span> <span class="n">T_laser_robot</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="p">(</span><span class="n">laser</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">laser</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="get_robot_coordinate"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.utils.mobrob_transformation.get_robot_coordinate.html#mobrob_behcon.utils.mobrob_transformation.get_robot_coordinate">[docs]</a><span class="k">def</span> <span class="nf">get_robot_coordinate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Transforms a point in laser space to robot space</span>
+
+<span class="sd">    :param x: x coordinate in laser space</span>
+<span class="sd">    :type x: float</span>
+<span class="sd">    :param y: y coordinate in laser space</span>
+<span class="sd">    :type y: float</span>
+<span class="sd">    :return: point in robot space</span>
+<span class="sd">    :rtype: (float, float)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">T_robot_laser</span> <span class="o">=</span> <span class="n">get_T_robot_laser</span><span class="p">()</span>
+
+    <span class="n">vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">T_robot_laser</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="p">(</span><span class="n">robot</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">robot</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="get_robot_corners"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.utils.mobrob_transformation.get_robot_corners.html#mobrob_behcon.utils.mobrob_transformation.get_robot_corners">[docs]</a><span class="k">def</span> <span class="nf">get_robot_corners</span><span class="p">(</span><span class="n">currentPose</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get corners of robot as coordinates in world space</span>
+
+<span class="sd">    :param currentPose: current pose of robot in world space (x, y, yaw)</span>
+<span class="sd">    :type currentPose: (float, float, float)</span>
+<span class="sd">    :return: points of all four corners (pt1, pt2, pt3, pt4)</span>
+<span class="sd">    :rtype: ((float,float),(float,float),(float,float),(float,float))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># current Pose = T_world_robot</span>
+    <span class="c1"># points of rect = T_robot_points1/2/3/4</span>
+    <span class="c1"># points of rect in world = T_world_robot * T_robot_points1/2/3/4</span>
+
+    <span class="n">world_pointLF</span> <span class="o">=</span> <span class="n">get_world_coordinate</span><span class="p">(</span><span class="n">currentPose</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">)</span>
+    <span class="n">world_pointRF</span> <span class="o">=</span> <span class="n">get_world_coordinate</span><span class="p">(</span><span class="n">currentPose</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.125</span><span class="p">)</span>
+    <span class="n">world_pointRB</span> <span class="o">=</span> <span class="n">get_world_coordinate</span><span class="p">(</span><span class="n">currentPose</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.20</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.125</span><span class="p">)</span>
+    <span class="n">world_pointLB</span> <span class="o">=</span> <span class="n">get_world_coordinate</span><span class="p">(</span><span class="n">currentPose</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">world_pointLF</span><span class="p">,</span> <span class="n">world_pointRF</span><span class="p">,</span> <span class="n">world_pointRB</span><span class="p">,</span> <span class="n">world_pointLB</span><span class="p">)</span></div>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mobrob_behcon.utils.mobrob_transformation</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Techniccontroller.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

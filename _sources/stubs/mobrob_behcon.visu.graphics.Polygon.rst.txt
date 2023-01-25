@@ -1,0 +1,44 @@
+﻿Polygon
+===================================
+
+.. currentmodule:: mobrob_behcon.visu.graphics
+
+.. autoclass:: Polygon
+
+    
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~Polygon.__init__
+        ~Polygon.clone
+        ~Polygon.draw
+        ~Polygon.getPoints
+        ~Polygon.move
+        ~Polygon.setFill
+        ~Polygon.setOutline
+        ~Polygon.setWidth
+        ~Polygon.undraw
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: clone
+    .. automethod:: draw
+    .. automethod:: getPoints
+    .. automethod:: move
+    .. automethod:: setFill
+    .. automethod:: setOutline
+    .. automethod:: setWidth
+    .. automethod:: undraw
+
+    
+    
+
+    

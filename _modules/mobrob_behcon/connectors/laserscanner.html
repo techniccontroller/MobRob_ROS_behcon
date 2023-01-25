@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mobrob_behcon.connectors.laserscanner &#8212; MobRob_ROS_behcon 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css" />
+    
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mobrob_behcon.connectors.laserscanner</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mobrob_behcon.connectors.laserscanner</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sensor_msgs.msg</span> <span class="kn">import</span> <span class="n">LaserScan</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">mobrob_behcon.utils.mobrob_transformation</span> <span class="kn">import</span> <span class="o">*</span>
+
+<div class="viewcode-block" id="LaserScanner"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.connectors.laserscanner.LaserScanner.html#mobrob_behcon.connectors.laserscanner.LaserScanner">[docs]</a><span class="k">class</span> <span class="nc">LaserScanner</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The class LaserScanner</span>
+
+<span class="sd">    Represents a connector to the laserscanner topics of the robot.</span>
+<span class="sd">    Provides a function to get the latest laserscan from the laserscanner on the robot.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="LaserScanner.__init__"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.connectors.laserscanner.LaserScanner.html#mobrob_behcon.connectors.laserscanner.LaserScanner.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ros_topic</span><span class="p">,</span> <span class="n">visu</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        constructor</span>
+
+<span class="sd">        :param ros_topic: topic of the LaserScan data</span>
+<span class="sd">        :type ros_topic: string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ros_topic</span> <span class="o">=</span> <span class="n">ros_topic</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sub</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ros_topic</span><span class="p">,</span> <span class="n">LaserScan</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lst_scan_points</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_scan_time</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">visu</span> <span class="o">=</span> <span class="n">visu</span></div>
+
+<div class="viewcode-block" id="LaserScanner.callback"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.connectors.laserscanner.LaserScanner.html#mobrob_behcon.connectors.laserscanner.LaserScanner.callback">[docs]</a>    <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        callback function for topics of type sensor_msgs/LaserScan</span>
+
+<span class="sd">        :param msg: receiving message</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lst_scan_points</span> <span class="o">=</span> <span class="n">LaserScanner</span><span class="o">.</span><span class="n">extract_points</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">ranges</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_scan_time</span> <span class="o">=</span> <span class="n">LaserScanner</span><span class="o">.</span><span class="n">get_current_time</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="LaserScanner.get_lst_scan_points"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.connectors.laserscanner.LaserScanner.html#mobrob_behcon.connectors.laserscanner.LaserScanner.get_lst_scan_points">[docs]</a>    <span class="k">def</span> <span class="nf">get_lst_scan_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get current laserscan as a list of points</span>
+
+<span class="sd">        :return: laserscan as a list of points (x,y)</span>
+<span class="sd">        :rtype: list((float, float))</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">age</span> <span class="o">=</span> <span class="n">LaserScanner</span><span class="o">.</span><span class="n">get_current_time</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_scan_time</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lst_scan_points</span><span class="p">,</span> <span class="n">age</span></div>
+
+<div class="viewcode-block" id="LaserScanner.get_x"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.connectors.laserscanner.LaserScanner.html#mobrob_behcon.connectors.laserscanner.LaserScanner.get_x">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_x</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="n">angle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get x-coordinate of given point in polar coordinates</span>
+
+<span class="sd">        :param radius: radius [m]</span>
+<span class="sd">        :type radius: float</span>
+<span class="sd">        :param angle: angle [deg]</span>
+<span class="sd">        :type angle: float</span>
+<span class="sd">        :return: x-coordinate [m]</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">angle</span><span class="p">))</span><span class="o">*</span><span class="n">radius</span></div>
+    
+<div class="viewcode-block" id="LaserScanner.get_y"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.connectors.laserscanner.LaserScanner.html#mobrob_behcon.connectors.laserscanner.LaserScanner.get_y">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_y</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="n">angle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get y-coordinate of given point in polar coordinates</span>
+
+<span class="sd">        :param radius: radius [m]</span>
+<span class="sd">        :type radius: float</span>
+<span class="sd">        :param angle: angle [deg]</span>
+<span class="sd">        :type angle: float</span>
+<span class="sd">        :return: y-coordinate [m]</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">angle</span><span class="p">))</span><span class="o">*</span><span class="n">radius</span></div>
+
+<div class="viewcode-block" id="LaserScanner.extract_points"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.connectors.laserscanner.LaserScanner.html#mobrob_behcon.connectors.laserscanner.LaserScanner.extract_points">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">extract_points</span><span class="p">(</span><span class="n">ranges</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Extract points from a list of distances</span>
+
+<span class="sd">        :param ranges: list of distances (length=360)</span>
+<span class="sd">        :type ranges: list(float)</span>
+<span class="sd">        :return: list of points (x, y)</span>
+<span class="sd">        :rtype: list((float, float))</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lst_scan_points</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ranges</span><span class="p">)):</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">ranges</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">center_coordinates</span> <span class="o">=</span> <span class="p">(</span><span class="n">LaserScanner</span><span class="o">.</span><span class="n">get_x</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="n">LaserScanner</span><span class="o">.</span><span class="n">get_y</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+            <span class="n">lst_scan_points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">center_coordinates</span><span class="p">)</span>            
+        
+        <span class="k">return</span> <span class="n">lst_scan_points</span></div>
+
+<div class="viewcode-block" id="LaserScanner.calc_dist"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.connectors.laserscanner.LaserScanner.html#mobrob_behcon.connectors.laserscanner.LaserScanner.calc_dist">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">calc_dist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate distance from origin to given point</span>
+
+<span class="sd">        :param x: x-coordinate [m]</span>
+<span class="sd">        :type x: float</span>
+<span class="sd">        :param y: y-coordinate [m]</span>
+<span class="sd">        :type y: float</span>
+<span class="sd">        :return: distance [m]</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="LaserScanner.filter_points"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.connectors.laserscanner.LaserScanner.html#mobrob_behcon.connectors.laserscanner.LaserScanner.filter_points">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">filter_points</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Filter given list of points (x, y) with the given bounderies </span>
+
+<span class="sd">        :param list: list of points (x, y)</span>
+<span class="sd">        :type list: list((float, float))</span>
+<span class="sd">        :param x_min: lower bound x</span>
+<span class="sd">        :type x_min: float</span>
+<span class="sd">        :param x_max: upper bound x</span>
+<span class="sd">        :type x_max: float</span>
+<span class="sd">        :param y_min: lower bound y</span>
+<span class="sd">        :type y_min: float</span>
+<span class="sd">        :param y_max: upper bound y</span>
+<span class="sd">        :type y_max: float</span>
+<span class="sd">        :return: filtered list of points (x, y)</span>
+<span class="sd">        :rtype: list((float, float))</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">filt_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x_min</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x_max</span><span class="p">)</span>\
+                <span class="ow">and</span> <span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">y_min</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">y_max</span><span class="p">):</span>
+                <span class="n">filt_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        
+        <span class="k">return</span> <span class="n">filt_list</span></div>
+
+<div class="viewcode-block" id="LaserScanner.get_current_time"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.connectors.laserscanner.LaserScanner.html#mobrob_behcon.connectors.laserscanner.LaserScanner.get_current_time">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_current_time</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get current time in milliseconds</span>
+
+<span class="sd">        :return: time in milliseconds</span>
+<span class="sd">        &quot;&quot;&quot;</span>     
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span></div>
+    
+<div class="viewcode-block" id="LaserScanner.check_box"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.connectors.laserscanner.LaserScanner.html#mobrob_behcon.connectors.laserscanner.LaserScanner.check_box">[docs]</a>    <span class="k">def</span> <span class="nf">check_box</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check if some obstacle is in given box. Returns distance.</span>
+
+<span class="sd">        :param x1: x-coordinate of first corner of box</span>
+<span class="sd">        :type x1: float</span>
+<span class="sd">        :param y1: y-coordinate of first corner of box</span>
+<span class="sd">        :type y1: float</span>
+<span class="sd">        :param x2: x-coordinate of second corner of box</span>
+<span class="sd">        :type x2: float</span>
+<span class="sd">        :param y2: y-coordinate of second corner of box</span>
+<span class="sd">        :type y2: float</span>
+<span class="sd">        :return: distance to nearest point in this box, if no obstacle in box returns 0</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># draw box on visualisation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">visu</span><span class="o">.</span><span class="n">draw_box</span><span class="p">((</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">))</span>
+        <span class="c1"># transform corner points of box to laser frame</span>
+        <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">get_laser_coordinate</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">)</span>
+        <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">get_laser_coordinate</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span>
+        <span class="c1"># calculate bounderies of box</span>
+        <span class="n">bound_x_low</span> <span class="o">=</span> <span class="n">x2</span> <span class="k">if</span> <span class="n">x1</span> <span class="o">&gt;</span> <span class="n">x2</span> <span class="k">else</span> <span class="n">x1</span>
+        <span class="n">bound_x_high</span> <span class="o">=</span> <span class="n">x1</span> <span class="k">if</span> <span class="n">x1</span> <span class="o">&gt;</span> <span class="n">x2</span> <span class="k">else</span> <span class="n">x2</span>
+        <span class="n">bound_y_low</span> <span class="o">=</span> <span class="n">y2</span> <span class="k">if</span> <span class="n">y1</span> <span class="o">&gt;</span> <span class="n">y2</span> <span class="k">else</span> <span class="n">y1</span>
+        <span class="n">bound_y_high</span> <span class="o">=</span> <span class="n">y1</span> <span class="k">if</span> <span class="n">y1</span> <span class="o">&gt;</span> <span class="n">y2</span> <span class="k">else</span> <span class="n">y2</span>
+
+        <span class="c1"># get latest scan points</span>
+        <span class="n">lst_scan_points</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lst_scan_points</span><span class="p">()</span>
+        <span class="c1"># filter scanpoints to get only points inside box</span>
+        <span class="n">lst_scan_points_filt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter_points</span><span class="p">(</span><span class="n">lst_scan_points</span><span class="p">,</span> <span class="n">bound_x_low</span><span class="p">,</span> <span class="n">bound_x_high</span><span class="p">,</span> <span class="n">bound_y_low</span><span class="p">,</span> <span class="n">bound_y_high</span><span class="p">)</span>
+        <span class="n">nearest_point</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="c1"># if some scanpoints are left in filtered list, find neareast point</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst_scan_points_filt</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">nearest_point</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">lst_scan_points_filt</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_dist</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="n">nearest_point</span> <span class="o">=</span> <span class="n">get_robot_coordinate</span><span class="p">(</span><span class="n">nearest_point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nearest_point</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="c1"># calculate and return distance to nearest point</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_dist</span><span class="p">(</span><span class="n">nearest_point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nearest_point</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></div>
+    
+<div class="viewcode-block" id="LaserScanner.draw_laserpoints"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.connectors.laserscanner.LaserScanner.html#mobrob_behcon.connectors.laserscanner.LaserScanner.draw_laserpoints">[docs]</a>    <span class="k">def</span> <span class="nf">draw_laserpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Draw all laser scanpoints to visualisation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Laserscanner - numPoints=</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lst_scan_points</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">visu</span><span class="o">.</span><span class="n">draw_points_laser</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lst_scan_points</span><span class="p">)</span></div></div>
+
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mobrob_behcon.connectors.laserscanner</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Techniccontroller.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

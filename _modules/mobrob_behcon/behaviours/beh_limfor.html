@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mobrob_behcon.behaviours.beh_limfor &#8212; MobRob_ROS_behcon 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css" />
+    
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mobrob_behcon.behaviours.beh_limfor</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mobrob_behcon.behaviours.beh_limfor</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">mobrob_behcon.behaviours.behaviour</span> <span class="kn">import</span> <span class="n">Behaviour</span>
+<span class="kn">from</span> <span class="nn">mobrob_behcon.core.perceptual_space</span> <span class="kn">import</span> <span class="n">PerceptualSpace</span>
+<span class="kn">from</span> <span class="nn">mobrob_behcon.desires.desires</span> <span class="kn">import</span> <span class="n">DesTransVel</span>
+
+<div class="viewcode-block" id="BehLimFor"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.behaviours.beh_limfor.BehLimFor.html#mobrob_behcon.behaviours.beh_limfor.BehLimFor">[docs]</a><span class="k">class</span> <span class="nc">BehLimFor</span><span class="p">(</span><span class="n">Behaviour</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The class BehLimFor</span>
+
+<span class="sd">    This class is a child of the class Behaviour representing </span>
+<span class="sd">    a behaviour which slows down robot as it approaching some obstacle in front.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="BehLimFor.__init__"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.behaviours.beh_limfor.BehLimFor.html#mobrob_behcon.behaviours.beh_limfor.BehLimFor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">stopdistance</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">slowdistance</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">slowspeed</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        constructor</span>
+
+<span class="sd">        :param name: name of behaviour</span>
+<span class="sd">        :type name: string</span>
+<span class="sd">        :param stopdistance: distance at which the robot should stop [m], defaults to 0.3</span>
+<span class="sd">        :type stopdistance: float, optional</span>
+<span class="sd">        :param slowdistance: distance at which the robot should slow down [m], defaults to 0.5</span>
+<span class="sd">        :type slowdistance: float, optional</span>
+<span class="sd">        :param slowspeed: speed for slow sector, defaults to 0.1</span>
+<span class="sd">        :type slowspeed: float, optional</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BehLimFor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stopdistance</span> <span class="o">=</span> <span class="n">stopdistance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">slowdistance</span> <span class="o">=</span> <span class="n">slowdistance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">slowspeed</span> <span class="o">=</span> <span class="n">slowspeed</span></div>
+
+<div class="viewcode-block" id="BehLimFor.fire"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.behaviours.beh_limfor.BehLimFor.html#mobrob_behcon.behaviours.beh_limfor.BehLimFor.fire">[docs]</a>    <span class="k">def</span> <span class="nf">fire</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The fire()-method, which is necessary in every Behaviour, </span>
+<span class="sd">        will be called by resolver in every polling cycle.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># check area in front of robot for obstacles</span>
+        <span class="n">dist_front</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">percept_space</span><span class="o">.</span><span class="n">laserscanner</span><span class="o">.</span><span class="n">check_box</span><span class="p">(</span><span class="mf">0.250</span><span class="p">,</span> <span class="mf">0.200</span><span class="p">,</span> <span class="mf">1.00</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.200</span><span class="p">)</span>
+
+        <span class="c1"># log important information</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;BehLimFor - dist: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">dist_front</span><span class="p">))</span>
+
+        <span class="c1"># create desire for translation speed depending of the distance to obstacle </span>
+        <span class="k">if</span> <span class="n">dist_front</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">dist_front</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">stopdistance</span><span class="p">:</span>
+                <span class="c1"># stop robot</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_desire</span><span class="p">(</span><span class="n">DesTransVel</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">dist_front</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">slowdistance</span><span class="p">:</span>
+                <span class="c1"># slow down robot</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_desire</span><span class="p">(</span><span class="n">DesTransVel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slowspeed</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span></div></div>
+        
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mobrob_behcon.behaviours.beh_limfor</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Techniccontroller.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

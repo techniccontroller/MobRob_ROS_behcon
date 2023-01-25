@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Image &#8212; MobRob_ROS_behcon 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="get_T_world_robot" href="mobrob_behcon.utils.mobrob_transformation.get_T_world_robot.html" />
+    <link rel="prev" title="Entry" href="mobrob_behcon.visu.graphics.Entry.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="mobrob_behcon.utils.mobrob_transformation.get_T_world_robot.html" title="get_T_world_robot"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="mobrob_behcon.visu.graphics.Entry.html" title="Entry"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Image</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="image">
+<h1>Image<a class="headerlink" href="#image" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="mobrob_behcon.visu.graphics.Image">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">mobrob_behcon.visu.graphics.</span></span><span class="sig-name descname"><span class="pre">Image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">pixmap</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/visu/graphics.html#Image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.visu.graphics.Image" title="Permalink to this definition">¶</a></dt>
+<dd><p class="rubric">Attributes</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">idCount</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">imageCache</span></code></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.visu.graphics.Image.__init__" title="mobrob_behcon.visu.graphics.Image.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(p, *pixmap)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.visu.graphics.Image.clone" title="mobrob_behcon.visu.graphics.Image.clone"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clone</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.visu.graphics.Image.draw" title="mobrob_behcon.visu.graphics.Image.draw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw</span></code></a>(graphwin)</p></td>
+<td><p>Draw the object in graphwin, which should be a GraphWin object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.visu.graphics.Image.getAnchor" title="mobrob_behcon.visu.graphics.Image.getAnchor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getAnchor</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.visu.graphics.Image.getHeight" title="mobrob_behcon.visu.graphics.Image.getHeight"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getHeight</span></code></a>()</p></td>
+<td><p>Returns the height of the image in pixels</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.visu.graphics.Image.getPixel" title="mobrob_behcon.visu.graphics.Image.getPixel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getPixel</span></code></a>(x, y)</p></td>
+<td><p>Returns a list [r,g,b] with the RGB color values for pixel (x,y) r,g,b are in range(256)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.visu.graphics.Image.getWidth" title="mobrob_behcon.visu.graphics.Image.getWidth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getWidth</span></code></a>()</p></td>
+<td><p>Returns the width of the image in pixels</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.visu.graphics.Image.move" title="mobrob_behcon.visu.graphics.Image.move"><code class="xref py py-obj docutils literal notranslate"><span class="pre">move</span></code></a>(dx, dy)</p></td>
+<td><p>move object dx units in x direction and dy units in y direction</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.visu.graphics.Image.save" title="mobrob_behcon.visu.graphics.Image.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(filename)</p></td>
+<td><p>Saves the pixmap image to filename.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.visu.graphics.Image.setFill" title="mobrob_behcon.visu.graphics.Image.setFill"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setFill</span></code></a>(color)</p></td>
+<td><p>Set interior color to color</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.visu.graphics.Image.setOutline" title="mobrob_behcon.visu.graphics.Image.setOutline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setOutline</span></code></a>(color)</p></td>
+<td><p>Set outline color to color</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.visu.graphics.Image.setPixel" title="mobrob_behcon.visu.graphics.Image.setPixel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setPixel</span></code></a>(x, y, color)</p></td>
+<td><p>Sets pixel (x,y) to the given color</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.visu.graphics.Image.setWidth" title="mobrob_behcon.visu.graphics.Image.setWidth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setWidth</span></code></a>(width)</p></td>
+<td><p>Set line weight to width</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.visu.graphics.Image.undraw" title="mobrob_behcon.visu.graphics.Image.undraw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">undraw</span></code></a>()</p></td>
+<td><p>Undraw the object (i.e.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Details</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.visu.graphics.Image.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">pixmap</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/visu/graphics.html#Image.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.visu.graphics.Image.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.visu.graphics.Image.clone">
+<span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/visu/graphics.html#Image.clone"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.visu.graphics.Image.clone" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.visu.graphics.Image.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graphwin</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.visu.graphics.Image.draw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw the object in graphwin, which should be a GraphWin
+object.  A GraphicsObject may only be drawn into one
+window. Raises an error if attempt made to draw an object that
+is already visible.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.visu.graphics.Image.getAnchor">
+<span class="sig-name descname"><span class="pre">getAnchor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/visu/graphics.html#Image.getAnchor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.visu.graphics.Image.getAnchor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.visu.graphics.Image.getHeight">
+<span class="sig-name descname"><span class="pre">getHeight</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/visu/graphics.html#Image.getHeight"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.visu.graphics.Image.getHeight" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the height of the image in pixels</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.visu.graphics.Image.getPixel">
+<span class="sig-name descname"><span class="pre">getPixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/visu/graphics.html#Image.getPixel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.visu.graphics.Image.getPixel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list [r,g,b] with the RGB color values for pixel (x,y)
+r,g,b are in range(256)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.visu.graphics.Image.getWidth">
+<span class="sig-name descname"><span class="pre">getWidth</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/visu/graphics.html#Image.getWidth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.visu.graphics.Image.getWidth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the width of the image in pixels</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.visu.graphics.Image.move">
+<span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dy</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.visu.graphics.Image.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>move object dx units in x direction and dy units in y
+direction</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.visu.graphics.Image.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/visu/graphics.html#Image.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.visu.graphics.Image.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the pixmap image to filename.
+The format for the save image is determined from the filname extension.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.visu.graphics.Image.setFill">
+<span class="sig-name descname"><span class="pre">setFill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.visu.graphics.Image.setFill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set interior color to color</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.visu.graphics.Image.setOutline">
+<span class="sig-name descname"><span class="pre">setOutline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.visu.graphics.Image.setOutline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set outline color to color</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.visu.graphics.Image.setPixel">
+<span class="sig-name descname"><span class="pre">setPixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/visu/graphics.html#Image.setPixel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.visu.graphics.Image.setPixel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets pixel (x,y) to the given color</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.visu.graphics.Image.setWidth">
+<span class="sig-name descname"><span class="pre">setWidth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.visu.graphics.Image.setWidth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set line weight to width</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.visu.graphics.Image.undraw">
+<span class="sig-name descname"><span class="pre">undraw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/visu/graphics.html#Image.undraw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.visu.graphics.Image.undraw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Undraw the object (i.e. hide it). Returns silently if the
+object is not currently drawn.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="mobrob_behcon.visu.graphics.Entry.html"
+                        title="previous chapter">Entry</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="mobrob_behcon.utils.mobrob_transformation.get_T_world_robot.html"
+                        title="next chapter">get_T_world_robot</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/stubs/mobrob_behcon.visu.graphics.Image.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="mobrob_behcon.utils.mobrob_transformation.get_T_world_robot.html" title="get_T_world_robot"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="mobrob_behcon.visu.graphics.Entry.html" title="Entry"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Image</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Techniccontroller.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

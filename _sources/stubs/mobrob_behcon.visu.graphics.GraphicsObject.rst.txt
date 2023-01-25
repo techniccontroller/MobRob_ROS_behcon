@@ -1,0 +1,40 @@
+﻿GraphicsObject
+==========================================
+
+.. currentmodule:: mobrob_behcon.visu.graphics
+
+.. autoclass:: GraphicsObject
+
+    
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~GraphicsObject.__init__
+        ~GraphicsObject.draw
+        ~GraphicsObject.move
+        ~GraphicsObject.setFill
+        ~GraphicsObject.setOutline
+        ~GraphicsObject.setWidth
+        ~GraphicsObject.undraw
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: draw
+    .. automethod:: move
+    .. automethod:: setFill
+    .. automethod:: setOutline
+    .. automethod:: setWidth
+    .. automethod:: undraw
+
+    
+    
+
+    

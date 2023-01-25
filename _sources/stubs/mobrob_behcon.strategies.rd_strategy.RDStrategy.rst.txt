@@ -1,0 +1,44 @@
+﻿RDStrategy
+===============================================
+
+.. currentmodule:: mobrob_behcon.strategies.rd_strategy
+
+.. autoclass:: RDStrategy
+
+    
+    
+    .. rubric:: Attributes
+
+    .. autosummary::
+    
+        ~RDStrategy.lst_behgrps
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~RDStrategy.__init__
+        ~RDStrategy.activate_exclusive
+        ~RDStrategy.add_behgrp
+        ~RDStrategy.is_finished
+        ~RDStrategy.plan
+        ~RDStrategy.set_node
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: activate_exclusive
+    .. automethod:: add_behgrp
+    .. automethod:: is_finished
+    .. automethod:: plan
+    .. automethod:: set_node
+
+    
+    
+
+    

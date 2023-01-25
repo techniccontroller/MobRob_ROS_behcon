@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>get_T_world_cluster &#8212; MobRob_ROS_behcon 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="get_world_coordinate" href="mobrob_behcon.utils.mobrob_transformation.get_world_coordinate.html" />
+    <link rel="prev" title="get_T_of_3Dpoint" href="mobrob_behcon.utils.mobrob_transformation.get_T_of_3Dpoint.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="mobrob_behcon.utils.mobrob_transformation.get_world_coordinate.html" title="get_world_coordinate"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="mobrob_behcon.utils.mobrob_transformation.get_T_of_3Dpoint.html" title="get_T_of_3Dpoint"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">get_T_world_cluster</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="get-t-world-cluster">
+<h1>get_T_world_cluster<a class="headerlink" href="#get-t-world-cluster" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="mobrob_behcon.utils.mobrob_transformation.get_T_world_cluster">
+<span class="sig-prename descclassname"><span class="pre">mobrob_behcon.utils.mobrob_transformation.</span></span><span class="sig-name descname"><span class="pre">get_T_world_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yaw_ego</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_ego</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_ego</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_cls</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/utils/mobrob_transformation.html#get_T_world_cluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.utils.mobrob_transformation.get_T_world_cluster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get transformation from world to laserpoint cluster</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>yaw_ego</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – yaw angle of robot (orientation)</p></li>
+<li><p><strong>x_ego</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – x position of robot in world space</p></li>
+<li><p><strong>y_ego</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – y position of robot in world space</p></li>
+<li><p><strong>x_cls</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – x coordinate of cluster in laser space</p></li>
+<li><p><strong>y_cls</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – y coordinate of cluster in laser space</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>transfomationmatrix world-&gt;cluster</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array(4,4)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="mobrob_behcon.utils.mobrob_transformation.get_T_of_3Dpoint.html"
+                        title="previous chapter">get_T_of_3Dpoint</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="mobrob_behcon.utils.mobrob_transformation.get_world_coordinate.html"
+                        title="next chapter">get_world_coordinate</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/stubs/mobrob_behcon.utils.mobrob_transformation.get_T_world_cluster.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="mobrob_behcon.utils.mobrob_transformation.get_world_coordinate.html" title="get_world_coordinate"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="mobrob_behcon.utils.mobrob_transformation.get_T_of_3Dpoint.html" title="get_T_of_3Dpoint"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">get_T_world_cluster</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Techniccontroller.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

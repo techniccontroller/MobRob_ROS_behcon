@@ -1,0 +1,46 @@
+﻿\_BBox
+=================================
+
+.. currentmodule:: mobrob_behcon.visu.graphics
+
+.. autoclass:: _BBox
+
+    
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~_BBox.__init__
+        ~_BBox.draw
+        ~_BBox.getCenter
+        ~_BBox.getP1
+        ~_BBox.getP2
+        ~_BBox.move
+        ~_BBox.setFill
+        ~_BBox.setOutline
+        ~_BBox.setWidth
+        ~_BBox.undraw
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: draw
+    .. automethod:: getCenter
+    .. automethod:: getP1
+    .. automethod:: getP2
+    .. automethod:: move
+    .. automethod:: setFill
+    .. automethod:: setOutline
+    .. automethod:: setWidth
+    .. automethod:: undraw
+
+    
+    
+
+    

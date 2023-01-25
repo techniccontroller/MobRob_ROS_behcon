@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>LaserScanner &#8212; MobRob_ROS_behcon 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Gripper" href="mobrob_behcon.connectors.gripper.Gripper.html" />
+    <link rel="prev" title="EgoPose" href="mobrob_behcon.connectors.egopose.EgoPose.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="mobrob_behcon.connectors.gripper.Gripper.html" title="Gripper"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="mobrob_behcon.connectors.egopose.EgoPose.html" title="EgoPose"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">LaserScanner</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="laserscanner">
+<h1>LaserScanner<a class="headerlink" href="#laserscanner" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.laserscanner.LaserScanner">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">mobrob_behcon.connectors.laserscanner.</span></span><span class="sig-name descname"><span class="pre">LaserScanner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ros_topic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visu</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/laserscanner.html#LaserScanner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.laserscanner.LaserScanner" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class LaserScanner</p>
+<p>Represents a connector to the laserscanner topics of the robot.
+Provides a function to get the latest laserscan from the laserscanner on the robot.</p>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.__init__" title="mobrob_behcon.connectors.laserscanner.LaserScanner.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(ros_topic, visu)</p></td>
+<td><p>constructor</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.calc_dist" title="mobrob_behcon.connectors.laserscanner.LaserScanner.calc_dist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calc_dist</span></code></a>(x, y)</p></td>
+<td><p>Calculate distance from origin to given point</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.callback" title="mobrob_behcon.connectors.laserscanner.LaserScanner.callback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">callback</span></code></a>(msg)</p></td>
+<td><p>callback function for topics of type sensor_msgs/LaserScan</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.check_box" title="mobrob_behcon.connectors.laserscanner.LaserScanner.check_box"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_box</span></code></a>(x1, y1, x2, y2)</p></td>
+<td><p>Check if some obstacle is in given box.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.draw_laserpoints" title="mobrob_behcon.connectors.laserscanner.LaserScanner.draw_laserpoints"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_laserpoints</span></code></a>()</p></td>
+<td><p>Draw all laser scanpoints to visualisation</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.extract_points" title="mobrob_behcon.connectors.laserscanner.LaserScanner.extract_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">extract_points</span></code></a>(ranges)</p></td>
+<td><p>Extract points from a list of distances</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.filter_points" title="mobrob_behcon.connectors.laserscanner.LaserScanner.filter_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter_points</span></code></a>(list, x_min, x_max, y_min, y_max)</p></td>
+<td><p>Filter given list of points (x, y) with the given bounderies</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.get_current_time" title="mobrob_behcon.connectors.laserscanner.LaserScanner.get_current_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_current_time</span></code></a>()</p></td>
+<td><p>Get current time in milliseconds</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.get_lst_scan_points" title="mobrob_behcon.connectors.laserscanner.LaserScanner.get_lst_scan_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_lst_scan_points</span></code></a>()</p></td>
+<td><p>Get current laserscan as a list of points</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.get_x" title="mobrob_behcon.connectors.laserscanner.LaserScanner.get_x"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_x</span></code></a>(radius, angle)</p></td>
+<td><p>Get x-coordinate of given point in polar coordinates</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.get_y" title="mobrob_behcon.connectors.laserscanner.LaserScanner.get_y"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_y</span></code></a>(radius, angle)</p></td>
+<td><p>Get y-coordinate of given point in polar coordinates</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Details</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.laserscanner.LaserScanner.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ros_topic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visu</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/laserscanner.html#LaserScanner.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ros_topic</strong> (<em>string</em>) – topic of the LaserScan data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.laserscanner.LaserScanner.calc_dist">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">calc_dist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/laserscanner.html#LaserScanner.calc_dist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.calc_dist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate distance from origin to given point</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – x-coordinate [m]</p></li>
+<li><p><strong>y</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – y-coordinate [m]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>distance [m]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.laserscanner.LaserScanner.callback">
+<span class="sig-name descname"><span class="pre">callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/laserscanner.html#LaserScanner.callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>callback function for topics of type sensor_msgs/LaserScan</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>msg</strong> – receiving message</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.laserscanner.LaserScanner.check_box">
+<span class="sig-name descname"><span class="pre">check_box</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/laserscanner.html#LaserScanner.check_box"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.check_box" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if some obstacle is in given box. Returns distance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – x-coordinate of first corner of box</p></li>
+<li><p><strong>y1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – y-coordinate of first corner of box</p></li>
+<li><p><strong>x2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – x-coordinate of second corner of box</p></li>
+<li><p><strong>y2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – y-coordinate of second corner of box</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>distance to nearest point in this box, if no obstacle in box returns 0</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.laserscanner.LaserScanner.draw_laserpoints">
+<span class="sig-name descname"><span class="pre">draw_laserpoints</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/laserscanner.html#LaserScanner.draw_laserpoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.draw_laserpoints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw all laser scanpoints to visualisation</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.laserscanner.LaserScanner.extract_points">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">extract_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ranges</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/laserscanner.html#LaserScanner.extract_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.extract_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract points from a list of distances</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ranges</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>)</em>) – list of distances (length=360)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of points (x, y)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>((<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a>))</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.laserscanner.LaserScanner.filter_points">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">filter_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/laserscanner.html#LaserScanner.filter_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.filter_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter given list of points (x, y) with the given bounderies</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>(</em><em>(</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>)</em><em>)</em>) – list of points (x, y)</p></li>
+<li><p><strong>x_min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – lower bound x</p></li>
+<li><p><strong>x_max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – upper bound x</p></li>
+<li><p><strong>y_min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – lower bound y</p></li>
+<li><p><strong>y_max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – upper bound y</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>filtered list of points (x, y)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>((<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a>))</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.laserscanner.LaserScanner.get_current_time">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">get_current_time</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/laserscanner.html#LaserScanner.get_current_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.get_current_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get current time in milliseconds</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>time in milliseconds</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.laserscanner.LaserScanner.get_lst_scan_points">
+<span class="sig-name descname"><span class="pre">get_lst_scan_points</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/laserscanner.html#LaserScanner.get_lst_scan_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.get_lst_scan_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get current laserscan as a list of points</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>laserscan as a list of points (x,y)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>((<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a>))</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.laserscanner.LaserScanner.get_x">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">get_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/laserscanner.html#LaserScanner.get_x"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.get_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get x-coordinate of given point in polar coordinates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – radius [m]</p></li>
+<li><p><strong>angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – angle [deg]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>x-coordinate [m]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.laserscanner.LaserScanner.get_y">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">get_y</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/laserscanner.html#LaserScanner.get_y"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.laserscanner.LaserScanner.get_y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get y-coordinate of given point in polar coordinates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – radius [m]</p></li>
+<li><p><strong>angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – angle [deg]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>y-coordinate [m]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="mobrob_behcon.connectors.egopose.EgoPose.html"
+                        title="previous chapter">EgoPose</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="mobrob_behcon.connectors.gripper.Gripper.html"
+                        title="next chapter">Gripper</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/stubs/mobrob_behcon.connectors.laserscanner.LaserScanner.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="mobrob_behcon.connectors.gripper.Gripper.html" title="Gripper"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="mobrob_behcon.connectors.egopose.EgoPose.html" title="EgoPose"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">LaserScanner</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Techniccontroller.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

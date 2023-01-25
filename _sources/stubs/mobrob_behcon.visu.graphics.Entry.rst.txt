@@ -1,0 +1,56 @@
+﻿Entry
+=================================
+
+.. currentmodule:: mobrob_behcon.visu.graphics
+
+.. autoclass:: Entry
+
+    
+    
+    
+    
+    
+    
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+        ~Entry.__init__
+        ~Entry.clone
+        ~Entry.draw
+        ~Entry.getAnchor
+        ~Entry.getText
+        ~Entry.move
+        ~Entry.setFace
+        ~Entry.setFill
+        ~Entry.setOutline
+        ~Entry.setSize
+        ~Entry.setStyle
+        ~Entry.setText
+        ~Entry.setTextColor
+        ~Entry.setWidth
+        ~Entry.undraw
+
+    .. rubric:: Details
+
+    
+    .. automethod:: __init__
+    .. automethod:: clone
+    .. automethod:: draw
+    .. automethod:: getAnchor
+    .. automethod:: getText
+    .. automethod:: move
+    .. automethod:: setFace
+    .. automethod:: setFill
+    .. automethod:: setOutline
+    .. automethod:: setSize
+    .. automethod:: setStyle
+    .. automethod:: setText
+    .. automethod:: setTextColor
+    .. automethod:: setWidth
+    .. automethod:: undraw
+
+    
+    
+
+    

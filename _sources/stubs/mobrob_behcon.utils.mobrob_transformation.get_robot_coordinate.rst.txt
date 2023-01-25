@@ -1,0 +1,7 @@
+﻿get\_robot\_coordinate
+==============================================================
+
+
+.. currentmodule:: mobrob_behcon.utils.mobrob_transformation
+
+.. autofunction:: get_robot_coordinate

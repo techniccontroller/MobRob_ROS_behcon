@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>BehAlign &#8212; MobRob_ROS_behcon 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="BehLimFor" href="mobrob_behcon.behaviours.beh_limfor.BehLimFor.html" />
+    <link rel="prev" title="Behaviour" href="mobrob_behcon.behaviours.behaviour.Behaviour.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="mobrob_behcon.behaviours.beh_limfor.BehLimFor.html" title="BehLimFor"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="mobrob_behcon.behaviours.behaviour.Behaviour.html" title="Behaviour"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">BehAlign</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="behalign">
+<h1>BehAlign<a class="headerlink" href="#behalign" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="mobrob_behcon.behaviours.beh_align.BehAlign">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">mobrob_behcon.behaviours.beh_align.</span></span><span class="sig-name descname"><span class="pre">BehAlign</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot_vel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/behaviours/beh_align.html#BehAlign"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.behaviours.beh_align.BehAlign" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class BehAlign</p>
+<p>This class is a child of the class Behaviour representing 
+a behaviour which align the robot orthogonally to wall.</p>
+<p class="rubric">Attributes</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.behaviours.beh_align.BehAlign.__init__" title="mobrob_behcon.behaviours.beh_align.BehAlign.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(name[, tolerance, rot_vel])</p></td>
+<td><p>constructor</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.behaviours.beh_align.BehAlign.add_desire" title="mobrob_behcon.behaviours.beh_align.BehAlign.add_desire"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_desire</span></code></a>(desire)</p></td>
+<td><p>Send desire to resolver.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.behaviours.beh_align.BehAlign.error" title="mobrob_behcon.behaviours.beh_align.BehAlign.error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">error</span></code></a>([code])</p></td>
+<td><p>Raise an error about the behaviour.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.behaviours.beh_align.BehAlign.fire" title="mobrob_behcon.behaviours.beh_align.BehAlign.fire"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fire</span></code></a>()</p></td>
+<td><p>The fire()-method, which is necessary in every Behaviour,  will be called by resolver in every polling cycle.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.behaviours.beh_align.BehAlign.set_current_beh_group" title="mobrob_behcon.behaviours.beh_align.BehAlign.set_current_beh_group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_current_beh_group</span></code></a>(beh_group)</p></td>
+<td><p>Set current active behaviourgroup</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.behaviours.beh_align.BehAlign.set_percept_space" title="mobrob_behcon.behaviours.beh_align.BehAlign.set_percept_space"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_percept_space</span></code></a>(percept_space)</p></td>
+<td><p>Set the reference to percept_space</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.behaviours.beh_align.BehAlign.set_priority" title="mobrob_behcon.behaviours.beh_align.BehAlign.set_priority"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_priority</span></code></a>(priority)</p></td>
+<td><p>Set current priority of the behaviour,  can be changed during runtime</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.behaviours.beh_align.BehAlign.set_resolver" title="mobrob_behcon.behaviours.beh_align.BehAlign.set_resolver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_resolver</span></code></a>(resolver)</p></td>
+<td><p>Set the reference to resolver</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.behaviours.beh_align.BehAlign.success" title="mobrob_behcon.behaviours.beh_align.BehAlign.success"><code class="xref py py-obj docutils literal notranslate"><span class="pre">success</span></code></a>([code])</p></td>
+<td><p>Set the behaviour as successful ended.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Details</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.behaviours.beh_align.BehAlign.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot_vel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/behaviours/beh_align.html#BehAlign.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.behaviours.beh_align.BehAlign.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>string</em>) – name of behaviour</p></li>
+<li><p><strong>tolerance</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – tolerance error angle, defaults to 0.1</p></li>
+<li><p><strong>rot_vel</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>, </em><em>optional</em>) – rotation speed, defaults to 20</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.behaviours.beh_align.BehAlign.add_desire">
+<span class="sig-name descname"><span class="pre">add_desire</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">desire</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.behaviours.beh_align.BehAlign.add_desire" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send desire to resolver.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>desire</strong> (<a class="reference internal" href="mobrob_behcon.desires.desire.Desire.html#mobrob_behcon.desires.desire.Desire" title="mobrob_behcon.desires.desire.Desire"><em>Desire</em></a>) – a desire to be added to the resolver</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.behaviours.beh_align.BehAlign.error">
+<span class="sig-name descname"><span class="pre">error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.behaviours.beh_align.BehAlign.error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raise an error about the behaviour.
+With the error code some more information 
+about the error can be given to the behaviourgroup</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>code</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>, </em><em>optional</em>) – error code, defaults to 0</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.behaviours.beh_align.BehAlign.fire">
+<span class="sig-name descname"><span class="pre">fire</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/behaviours/beh_align.html#BehAlign.fire"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.behaviours.beh_align.BehAlign.fire" title="Permalink to this definition">¶</a></dt>
+<dd><p>The fire()-method, which is necessary in every Behaviour, 
+will be called by resolver in every polling cycle.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.behaviours.beh_align.BehAlign.set_current_beh_group">
+<span class="sig-name descname"><span class="pre">set_current_beh_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">beh_group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.behaviours.beh_align.BehAlign.set_current_beh_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set current active behaviourgroup</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>beh_group</strong> (<a class="reference internal" href="mobrob_behcon.behaviours.behaviourgroup.BehaviourGroup.html#mobrob_behcon.behaviours.behaviourgroup.BehaviourGroup" title="mobrob_behcon.behaviours.behaviourgroup.BehaviourGroup"><em>BehaviourGroup</em></a>) – the currently active behaviour group</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.behaviours.beh_align.BehAlign.set_percept_space">
+<span class="sig-name descname"><span class="pre">set_percept_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">percept_space</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.behaviours.beh_align.BehAlign.set_percept_space" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the reference to percept_space</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>percept_space</strong> (<a class="reference internal" href="mobrob_behcon.core.perceptual_space.PerceptualSpace.html#mobrob_behcon.core.perceptual_space.PerceptualSpace" title="mobrob_behcon.core.perceptual_space.PerceptualSpace"><em>PerceptualSpace</em></a>) – relevant percept_space object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.behaviours.beh_align.BehAlign.set_priority">
+<span class="sig-name descname"><span class="pre">set_priority</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">priority</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.behaviours.beh_align.BehAlign.set_priority" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set current priority of the behaviour, 
+can be changed during runtime</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>priority</strong> (<em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.11)"><em>type</em></a><em>]</em>) – [description]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.behaviours.beh_align.BehAlign.set_resolver">
+<span class="sig-name descname"><span class="pre">set_resolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resolver</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.behaviours.beh_align.BehAlign.set_resolver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the reference to resolver</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>resolver</strong> (<a class="reference internal" href="mobrob_behcon.core.resolver.Resolver.html#mobrob_behcon.core.resolver.Resolver" title="mobrob_behcon.core.resolver.Resolver"><em>Resolver</em></a>) – relevant resolver object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.behaviours.beh_align.BehAlign.success">
+<span class="sig-name descname"><span class="pre">success</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mobrob_behcon.behaviours.beh_align.BehAlign.success" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the behaviour as successful ended.
+With the success code some more information 
+about the success can be given to the behaviourgroup</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>code</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>, </em><em>optional</em>) – success code, defaults to 0</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="mobrob_behcon.behaviours.behaviour.Behaviour.html"
+                        title="previous chapter">Behaviour</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="mobrob_behcon.behaviours.beh_limfor.BehLimFor.html"
+                        title="next chapter">BehLimFor</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/stubs/mobrob_behcon.behaviours.beh_align.BehAlign.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="mobrob_behcon.behaviours.beh_limfor.BehLimFor.html" title="BehLimFor"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="mobrob_behcon.behaviours.behaviour.Behaviour.html" title="Behaviour"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">BehAlign</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Techniccontroller.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

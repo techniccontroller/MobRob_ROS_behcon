@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Gripper &#8212; MobRob_ROS_behcon 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Strategy" href="mobrob_behcon.strategies.strategy.Strategy.html" />
+    <link rel="prev" title="LaserScanner" href="mobrob_behcon.connectors.laserscanner.LaserScanner.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="mobrob_behcon.strategies.strategy.Strategy.html" title="Strategy"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="mobrob_behcon.connectors.laserscanner.LaserScanner.html" title="LaserScanner"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Gripper</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="gripper">
+<h1>Gripper<a class="headerlink" href="#gripper" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.gripper.Gripper">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">mobrob_behcon.connectors.gripper.</span></span><span class="sig-name descname"><span class="pre">Gripper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ros_service</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'attiny_command'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/gripper.html#Gripper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.gripper.Gripper" title="Permalink to this definition">¶</a></dt>
+<dd><p>The class Gripper</p>
+<p>Represents a connector to the gripper service of the robot.
+Provides multiple functions to control the gripper.</p>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.gripper.Gripper.__init__" title="mobrob_behcon.connectors.gripper.Gripper.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([ros_service])</p></td>
+<td><p>constructor</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.gripper.Gripper.getPosGRIP" title="mobrob_behcon.connectors.gripper.Gripper.getPosGRIP"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getPosGRIP</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.gripper.Gripper.getPosVERT" title="mobrob_behcon.connectors.gripper.Gripper.getPosVERT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getPosVERT</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.gripper.Gripper.initGRIP" title="mobrob_behcon.connectors.gripper.Gripper.initGRIP"><code class="xref py py-obj docutils literal notranslate"><span class="pre">initGRIP</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.gripper.Gripper.initVERT" title="mobrob_behcon.connectors.gripper.Gripper.initVERT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">initVERT</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.gripper.Gripper.moveAbsGRIP" title="mobrob_behcon.connectors.gripper.Gripper.moveAbsGRIP"><code class="xref py py-obj docutils literal notranslate"><span class="pre">moveAbsGRIP</span></code></a>(value)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.gripper.Gripper.moveAbsVERT" title="mobrob_behcon.connectors.gripper.Gripper.moveAbsVERT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">moveAbsVERT</span></code></a>(value)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.gripper.Gripper.moveRelGRIP" title="mobrob_behcon.connectors.gripper.Gripper.moveRelGRIP"><code class="xref py py-obj docutils literal notranslate"><span class="pre">moveRelGRIP</span></code></a>(value)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.gripper.Gripper.moveRelVERT" title="mobrob_behcon.connectors.gripper.Gripper.moveRelVERT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">moveRelVERT</span></code></a>(value)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.gripper.Gripper.refreshServo" title="mobrob_behcon.connectors.gripper.Gripper.refreshServo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">refreshServo</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.gripper.Gripper.send_command" title="mobrob_behcon.connectors.gripper.Gripper.send_command"><code class="xref py py-obj docutils literal notranslate"><span class="pre">send_command</span></code></a>(command)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.gripper.Gripper.setActivServo" title="mobrob_behcon.connectors.gripper.Gripper.setActivServo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setActivServo</span></code></a>(value)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.gripper.Gripper.setSpeedGRIP" title="mobrob_behcon.connectors.gripper.Gripper.setSpeedGRIP"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setSpeedGRIP</span></code></a>(value)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.gripper.Gripper.setSpeedVERT" title="mobrob_behcon.connectors.gripper.Gripper.setSpeedVERT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setSpeedVERT</span></code></a>(value)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.gripper.Gripper.setStayActivStepper" title="mobrob_behcon.connectors.gripper.Gripper.setStayActivStepper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setStayActivStepper</span></code></a>(value)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.gripper.Gripper.stopAll" title="mobrob_behcon.connectors.gripper.Gripper.stopAll"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stopAll</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.gripper.Gripper.stopGRIP" title="mobrob_behcon.connectors.gripper.Gripper.stopGRIP"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stopGRIP</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.gripper.Gripper.stopVERT" title="mobrob_behcon.connectors.gripper.Gripper.stopVERT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stopVERT</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#mobrob_behcon.connectors.gripper.Gripper.writeServo" title="mobrob_behcon.connectors.gripper.Gripper.writeServo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">writeServo</span></code></a>(angle)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Details</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.gripper.Gripper.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ros_service</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'attiny_command'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/gripper.html#Gripper.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.gripper.Gripper.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ros_service</strong> (<em>string</em>) – name of service for attiny (default: <strong>‘attiny_command’</strong>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.gripper.Gripper.getPosGRIP">
+<span class="sig-name descname"><span class="pre">getPosGRIP</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/gripper.html#Gripper.getPosGRIP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.gripper.Gripper.getPosGRIP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.gripper.Gripper.getPosVERT">
+<span class="sig-name descname"><span class="pre">getPosVERT</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/gripper.html#Gripper.getPosVERT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.gripper.Gripper.getPosVERT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.gripper.Gripper.initGRIP">
+<span class="sig-name descname"><span class="pre">initGRIP</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/gripper.html#Gripper.initGRIP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.gripper.Gripper.initGRIP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.gripper.Gripper.initVERT">
+<span class="sig-name descname"><span class="pre">initVERT</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/gripper.html#Gripper.initVERT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.gripper.Gripper.initVERT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.gripper.Gripper.moveAbsGRIP">
+<span class="sig-name descname"><span class="pre">moveAbsGRIP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/gripper.html#Gripper.moveAbsGRIP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.gripper.Gripper.moveAbsGRIP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.gripper.Gripper.moveAbsVERT">
+<span class="sig-name descname"><span class="pre">moveAbsVERT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/gripper.html#Gripper.moveAbsVERT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.gripper.Gripper.moveAbsVERT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.gripper.Gripper.moveRelGRIP">
+<span class="sig-name descname"><span class="pre">moveRelGRIP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/gripper.html#Gripper.moveRelGRIP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.gripper.Gripper.moveRelGRIP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.gripper.Gripper.moveRelVERT">
+<span class="sig-name descname"><span class="pre">moveRelVERT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/gripper.html#Gripper.moveRelVERT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.gripper.Gripper.moveRelVERT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.gripper.Gripper.refreshServo">
+<span class="sig-name descname"><span class="pre">refreshServo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/gripper.html#Gripper.refreshServo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.gripper.Gripper.refreshServo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.gripper.Gripper.send_command">
+<span class="sig-name descname"><span class="pre">send_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/gripper.html#Gripper.send_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.gripper.Gripper.send_command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.gripper.Gripper.setActivServo">
+<span class="sig-name descname"><span class="pre">setActivServo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/gripper.html#Gripper.setActivServo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.gripper.Gripper.setActivServo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.gripper.Gripper.setSpeedGRIP">
+<span class="sig-name descname"><span class="pre">setSpeedGRIP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/gripper.html#Gripper.setSpeedGRIP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.gripper.Gripper.setSpeedGRIP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.gripper.Gripper.setSpeedVERT">
+<span class="sig-name descname"><span class="pre">setSpeedVERT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/gripper.html#Gripper.setSpeedVERT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.gripper.Gripper.setSpeedVERT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.gripper.Gripper.setStayActivStepper">
+<span class="sig-name descname"><span class="pre">setStayActivStepper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/gripper.html#Gripper.setStayActivStepper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.gripper.Gripper.setStayActivStepper" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.gripper.Gripper.stopAll">
+<span class="sig-name descname"><span class="pre">stopAll</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/gripper.html#Gripper.stopAll"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.gripper.Gripper.stopAll" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.gripper.Gripper.stopGRIP">
+<span class="sig-name descname"><span class="pre">stopGRIP</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/gripper.html#Gripper.stopGRIP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.gripper.Gripper.stopGRIP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.gripper.Gripper.stopVERT">
+<span class="sig-name descname"><span class="pre">stopVERT</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/gripper.html#Gripper.stopVERT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.gripper.Gripper.stopVERT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mobrob_behcon.connectors.gripper.Gripper.writeServo">
+<span class="sig-name descname"><span class="pre">writeServo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/mobrob_behcon/connectors/gripper.html#Gripper.writeServo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mobrob_behcon.connectors.gripper.Gripper.writeServo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="mobrob_behcon.connectors.laserscanner.LaserScanner.html"
+                        title="previous chapter">LaserScanner</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="mobrob_behcon.strategies.strategy.Strategy.html"
+                        title="next chapter">Strategy</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/stubs/mobrob_behcon.connectors.gripper.Gripper.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="mobrob_behcon.strategies.strategy.Strategy.html" title="Strategy"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="mobrob_behcon.connectors.laserscanner.LaserScanner.html" title="LaserScanner"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Gripper</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Techniccontroller.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>

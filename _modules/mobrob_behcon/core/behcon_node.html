@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mobrob_behcon.core.behcon_node &#8212; MobRob_ROS_behcon 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css" />
+    
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mobrob_behcon.core.behcon_node</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mobrob_behcon.core.behcon_node</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">mobrob_behcon.core.resolver</span> <span class="kn">import</span> <span class="n">Resolver</span>
+<span class="kn">from</span> <span class="nn">mobrob_behcon.core.perceptual_space</span> <span class="kn">import</span> <span class="n">PerceptualSpace</span>
+<span class="kn">from</span> <span class="nn">mobrob_behcon.core.visualisation</span> <span class="kn">import</span> <span class="n">KOOSVisu</span>
+<span class="kn">from</span> <span class="nn">mobrob_behcon.visu.visu_behcon</span> <span class="kn">import</span> <span class="n">VisuBehCon</span>
+
+
+<div class="viewcode-block" id="BehConNode"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.behcon_node.BehConNode.html#mobrob_behcon.core.behcon_node.BehConNode">[docs]</a><span class="k">class</span> <span class="nc">BehConNode</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The class BehConNode</span>
+
+<span class="sd">    This class represents the central container of all components.</span>
+<span class="sd">    An object of this class serves as a link between the components </span>
+<span class="sd">    of the behavior pattern control: </span>
+
+<span class="sd">    - Strategy</span>
+
+<span class="sd">    - Resolver</span>
+
+<span class="sd">    - PreceptualSpace</span>
+
+<span class="sd">    - List of BehaviourGroups</span>
+
+<span class="sd">    - VisuBehCon (Visualisation for Strategy)</span>
+
+<span class="sd">    - KOOSVisu (Visualistation for PerceptualSpace)</span>
+<span class="sd">   </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="BehConNode.__init__"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.behcon_node.BehConNode.html#mobrob_behcon.core.behcon_node.BehConNode.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">        constructor</span>
+
+<span class="sd">        :param id: name of object</span>
+<span class="sd">        :type id: string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolver</span> <span class="o">=</span> <span class="n">Resolver</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lst_behGroups</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">visu</span> <span class="o">=</span> <span class="n">KOOSVisu</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">percept_space</span> <span class="o">=</span> <span class="n">PerceptualSpace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">visu</span><span class="p">)</span>
+        <span class="c1">#self.percept_space.add_camera(&#39;mobrob_camera&#39;, 5001)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">percept_space</span><span class="o">.</span><span class="n">add_laserscanner</span><span class="p">(</span><span class="s1">&#39;/scan&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">percept_space</span><span class="o">.</span><span class="n">add_egopose</span><span class="p">(</span><span class="s1">&#39;/odom&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">visubehcon</span> <span class="o">=</span> <span class="n">VisuBehCon</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;node created&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BehConNode.start"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.behcon_node.BehConNode.html#mobrob_behcon.core.behcon_node.BehConNode.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">        Start the execution of the robot tasks</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">visubehcon</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+        <span class="n">rate</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Rate</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># 10hz</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="o">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span><span class="o">.</span><span class="n">plan</span><span class="p">()</span>           
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">resolver</span><span class="o">.</span><span class="n">runOnce</span><span class="p">()</span>
+            <span class="n">ego_pose</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">percept_space</span><span class="o">.</span><span class="n">egopose</span><span class="o">.</span><span class="n">get_current_pose</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">percept_space</span><span class="o">.</span><span class="n">visu</span><span class="o">.</span><span class="n">set_current_pose</span><span class="p">(</span><span class="n">ego_pose</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">percept_space</span><span class="o">.</span><span class="n">visu</span><span class="o">.</span><span class="n">draw_robot</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">percept_space</span><span class="o">.</span><span class="n">laserscanner</span><span class="o">.</span><span class="n">draw_laserpoints</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">visu</span><span class="o">.</span><span class="n">send_image</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">visubehcon</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span><span class="o">.</span><span class="n">is_finished</span><span class="p">():</span>
+                <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s2">&quot;Strategy finished -&gt; shutdown&quot;</span><span class="p">)</span>
+                <span class="n">rospy</span><span class="o">.</span><span class="n">signal_shutdown</span><span class="p">(</span><span class="s2">&quot;Finished execution&quot;</span><span class="p">)</span>
+            <span class="n">rate</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="BehConNode.add_strategy"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.behcon_node.BehConNode.html#mobrob_behcon.core.behcon_node.BehConNode.add_strategy">[docs]</a>    <span class="k">def</span> <span class="nf">add_strategy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strategy</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        add Strategy to the robot control software</span>
+
+<span class="sd">        :param strategy: strategy object to be added</span>
+<span class="sd">        :type strategy: Strategy</span>
+<span class="sd">        :return: returns nothing</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">strategy</span><span class="o">.</span><span class="n">set_node</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">=</span> <span class="n">strategy</span></div>
+    
+<div class="viewcode-block" id="BehConNode.add_beh_group"><a class="viewcode-back" href="../../../stubs/mobrob_behcon.core.behcon_node.BehConNode.html#mobrob_behcon.core.behcon_node.BehConNode.add_beh_group">[docs]</a>    <span class="k">def</span> <span class="nf">add_beh_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beh_group</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        add BehaviourGroup to the robot control software</span>
+
+<span class="sd">        :param strategy: BehaviourGroup object to be added</span>
+<span class="sd">        :type strategy: BehaviourGroup</span>
+<span class="sd">        :return: returns nothing</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">beh_group</span><span class="o">.</span><span class="n">set_resolver</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resolver</span><span class="p">)</span>
+        <span class="n">beh_group</span><span class="o">.</span><span class="n">set_percept_space</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">percept_space</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lst_behGroups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">beh_group</span><span class="p">)</span></div></div>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">MobRob_ROS_behcon 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mobrob_behcon.core.behcon_node</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Techniccontroller.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+    </div>
+  </body>
+</html>
