@@ -1,13 +1,14 @@
-make html BUILDDIR=/tmp/mobrob_behcon_doc_build
-cd /tmp/mobrob_behcon_doc_build
+tmp_dir=$(mktemp -d -t pages-XXXXXXXXXX)
+make html BUILDDIR=$tmp_dir
+cd $tmp_dir
 git clone https://github.com/techniccontroller/MobRob_ROS_behcon.git
 cd ./MobRob_ROS_behcon
 git stash
 git checkout --force gh-pages
 git clean -fd
 rm -vrf *
-rm -rf /tmp/mobrob_behcon_doc_build/html/.doctrees
-cp -vr /tmp/mobrob_behcon_doc_build/html/. .
+rm -rf $tmp_dir/html/.doctrees
+cp -vr $tmp_dir/html/. .
 touch ".nojekyll"
 git add .
 git commit --allow-empty -m "Add changes for $GITHUB_SHA"
