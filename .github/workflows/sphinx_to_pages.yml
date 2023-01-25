@@ -20,7 +20,8 @@ jobs:
     - name: Build and Commit
       run: |
         cd './doc'
-        make html BUILDDIR=../../MobRob_ROS_behcon_docs
+        tmp_dir=$(mktemp -d -t pages-XXXXXXXXXX)
+        make html BUILDDIR=$tmp_dir
         cd $GITHUB_WORKSPACE/.
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
@@ -28,8 +29,8 @@ jobs:
         git checkout --force gh-pages
         git clean -fd
         rm -vrf *
-        rm -rf ../../MobRob_ROS_behcon_docs/html/.doctrees
-        cp -vr ../../MobRob_ROS_behcon_docs/html/. .
+        rm -rf $tmp_dir/html/.doctrees
+        cp -vr $tmp_dir/html/. .
         touch ".nojekyll"
         git add .
         git commit --allow-empty -m "Add changes for $GITHUB_SHA"
