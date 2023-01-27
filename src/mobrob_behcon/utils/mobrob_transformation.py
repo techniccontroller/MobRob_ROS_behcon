@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def get_T_world_robot(yaw_ego, x_ego, y_ego):
     """
     Get transformation from world to robot
@@ -14,9 +15,9 @@ def get_T_world_robot(yaw_ego, x_ego, y_ego):
     :rtype: numpy.array(4,4)
     """
     T_world_robot = np.array([[np.cos(yaw_ego), -np.sin(yaw_ego), 0.0, x_ego],
-                             [np.sin(yaw_ego), np.cos(yaw_ego), 0.0, y_ego],
-                             [0.0, 0.0, 1.0, 0.0],
-                             [0.0, 0.0, 0.0, 1.0]])
+                              [np.sin(yaw_ego), np.cos(yaw_ego), 0.0, y_ego],
+                              [0.0, 0.0, 1.0, 0.0],
+                              [0.0, 0.0, 0.0, 1.0]])
     return T_world_robot
 
 
@@ -27,10 +28,10 @@ def get_T_robot_laser():
     :return: transformationmatrix robot->laser
     :rtype: numpy.array(4,4)
     """
-    T_robot_laser = np.array([[1.0, 0.0, 0.0, 0.055],
-                             [0.0, 1.0, 0.0, 0.0],
-                             [0.0, 0.0, 1.0, 0.06],
-                             [0.0, 0.0, 0.0, 1.0]])
+    T_robot_laser = np.array([[-1.0, 0.0, 0.0, 0.055],
+                              [0.0, -1.0, 0.0, 0.0],
+                              [0.0, 0.0, 1.0, 0.11],
+                              [0.0, 0.0, 0.0, 1.0]])
     return T_robot_laser
 
 
@@ -62,9 +63,9 @@ def get_T_of_3Dpoint(x, y, z=0.0):
     :rtype: numpy.array(4,4)
     """
     T_laser_cluster = np.array([[1.0, 0.0, 0.0, x],
-                             [0.0, 1.0, 0.0, y],
-                             [0.0, 0.0, 1.0, z],
-                             [0.0, 0.0, 0.0, 1.0]])
+                                [0.0, 1.0, 0.0, y],
+                                [0.0, 0.0, 1.0, z],
+                                [0.0, 0.0, 0.0, 1.0]])
     return T_laser_cluster
 
 
@@ -88,7 +89,7 @@ def get_T_world_cluster(yaw_ego, x_ego, y_ego, x_cls, y_cls):
     T_world_robot = get_T_world_robot(yaw_ego, x_ego, y_ego)
     T_robot_laser = get_T_robot_laser()
     T_laser_cluster = get_T_laser_cluster(x_cls, y_cls)
-    
+
     T_world_cluster = T_world_robot.dot(T_robot_laser).dot(T_laser_cluster)
 
     return T_world_cluster
@@ -114,8 +115,9 @@ def get_world_coordinate(currentPose, x, y):
 
     vector = np.transpose(np.array([x, y, 0, 1]))
     world = T_world_robot.dot(vector)
-    
+
     return (world[0], world[1])
+
 
 def get_laser_coordinate(x, y):
     """
@@ -133,8 +135,9 @@ def get_laser_coordinate(x, y):
 
     vector = np.transpose(np.array([x, y, 0, 1]))
     laser = T_laser_robot.dot(vector)
-    
+
     return (laser[0], laser[1])
+
 
 def get_robot_coordinate(x, y):
     """
@@ -151,7 +154,7 @@ def get_robot_coordinate(x, y):
 
     vector = np.transpose(np.array([x, y, 0, 1]))
     robot = T_robot_laser.dot(vector)
-    
+
     return (robot[0], robot[1])
 
 
