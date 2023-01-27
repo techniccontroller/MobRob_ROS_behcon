@@ -34,6 +34,13 @@ class MoveActuator(object):
             self.last_send_time_vel = current_time
             self.last_cmd_msg = cmd_msg
 
+    def send_vel_2d(self, x, y, th, send_limit=0):
+        cmd_msg = Twist()
+        cmd_msg.linear.x = x
+        cmd_msg.linear.y = y
+        cmd_msg.angular.z = th
+        self.send_twist(cmd_msg, send_limit)
+
     @staticmethod
     def calc_diff_2d(twist1, twist2):
         if twist1 is None or twist2 is None:

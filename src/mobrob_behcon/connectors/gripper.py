@@ -18,7 +18,7 @@ class Gripper(object):
         :param ros_service: name of service for attiny (default: **'attiny_command'**)
         :type ros_service: string
         """
-        rospy.wait_for_service(ros_service)
+        #rospy.wait_for_service(ros_service)
         self.attiny_command = rospy.ServiceProxy(ros_service , AttinyCommand)
         
     
@@ -91,9 +91,13 @@ class Gripper(object):
     
 
     def getPosVERT(self):
-        print(self.send_command("vt_gp(1)\n"))
+        pos = self.send_command("vt_gp(1)\n")
+        print(pos)
+        return pos
     
 
     def getPosGRIP(self):
-        print(self.send_command("gr_gp(1)\n"))
+        pos = self.send_command("gr_gp(1)\n")
+        print(pos)
+        return pos
     

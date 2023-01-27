@@ -161,6 +161,7 @@ include_directories(
 ## in contrast to setup.py, you can choose the destination
 catkin_install_python(PROGRAMS
   nodes/main_1.py
+  nodes/teleop_visu.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
