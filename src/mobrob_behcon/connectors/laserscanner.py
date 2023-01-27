@@ -144,7 +144,7 @@ class LaserScanner(object):
     
     def check_box(self, x1, y1, x2, y2):
         """
-        Check if some obstacle is in given box. Returns distance.
+        Check if some obstacle is in given box (defined in robot space). Returns distance.
 
         :param x1: x-coordinate of first corner of box
         :type x1: float

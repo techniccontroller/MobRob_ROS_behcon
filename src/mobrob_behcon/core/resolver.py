@@ -1,20 +1,14 @@
 #!/usr/bin/env python
 
-#import sys
-#from os import path
-#sys.path.append( path.dirname( path.dirname( path.abspath(__file__) ) ) )
-
 import rospy
 from geometry_msgs.msg import Twist
 from mobrob_behcon.desires.desire import Desire
 from mobrob_behcon.desires.desires import DesCmdVel, DesTransVel, DesTransDir, DesRotVel
-from mobrob_behcon.behaviours.behaviour import Behaviour
-import copy
+from mobrob_behcon.connectors.moveactuator import MoveActuator
 import math
-import time
 
 class Resolver:
-	""" 
+	"""
 	The class Resolver 
 
 	It resolves a output for the actuators from given desires. 
@@ -31,16 +25,12 @@ class Resolver:
 		:return: returns nothing
 		"""
 		self.lst_behaviours = []
-		self.lst_desires_vel =  []
-		self.lst_des_transvel =  []
-		self.lst_des_rotvel =  []
-		self.lst_des_transdir =  []
+		self.lst_desires_vel = []
+		self.lst_des_transvel = []
+		self.lst_des_rotvel = []
+		self.lst_des_transdir = []
 
-		# ROS publisher
-		self.pub_cmd_vel = rospy.Publisher('cmd_vel', Twist, queue_size=10)
-
-		self.last_cmd_msg = None
-		self.last_sendtime_vel = 0
+		self.moveactuator = MoveActuator()
 
 
 	def add_desire(self, desire):
@@ -73,7 +63,7 @@ class Resolver:
 		self.lst_des_transvel =  []
 		self.lst_des_rotvel =  []
 		self.lst_des_transdir =  []
-	
+
 
 	def resetDesires(self):
 		"""
@@ -81,9 +71,9 @@ class Resolver:
 
 		"""
 		self.lst_desires_vel = []
-		self.lst_des_transvel =  []
-		self.lst_des_rotvel =  []
-		self.lst_des_transdir =  []
+		self.lst_des_transvel = []
+		self.lst_des_rotvel = []
+		self.lst_des_transdir = []
 
 
 	def set_behaviour_lst(self, behaviours):
@@ -116,7 +106,7 @@ class Resolver:
 			#print("Desire-Type: " + type(lst_desires[0]).__name__)
 			#for d in lst_desires:
 			#	print(d)
-			
+
 			# create resulting desire (mostly used to track the value and strength during next calculations)
 			result_desire = Desire(0, 0)
 			# declare variable to count desires with the same priority
@@ -150,7 +140,7 @@ class Resolver:
 
 	def runOnce(self):
 		"""
-		Run one cycle of the resolver to calculate output values 
+		Run one cycle of the resolver to calculate output values
 		and publish corresponding messages
 
 		"""
@@ -161,13 +151,12 @@ class Resolver:
 		# trigger the fire()-function of all active behaviours
 		for beh in self.lst_behaviours:
 			beh.fire()
-		
 
 		# resolve desires to get velocity values
 		transvel = self.resolveDesire(self.lst_des_transvel)
 		transdir = self.resolveDesire(self.lst_des_transdir)
 		rotvel = self.resolveDesire(self.lst_des_rotvel)
-		
+
 		# create cmd_vel msg out of resolved values
 		cmd_msg = Twist()
 		cmd_msg.linear.x = transvel * math.cos(math.radians(transdir))
@@ -177,41 +166,6 @@ class Resolver:
 		cmd_msg.angular.y = 0.0
 		cmd_msg.angular.z = rotvel
 
-		currenttime = Resolver.get_current_time()
-		diff_to_last = 0
-
-		# calc difference between last send cmd_vel command
-		if self.last_cmd_msg:
-			diff_to_last = abs(self.last_cmd_msg.linear.x - cmd_msg.linear.x) \
-							+ abs(self.last_cmd_msg.linear.y - cmd_msg.linear.y) \
-							+ abs(self.last_cmd_msg.angular.z - cmd_msg.angular.z)
-			
-		# check if a update need to be send
-		if diff_to_last > 0.01 or currenttime - self.last_sendtime_vel > 1000:
-			rospy.loginfo("Resolver: transvel=%f, rotvel=%f", transvel, rotvel)
-			self.pub_cmd_vel.publish(cmd_msg)
-			self.last_sendtime_vel = currenttime
-			self.last_cmd_msg = cmd_msg
-
-		
-
-		#cmd_value = self.resolveDesire(self.lst_desires_vel)
-		#print("Resolver: cmd value = " + str(cmd_value))
-		#cmd_msg = Twist()
-		#cmd_msg.linear.x = cmd_value[0]
-		#cmd_msg.linear.y = cmd_value[1]
-		#cmd_msg.linear.z = cmd_value[2]
-		#cmd_msg.angular.x = cmd_value[3]
-		#cmd_msg.angular.y = cmd_value[4]
-		#cmd_msg.angular.z = cmd_value[5]
-
-		# publish velocity command
-
-	@staticmethod
-	def get_current_time():
-		"""
-		Get current time in milliseconds
-
-		:return: time in milliseconds
-		"""     
-		return int(round(time.time() * 1000))
+		# send update (limit sending speed to 1msg/sec if no change occurred)
+		rospy.loginfo("Resolver: trans_vel=%f, rot_vel=%f", transvel, rotvel)
+		self.moveactuator.send_twist(cmd_msg)

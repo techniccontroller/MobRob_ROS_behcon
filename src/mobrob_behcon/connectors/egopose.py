@@ -6,6 +6,7 @@ from myrobot_model.msg import Pose
 from nav_msgs.msg import Odometry
 import tf
 
+
 class EgoPose(object):
     """
     The class EgoPose
@@ -37,7 +38,7 @@ class EgoPose(object):
         """
         self.current_pose = (msg.x, msg.y, msg.theta)
         self.last_pose_time = EgoPose.get_current_time()
-    
+
     def callbackOdometry(self, msg):
         """
         callback function for topics of type nav_msgs/Odometry
@@ -46,12 +47,12 @@ class EgoPose(object):
         """
         x = msg.pose.pose.position.x
         y = msg.pose.pose.position.y
-        explicit_quat = [msg.pose.pose.orientation.x, \
-                            msg.pose.pose.orientation.y, \
-                            msg.pose.pose.orientation.z, \
-                            msg.pose.pose.orientation.w]
+        explicit_quat = [msg.pose.pose.orientation.x,
+                         msg.pose.pose.orientation.y,
+                         msg.pose.pose.orientation.z,
+                         msg.pose.pose.orientation.w]
         _, _, yaw = tf.transformations.euler_from_quaternion(explicit_quat)
-        #_, _, yaw = tf.transformations.euler_from_quaternion(msg.pose.pose.orientation)
+        # _, _, yaw = tf.transformations.euler_from_quaternion(msg.pose.pose.orientation)
         self.current_pose = (x, y, yaw)
         self.last_pose_time = EgoPose.get_current_time()
 
@@ -64,12 +65,12 @@ class EgoPose(object):
         """
         age = EgoPose.get_current_time() - self.last_pose_time
         return self.current_pose, age
-    
+
     @staticmethod
     def get_current_time():
         """
         Get current time in milliseconds
 
         :return: time in milliseconds
-        """  
+        """
         return int(round(time.time() * 1000))
