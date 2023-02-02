@@ -49,6 +49,8 @@ class Gripper(object):
     def initVERT(self):
         print(self.send_command("vt_it(1)\n"))
     
+    def grabGRIP(self):
+        print(self.send_command("gr_gr(1)\n"))
 
     def setSpeedGRIP(self, value):
         print(self.send_command("gr_sp(" + str(abs(value)) + ")\n"))
@@ -98,6 +100,11 @@ class Gripper(object):
 
     def getPosGRIP(self):
         pos = self.send_command("gr_gp(1)\n")
+        print(pos)
+        return pos
+
+    def getPosServo(self):
+        pos = self.send_command("sv_gp(1)\n")
         print(pos)
         return pos
     
