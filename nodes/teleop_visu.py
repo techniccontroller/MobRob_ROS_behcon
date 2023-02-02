@@ -131,6 +131,10 @@ class ManualControlApp(Tk, object):
         btnInitVERT.bind('<ButtonPress-1>', lambda e: self.gripper.initVERT())
         self.preset_button(btnInitVERT, 1, 0)
 
+        btnGrabGRIP = Button(btns_frame, text="GRAB")
+        btnGrabGRIP.bind('<ButtonPress-1>', lambda e: self.gripper.grabGRIP())
+        self.preset_button(btnGrabGRIP, 2, 0)
+
         # Vertical
         btnUp = Button(btns_frame, text="Up")
         btnUp.bind('<ButtonPress-1>', lambda e: self.control_up())
@@ -185,9 +189,9 @@ class ManualControlApp(Tk, object):
         btnDeactivate.bind('<ButtonPress-1>', lambda e: self.gripper.setStayActivStepper(False))
         self.preset_button(btnDeactivate, 1, 3)
 
-        btnServoActive = Button(btns_frame, text="deactivate\nServo")
-        btnServoActive.bind('<ButtonPress-1>', lambda e: self.gripper.setActivServo(False))
-        self.preset_button(btnServoActive, 0, 4)
+        btnServoRefresh = Button(btns_frame, text="Servo\nrefresh")
+        btnServoRefresh.bind('<ButtonPress-1>', lambda e: self.gripper.refreshServo())
+        self.preset_button(btnServoRefresh, 0, 4)
 
         btnServoWrite = Button(btns_frame, text="Servo\nwrite")
         btnServoWrite.bind('<ButtonPress-1>', lambda e: self.write_servo())
@@ -197,9 +201,9 @@ class ManualControlApp(Tk, object):
         self.txtPosServo.insert(0, '50')
         self.txtPosServo.grid(column=2, row=4)
 
-        btnServoRefresh = Button(btns_frame, text="Servo\nrefresh")
-        btnServoRefresh.bind('<ButtonPress-1>', lambda e: self.gripper.refreshServo())
-        self.preset_button(btnServoRefresh, 3, 4)
+        btnGetPosServo = Button(btns_frame, text="getPos")
+        btnGetPosServo.bind('<ButtonPress-1>', lambda e: self.get_pos_servo())
+        self.preset_button(btnGetPosServo, 4, 4)
 
         self.mainloop()
 
@@ -251,16 +255,16 @@ class ManualControlApp(Tk, object):
             return False
 
     def control_up(self):
-        self.gripper.moveRelVERT(-900)
+        self.gripper.moveRelVERT(20)
 
     def control_down(self):
-        self.gripper.moveRelVERT(900)
+        self.gripper.moveRelVERT(-20)
 
     def control_open(self):
-        self.gripper.moveRelGRIP(900)
+        self.gripper.moveRelGRIP(20)
 
     def control_close(self):
-        self.gripper.moveRelGRIP(-900)
+        self.gripper.moveRelGRIP(-20)
 
     def control_grip_abs(self):
         self.gripper.moveAbsGRIP(int(self.txtPosGRIP.get()))
@@ -290,6 +294,10 @@ class ManualControlApp(Tk, object):
         self.txtPosGRIP.delete(0, END)
         self.txtPosGRIP.insert(0, str(int(pos)))
 
+    def get_pos_servo(self):
+        pos = self.gripper.getPosServo()
+        self.txtPosServo.delete(0, END)
+        self.txtPosServo.insert(0, str(int(pos)))
 
 if __name__ == '__main__':
     os.system('xset r off')
