@@ -180,11 +180,4 @@ class LaserScanner(object):
 
         # calculate and return distance to nearest point
         return self.calc_dist(nearest_point[0], nearest_point[1])
-    
-    def draw_laserpoints(self):
-        """
-        Draw all laser scanpoints to visualisation
-        """
-        rospy.loginfo("Laserscanner - numPoints=%d", len(self.lst_scan_points))
-        self.visu.draw_points_laser(self.lst_scan_points)
 
