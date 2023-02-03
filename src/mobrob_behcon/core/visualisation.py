@@ -287,4 +287,11 @@ class KOOSVisu(object):
         line_width = 2  # int(0.001 * self.scale)
         cv2.polylines(self.img, [pts], isClosed=True, color=color, thickness=line_width)
 
+    def draw_text_world(self, point, text, color=(255, 255, 255)):
+        point = np.array(point).flatten()
+        assert point.size == 2, "wrong shape of point" + str(point)
+        if abs(point[0]) < 100 and abs(point[1]) < 100:
+            (x_visu, y_visu) = self.to_visu_coord(point)
+            if 0 < x_visu < self.width and 0 < y_visu < self.height:
+                cv2.putText(self.img, text, (x_visu, y_visu), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 1, cv2.LINE_AA)
 
