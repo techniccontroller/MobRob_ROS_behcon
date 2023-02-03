@@ -45,7 +45,7 @@ class Gripper(object):
         print(self.send_command("vt_it(1)\n"))
 
     def grabGRIP(self):
-        print(self.send_command("gr_gr(1)\n"))
+        print(self.moveAbsGRIP(0))
 
     def setSpeedGRIP(self, value):
         print(self.send_command("gr_sp(" + str(abs(value)) + ")\n"))
@@ -102,3 +102,12 @@ class Gripper(object):
         pos = self.send_command("gr_gg(1)\n")
         print(pos)
         return int(pos)
+
+    def init_blocking(self):
+        rospy.loginfo("Initializing Gripper (takes 7 seconds) ...")
+        self.initVERT()
+        rospy.sleep(4)
+        self.initGRIP()
+        rospy.sleep(3)
+        rospy.loginfo("Gripper initialized")
+
