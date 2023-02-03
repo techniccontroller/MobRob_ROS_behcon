@@ -7,8 +7,10 @@ from io import BytesIO
 import numpy as np
 from PIL import Image
 from PIL import ImageFile
+
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 import cv2
+
 
 class CameraTCP(object):
     """
@@ -17,9 +19,10 @@ class CameraTCP(object):
     Represents a connector to the Camera on the robot.
     Provides a function to get a image from camera.
     """
-    
+
     BUFFER_SIZE = 16
-    MESSAGE = b'getNewFrame'
+    MSG_NEW_FRAME = b'getNewFrame'
+    MSG_CACHED_FRAME = b'getCacheFra'
 
     def __init__(self, ip_address, port):
         """
@@ -35,23 +38,22 @@ class CameraTCP(object):
 
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.socket.connect((self.ip_address, self.port))
-    
 
-    def get_frame(self):
+    def get_frame(self, msg=MSG_NEW_FRAME):
         """
         Get new frame from camera
 
         :return: returns current frame from camera
         """
-        self.socket.send(self.MESSAGE)
+        self.socket.send(msg)
         data = self.socket.recv(self.BUFFER_SIZE)
         size = int(data)
-        
+
         data = CameraTCP.recvall(self.socket, size)
 
-        frame = CameraTCP.stringToRGB(data) 
+        frame = CameraTCP.stringToRGB(data)
         return frame
-    
+
     @staticmethod
     def stringToRGB(base64_string):
         """
@@ -66,7 +68,7 @@ class CameraTCP(object):
         image = Image.open(image)
         image = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
         return image
-    
+
     @staticmethod
     def recvall(sock, n):
         """
