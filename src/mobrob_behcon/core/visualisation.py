@@ -99,13 +99,17 @@ class KOOSVisu(object):
                         color=(0, 255, 0),
                         thickness=line_width)
 
-    def draw_robot(self, color=(0, 255, 0)):
+    def draw_robot(self, color=(0, 255, 0), current_pose=None):
         """
         Draws the robot on the canvas as rectangle with the given color.
 
         :param color: color of robot on canvas, defaults to (0, 255, 0)
         :type color: (byte, byte, byte)
+        :param current_pose: current pose of robot in world space (x, y, yaw), defaults to None
+        :type current_pose: (float, float, float)
         """
+        if current_pose is not None:
+            self.set_current_pose(current_pose)
         LF, RF, RB, LB = get_robot_corners(self.current_pose)
         LM = (np.array(LF) + np.array(LB)) / 2
         RM = (np.array(RF) + np.array(RB)) / 2
