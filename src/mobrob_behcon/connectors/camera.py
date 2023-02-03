@@ -2,14 +2,13 @@
 
 import socket
 import base64
-import io
 from io import BytesIO
 import numpy as np
 from PIL import Image
 from PIL import ImageFile
+import cv2
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
-import cv2
 
 
 class CameraTCP(object):
@@ -49,13 +48,13 @@ class CameraTCP(object):
         data = self.socket.recv(self.BUFFER_SIZE)
         size = int(data)
 
-        data = CameraTCP.recvall(self.socket, size)
+        data = CameraTCP.recv_all(self.socket, size)
 
-        frame = CameraTCP.stringToRGB(data)
+        frame = CameraTCP.string_to_rgb(data)
         return frame
 
     @staticmethod
-    def stringToRGB(base64_string):
+    def string_to_rgb(base64_string):
         """
         Convert base64 encoded image to OpenCV image
 
@@ -70,7 +69,7 @@ class CameraTCP(object):
         return image
 
     @staticmethod
-    def recvall(sock, n):
+    def recv_all(sock, n):
         """
         Helper function to recv n bytes or return None if EOF is hit
 
