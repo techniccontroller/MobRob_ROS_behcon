@@ -139,7 +139,7 @@ def get_laser_coordinate(x, y):
     return (laser[0], laser[1])
 
 
-def get_robot_coordinate(x, y):
+def get_robot_coordinate_from_laser(x, y):
     """
     Transforms a point in laser space to robot space
 
@@ -154,6 +154,28 @@ def get_robot_coordinate(x, y):
 
     vector = np.transpose(np.array([x, y, 0, 1]))
     robot = T_robot_laser.dot(vector)
+
+    return (robot[0], robot[1])
+
+
+def get_robot_coordinate(current_pose, x, y):
+    """
+    Transforms a point in world space to robot space
+
+    :param current_pose: current pose of robot in world space (x, y, yaw)
+    :type current_pose: (float, float, float)
+    :param x: x coordinate in world space
+    :type x: float
+    :param y: y coordinate in world space
+    :type y: float
+    :return: point in robot space
+    :rtype: (float, float)
+    """
+    T_world_robot = get_T_world_robot(current_pose[2], current_pose[0], current_pose[1])
+    T_robot_world = np.linalg.inv(T_world_robot)
+
+    vector = np.transpose(np.array([x, y, 0, 1]))
+    robot = T_robot_world.dot(vector)
 
     return (robot[0], robot[1])
 

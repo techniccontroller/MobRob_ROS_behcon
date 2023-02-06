@@ -158,7 +158,7 @@ class KOOSVisu(object):
         point = np.array(point).flatten()
         assert point.size == 2, "wrong shape of laser point" + str(point)
         if abs(point[0]) < 100 and abs(point[1]) < 100:
-            (x_robot, y_robot) = get_robot_coordinate(point[0], point[1])
+            (x_robot, y_robot) = get_robot_coordinate_from_laser(point[0], point[1])
             # print((x_robot, y_robot))
             (x_visu, y_visu) = self.to_visu_coord(get_world_coordinate(self.current_pose, x_robot, y_robot))
             # (x_visu, y_visu) = self.to_visu_coord(get_world_coordinate(self.current_pose, point[0], point[1]))

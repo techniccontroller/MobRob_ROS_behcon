@@ -7,6 +7,7 @@ import time
 import math
 from mobrob_behcon.utils.mobrob_transformation import *
 
+
 class LaserScanner(object):
     """
     The class LaserScanner
@@ -59,8 +60,8 @@ class LaserScanner(object):
         :return: x-coordinate [m]
         :rtype: float
         """
-        return np.cos(np.deg2rad(angle))*radius
-    
+        return np.cos(np.deg2rad(angle)) * radius
+
     @staticmethod
     def get_y(radius, angle):
         """
@@ -73,7 +74,7 @@ class LaserScanner(object):
         :return: y-coordinate [m]
         :rtype: float
         """
-        return np.sin(np.deg2rad(angle))*radius
+        return np.sin(np.deg2rad(angle)) * radius
 
     @staticmethod
     def extract_points(ranges):
@@ -89,8 +90,8 @@ class LaserScanner(object):
         for i in range(len(ranges)):
             value = np.nan_to_num(ranges[i])
             center_coordinates = (LaserScanner.get_x(value, i), LaserScanner.get_y(value, i))
-            lst_scan_points.append(center_coordinates)            
-        
+            lst_scan_points.append(center_coordinates)
+
         return lst_scan_points
 
     @staticmethod
@@ -105,8 +106,8 @@ class LaserScanner(object):
         :return: distance [m]
         :rtype: float
         """
-        return math.sqrt(x*x + y*y)
-    
+        return math.sqrt(x * x + y * y)
+
     @staticmethod
     def filter_points(list, x_min, x_max, y_min, y_max):
         """
@@ -127,10 +128,10 @@ class LaserScanner(object):
         """
         filt_list = []
         for i in range(len(list)):
-            if (list[i][0] > x_min) and (list[i][0] < x_max)\
-                and (list[i][1] > y_min) and (list[i][1] < y_max):
+            if (list[i][0] > x_min) and (list[i][0] < x_max) \
+                    and (list[i][1] > y_min) and (list[i][1] < y_max):
                 filt_list.append(list[i])
-        
+
         return filt_list
 
     @staticmethod
@@ -139,9 +140,9 @@ class LaserScanner(object):
         Get current time in milliseconds
 
         :return: time in milliseconds
-        """     
+        """
         return int(round(time.time() * 1000))
-    
+
     def check_box(self, x1, y1, x2, y2):
         """
         Check if some obstacle is in given box (defined in robot space). Returns distance.
@@ -175,9 +176,8 @@ class LaserScanner(object):
         nearest_point = (0, 0)
         # if some scanpoints are left in filtered list, find neareast point
         if len(lst_scan_points_filt) > 0:
-            nearest_point = min(lst_scan_points_filt, key = lambda p: self.calc_dist(p[0], p[1]))
-            nearest_point = get_robot_coordinate(nearest_point[0], nearest_point[1])
+            nearest_point = min(lst_scan_points_filt, key=lambda p: self.calc_dist(p[0], p[1]))
+            nearest_point = get_robot_coordinate_from_laser(nearest_point[0], nearest_point[1])
 
         # calculate and return distance to nearest point
         return self.calc_dist(nearest_point[0], nearest_point[1])
-
