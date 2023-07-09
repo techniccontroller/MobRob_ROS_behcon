@@ -5,7 +5,7 @@ ROS-Package: **mobrob_behcon** node for behaviour-based control of [MobRob](http
 
 ## Short description of behavior-based control concept
 
-Behavior-based control was already described in 1997 by Kurt Konolige and Karen Myers as Saphire architecture. The idea is to have elementary behavioral patterns that form the foundation stones for intelligence. For example:
+Behavior-based control was already described in 1997 by Kurt Konolige and Karen Myers as Saphira architecture. The idea is to have elementary behavioral patterns that form the foundation stones for intelligence. For example:
 
 - Food intake
 - Obstacle avoidance
@@ -24,3 +24,15 @@ More details are on my Website: https://techniccontroller.com/mobrob-behaviour-b
 **nodes**: contains the main files, for different tasks to be executed
 
 **src**: contains all source codes, separated in different domains
+
+
+## References
+
+- Konolige, Kurt & Myers, Karen & Ruspini, Enrique & Saffiotti, Alessandro. (1997). The Saphira Architecture: A Design for Autonomy. Journal of Experimental & Theoretical Artificial Intelligence. 9. 10.1080/095281397147095. 
+
+  https://www.researchgate.net/publication/2429137_The_Saphira_Architecture_A_Design_for_Autonomy
+
+
+- Konolige, Kurt & Myers, Karen. (1996). The Saphira Architecture for Autonomous Mobile Robots. 
+
+  https://courses.cs.washington.edu/courses/cse571/00au/papers/saphira-konolige.pdf
